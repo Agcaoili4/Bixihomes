@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { images } from "../assets/images";
 
 const navLinks = [
@@ -9,51 +9,19 @@ const navLinks = [
   { href: "#news", label: "News" },
 ];
 
-const businessSchedule = [
-  { day: "Sunday", hours: "Closed" },
-  { day: "Monday", hours: "09:00 AM – 05:00 PM" },
-  { day: "Tuesday", hours: "09:00 AM – 05:00 PM" },
-  { day: "Wednesday", hours: "09:00 AM – 05:00 PM" },
-  { day: "Thursday", hours: "09:00 AM – 05:00 PM" },
-  { day: "Friday", hours: "09:00 AM – 05:00 PM" },
-  { day: "Saturday", hours: "Closed" },
-];
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [now, setNow] = useState(() => new Date());
-
-  useEffect(() => {
-    let minuteInterval;
-    const msToNextMinute = 60000 - (Date.now() % 60000);
-    const alignmentTimer = window.setTimeout(() => {
-      setNow(new Date());
-      minuteInterval = window.setInterval(() => {
-        setNow(new Date());
-      }, 60000);
-    }, msToNextMinute);
-
-    return () => {
-      window.clearTimeout(alignmentTimer);
-      if (minuteInterval) {
-        window.clearInterval(minuteInterval);
-      }
-    };
-  }, []);
-
-  const todaySchedule = useMemo(() => businessSchedule[now.getDay()], [now]);
-  const businessHoursLabel = `${todaySchedule.day}: ${todaySchedule.hours}`;
 
   return (
     <>
       {/* Top Contact Bar */}
-      <div className="bg-black w-full" data-reveal>
+      <div className="bg-black w-full">
         <div className="ui-navbar-top">
           {/* Contact info */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center ui-gap-3 sm:ui-gap-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center ui-ui-gap-3 sm:ui-ui-ui-gap-8">
             <a
               href="mailto:Info@Example.com"
-              className="flex items-center ui-gap-2 group"
+              className="flex items-center ui-ui-gap-2 group"
             >
               <img
                 src={images.mailIcon}
@@ -66,7 +34,7 @@ export default function Navbar() {
             </a>
             <a
               href="tel:+01569896654"
-              className="flex items-center ui-gap-2 group"
+              className="flex items-center ui-ui-gap-2 group"
             >
               <img
                 src={images.callIcon}
@@ -81,16 +49,13 @@ export default function Navbar() {
 
           {/* Business hours — desktop only */}
           <p className="hidden md:block font-body text-xs text-white/50">
-            {businessHoursLabel}
+            Mon - Sat: 8:00 AM - 6:00 PM
           </p>
         </div>
       </div>
 
       {/* Navigation Bar */}
-      <nav
-        className="bg-gold w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
-        data-reveal
-      >
+      <nav className="bg-gold w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
         <div className="ui-navbar-main">
           <a href="#home" className="shrink-0">
             <img
@@ -101,8 +66,8 @@ export default function Navbar() {
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center ui-gap-6 xl:ui-gap-8">
-            <ul className="flex items-center ui-gap-5 xl:ui-gap-7 font-body font-semibold text-[15px] xl:text-base text-navy">
+          <div className="hidden lg:flex items-center ui-ui-gap-6 xl:ui-ui-ui-gap-8">
+            <ul className="flex items-center ui-ui-gap-5 xl:ui-gap-7 font-body font-semibold text-[15px] xl:text-base text-navy">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
@@ -175,7 +140,7 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               className="ui-btn ui-btn-secondary ui-btn-full"
             >
-              Get Free Estimate
+              Contact Us
             </a>
           </div>
         </div>
