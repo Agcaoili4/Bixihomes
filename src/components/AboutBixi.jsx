@@ -14,11 +14,11 @@ export default function AboutBixi() {
     <section className="bg-white ui-section">
       <div className="ui-container">
         {/* Heading */}
-        <div className="text-center ui-mb-xl">
+        <div className="text-center ui-mb-xl about-bixi-heading">
           <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight">
             About Bixi Homes
           </h2>
-          <p className="font-body text-sm md:text-base lg:text-lg text-black/70 max-w-[640px] mx-auto leading-relaxed">
+          <p className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-center">
             At Bixi Homes, we take care of your home like it&apos;s our own,
             providing exceptional home renovations and quality service.
           </p>

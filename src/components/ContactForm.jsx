@@ -9,7 +9,7 @@ export default function ContactForm() {
           <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight ui-mb-sm">
             Get In Touch
           </h2>
-          <p className="font-body text-sm md:text-base text-black/70 max-w-[520px] mx-auto leading-relaxed">
+          <p className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-center-center-body text-sm md:text-base text-black/70 max-w-[520px] mx-auto text-center leading-relaxed">
             Have a project in mind? Fill out the form below and our team will
             get back to you within 24 hours.
           </p>

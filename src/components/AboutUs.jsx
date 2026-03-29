@@ -32,16 +32,16 @@ export default function AboutUs() {
           </div>
 
           {/* Content */}
-          <div className="flex-1 flex flex-col justify-center ui-container ui-section">
-            <h2 className="font-heading font-extrabold text-[26px] md:text-[34px] lg:text-[42px] text-black ui-mb-sm leading-tight">
+          <div className="flex-1 flex flex-col justify-center ui-container ui-section about-us-content">
+            <h2 className="w-full font-heading font-extrabold text-[26px] md:text-[34px] lg:text-[42px] text-black ui-mb-sm leading-tight text-left">
               We Provide Your Future
             </h2>
-            <p className="font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-xs">
+            <p className="w-full font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-xs text-left">
               Pellentesque vehicula eros neque, maximus mattis est sagittis
               Nulla facilisi. In sed pretium metus. Proin pretium id urna sit
               amet tincidunt. Interdum et malesuada.
             </p>
-            <p className="font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md">
+            <p className="w-full font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md text-left">
               In pulvinar viverra diam, nec rutrum mauris maximus non. Aenean
               sed quam tristique, facilisis est ac, interdum velit.
             </p>

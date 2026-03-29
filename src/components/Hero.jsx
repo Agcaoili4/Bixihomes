@@ -40,7 +40,7 @@ export default function Hero() {
           </h1>
 
           {/* Subheading */}
-          <p className="hero-anim-sub font-body text-sm md:text-base lg:text-lg text-white/75 leading-relaxed ui-mb-lg max-w-[520px]">
+          <p className="hero-anim-sub font-body text-sm md:text-base lg:text-lg text-white/75 leading-relaxed ui-mb-lg max-w-auto lg:ml-auto lg:text-right">
             Professional home renovation and construction services. From concept
             to completion, we deliver quality craftsmanship that stands the test
             of time.

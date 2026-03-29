@@ -205,9 +205,9 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
-      <div className="mb-8 text-center">
+      <div className="mb-8 text-center gallery-heading">
         <motion.h2
-          className="text-2xl font-bold sm:text-3xl"
+          className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -215,7 +215,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
           {title}
         </motion.h2>
         <motion.p
-          className="mt-2 text-sm text-slate-500 sm:text-base"
+          className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
@@ -273,7 +273,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
                 <MediaItem item={item} className="h-72 w-full" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-200 hover:opacity-100" />
                 <div className="absolute bottom-2 left-2 right-2 text-white">
-                  <h3 className="text-xs font-semibold sm:text-sm">{item.title}</h3>
+                  <h3 className="text-xs font-bold sm:text-sm">{item.title}</h3>
                   <p className="text-[10px] text-white/80 sm:text-xs">{item.desc}</p>
                 </div>
               </motion.div>

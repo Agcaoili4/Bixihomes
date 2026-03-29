@@ -65,7 +65,7 @@ export default function Footer() {
                   Location
                 </p>
                 <p className="font-body text-xs md:text-sm text-black/70">
-                  Amsterdam, 109-74
+                  192 Marquis Common SE Calgary AB T3M 1N6
                 </p>
               </div>
             </div>
@@ -77,9 +77,7 @@ export default function Footer() {
           {/* About text + social */}
           <div className="max-w-full md:max-w-[380px] shrink-0">
             <p className="font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md md:ui-mb-lg">
-              Denouncing pleasure and praising pain was born and I will give you
-              a complete account of the system, and expound the actual
-              teachings of the great explorer.
+              For more updates and news, follow us on our social media.
             </p>
             <div className="flex ui-gap-3">
               {socialIcons.map((icon) => (
@@ -155,7 +153,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="ui-py-md text-center">
           <p className="font-body text-xs md:text-sm text-black/60">
-            Copyright &copy; Bixi Homes | Powered by Bixi Homes
+            Copyright &copy; Bixi Homes | 2026 All rights reserved.
           </p>
         </div>
       </div>

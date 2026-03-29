@@ -49,8 +49,8 @@ export default function Gallery() {
     <section id="gallery" className="bg-white ui-section">
       <InteractiveBentoGallery
         mediaItems={mediaItems}
-        title="Gallery Shots Collection"
-        description="Drag and explore our curated collection of shots"
+        title="Take a Look at Our Work"
+        description="Explore our portfolio of stunning home renovations and construction projects. From modern interiors to luxurious outdoor spaces, see how we transform houses into dream homes."
       />
     </section>
   );
