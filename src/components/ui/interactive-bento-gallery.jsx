@@ -130,18 +130,18 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
         exit={{ scale: 0.98 }}
         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
         onClick={onClose}
-        className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 backdrop-blur-md"
+        className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/45 backdrop-blur-xl"
       >
         <div onClick={(event) => event.stopPropagation()} className="relative w-full max-w-5xl p-4">
           <motion.div
-            className="relative overflow-hidden rounded-2xl bg-black"
+            className="relative overflow-hidden rounded-2xl border border-white/35 bg-white/12 shadow-[0_28px_60px_rgba(15,23,42,0.38)] backdrop-blur-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           >
             <MediaItem item={selectedItem} className="w-full h-[70vh] min-h-[360px]" />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950/72 via-slate-900/20 to-transparent backdrop-blur-md">
               <h3 className="text-white text-lg font-semibold">{selectedItem.title}</h3>
               <p className="text-white/80 text-sm mt-1">{selectedItem.desc}</p>
             </div>
@@ -150,7 +150,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
       </motion.div>
 
       <motion.button
-        className="fixed top-4 right-4 z-[80] rounded-full border border-white/30 bg-black/60 p-2 text-white hover:bg-black/80"
+        className="fixed top-4 right-4 z-[80] rounded-full border border-white/45 bg-white/16 p-2 text-white shadow-[0_10px_24px_rgba(15,23,42,0.28)] backdrop-blur-2xl transition-colors duration-200 hover:bg-white/24"
         onClick={onClose}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -161,14 +161,18 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
       <motion.div
         className="fixed z-[80] left-1/2 bottom-4 -translate-x-1/2"
       >
-        <motion.div className="rounded-xl border border-slate-200/30 bg-white/90 p-2 shadow-lg backdrop-blur-md">
+        <motion.div className="rounded-xl border border-white/40 bg-white/16 p-2 shadow-[0_16px_36px_rgba(15,23,42,0.3)] backdrop-blur-2xl">
           <div className="flex items-center -space-x-2">
             {mediaItems.map((item, index) => {
               const isSelected = selectedItem.id === item.id;
               return (
                 <motion.div
                   key={item.id}
-                  className={`relative h-10 w-10 rounded-lg overflow-hidden border ${isSelected ? 'border-blue-500' : 'border-white/50'} shadow-sm cursor-pointer`}
+                  className={`relative h-10 w-10 rounded-lg overflow-hidden border shadow-sm cursor-pointer transition-colors duration-200 ${
+                    isSelected
+                      ? 'border-white/70 bg-white/28 shadow-[0_0_0_1px_rgba(255,255,255,0.55),0_10px_20px_rgba(249,115,22,0.24)]'
+                      : 'border-white/45 bg-white/10'
+                  }`}
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedItem(item);
@@ -203,21 +207,14 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
 
     const html = document.documentElement;
     const body = document.body;
-    const currentScrollY = window.scrollY;
     const scrollbarWidth = window.innerWidth - html.clientWidth;
 
     const previousHtmlOverflow = html.style.overflow;
     const previousBodyOverflow = body.style.overflow;
-    const previousBodyPosition = body.style.position;
-    const previousBodyTop = body.style.top;
-    const previousBodyWidth = body.style.width;
     const previousBodyPaddingRight = body.style.paddingRight;
 
     html.style.overflow = 'hidden';
     body.style.overflow = 'hidden';
-    body.style.position = 'fixed';
-    body.style.top = `-${currentScrollY}px`;
-    body.style.width = '100%';
     if (scrollbarWidth > 0) {
       body.style.paddingRight = `${scrollbarWidth}px`;
     }
@@ -225,11 +222,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
     return () => {
       html.style.overflow = previousHtmlOverflow;
       body.style.overflow = previousBodyOverflow;
-      body.style.position = previousBodyPosition;
-      body.style.top = previousBodyTop;
-      body.style.width = previousBodyWidth;
       body.style.paddingRight = previousBodyPaddingRight;
-      window.scrollTo(0, currentScrollY);
     };
   }, [selectedItem]);
 
