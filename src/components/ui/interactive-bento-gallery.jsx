@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -121,7 +122,7 @@ const MediaItem = ({ item, className, onClick }) => {
 const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaItems }) => {
   if (!isOpen) return null;
 
-  return (
+  const modalContent = (
     <>
       <motion.div
         initial={{ scale: 0.98 }}
@@ -129,7 +130,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
         exit={{ scale: 0.98 }}
         transition={{ type: 'spring', stiffness: 400, damping: 30 }}
         onClick={onClose}
-        className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 backdrop-blur-md"
+        className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 backdrop-blur-md"
       >
         <div onClick={(event) => event.stopPropagation()} className="relative w-full max-w-5xl p-4">
           <motion.div
@@ -149,7 +150,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
       </motion.div>
 
       <motion.button
-        className="fixed top-4 right-4 z-50 rounded-full border border-white/30 bg-black/60 p-2 text-white hover:bg-black/80"
+        className="fixed top-4 right-4 z-[80] rounded-full border border-white/30 bg-black/60 p-2 text-white hover:bg-black/80"
         onClick={onClose}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -158,7 +159,7 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
       </motion.button>
 
       <motion.div
-        className="fixed z-50 left-1/2 bottom-4 -translate-x-1/2"
+        className="fixed z-[80] left-1/2 bottom-4 -translate-x-1/2"
       >
         <motion.div className="rounded-xl border border-slate-200/30 bg-white/90 p-2 shadow-lg backdrop-blur-md">
           <div className="flex items-center -space-x-2">
@@ -189,11 +190,48 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
       </motion.div>
     </>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [items, setItems] = useState(mediaItems);
+
+  useEffect(() => {
+    if (!selectedItem) return undefined;
+
+    const html = document.documentElement;
+    const body = document.body;
+    const currentScrollY = window.scrollY;
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
+
+    const previousHtmlOverflow = html.style.overflow;
+    const previousBodyOverflow = body.style.overflow;
+    const previousBodyPosition = body.style.position;
+    const previousBodyTop = body.style.top;
+    const previousBodyWidth = body.style.width;
+    const previousBodyPaddingRight = body.style.paddingRight;
+
+    html.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+    body.style.top = `-${currentScrollY}px`;
+    body.style.width = '100%';
+    if (scrollbarWidth > 0) {
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
+    return () => {
+      html.style.overflow = previousHtmlOverflow;
+      body.style.overflow = previousBodyOverflow;
+      body.style.position = previousBodyPosition;
+      body.style.top = previousBodyTop;
+      body.style.width = previousBodyWidth;
+      body.style.paddingRight = previousBodyPaddingRight;
+      window.scrollTo(0, currentScrollY);
+    };
+  }, [selectedItem]);
 
   return (
     <div className="ui-gallery-shell">
@@ -216,8 +254,40 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
         </motion.p>
       </div>
 
+      <motion.div
+        className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4"
+        data-reveal-group
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+        }}
+      >
+        {items.map((item) => (
+          <motion.div
+            key={item.id}
+            data-reveal-item
+            className={`relative overflow-hidden rounded-xl ${item.span}`}
+            onClick={() => setSelectedItem(item)}
+            variants={{
+              hidden: { opacity: 0, y: 40, scale: 0.95 },
+              visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } },
+            }}
+            whileHover={{ scale: 1.02 }}
+          >
+            <MediaItem item={item} className="h-72 w-full" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-200 hover:opacity-100" />
+            <div className="absolute bottom-2 left-2 right-2 text-white">
+              <h3 className="text-xs font-bold sm:text-sm">{item.title}</h3>
+              <p className="text-[10px] text-white/80 sm:text-xs">{item.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+
       <AnimatePresence mode="wait">
-        {selectedItem ? (
+        {selectedItem && (
           <GalleryModal
             selectedItem={selectedItem}
             isOpen={Boolean(selectedItem)}
@@ -225,38 +295,6 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
             setSelectedItem={setSelectedItem}
             mediaItems={items}
           />
-        ) : (
-          <motion.div
-            className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4"
-            data-reveal-group
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
-            }}
-          >
-            {items.map((item, index) => (
-              <motion.div
-                key={item.id}
-                data-reveal-item
-                className={`relative overflow-hidden rounded-xl ${item.span}`}
-                onClick={() => setSelectedItem(item)}
-                variants={{
-                  hidden: { opacity: 0, y: 40, scale: 0.95 },
-                  visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } },
-                }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <MediaItem item={item} className="h-72 w-full" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-200 hover:opacity-100" />
-                <div className="absolute bottom-2 left-2 right-2 text-white">
-                  <h3 className="text-xs font-bold sm:text-sm">{item.title}</h3>
-                  <p className="text-[10px] text-white/80 sm:text-xs">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         )}
       </AnimatePresence>
     </div>
