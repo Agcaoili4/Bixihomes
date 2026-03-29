@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { images } from "../assets/images";
 
 const navLinks = [
@@ -9,8 +9,40 @@ const navLinks = [
   { href: "#news", label: "News" },
 ];
 
+const businessSchedule = [
+  { day: "Sunday", hours: "Closed" },
+  { day: "Monday", hours: "09:00 AM – 05:00 PM" },
+  { day: "Tuesday", hours: "09:00 AM – 05:00 PM" },
+  { day: "Wednesday", hours: "09:00 AM – 05:00 PM" },
+  { day: "Thursday", hours: "09:00 AM – 05:00 PM" },
+  { day: "Friday", hours: "09:00 AM – 05:00 PM" },
+  { day: "Saturday", hours: "Closed" },
+];
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    let minuteInterval;
+    const msToNextMinute = 60000 - (Date.now() % 60000);
+    const alignmentTimer = window.setTimeout(() => {
+      setNow(new Date());
+      minuteInterval = window.setInterval(() => {
+        setNow(new Date());
+      }, 60000);
+    }, msToNextMinute);
+
+    return () => {
+      window.clearTimeout(alignmentTimer);
+      if (minuteInterval) {
+        window.clearInterval(minuteInterval);
+      }
+    };
+  }, []);
+
+  const todaySchedule = useMemo(() => businessSchedule[now.getDay()], [now]);
+  const businessHoursLabel = `${todaySchedule.day}: ${todaySchedule.hours}`;
 
   return (
     <>
@@ -49,7 +81,7 @@ export default function Navbar() {
 
           {/* Business hours — desktop only */}
           <p className="hidden md:block font-body text-xs text-white/50">
-            Mon - Sat: 8:00 AM - 6:00 PM
+            {businessHoursLabel}
           </p>
         </div>
       </div>
