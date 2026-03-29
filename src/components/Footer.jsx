@@ -65,7 +65,7 @@ export default function Footer() {
                   Location
                 </p>
                 <p className="font-body text-xs md:text-sm text-black/70">
-                  192 Marquis Common SE Calgary AB T3M 1N6
+                  192 Marquis Common <br /> SE Calgary AB T3M 1N6
                 </p>
               </div>
             </div>

@@ -67,10 +67,7 @@ export default function AboutBixi() {
               Our Story
             </h3>
             <p className="font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed ui-mb-lg">
-              At Bixi Homes, we have been delivering quality service in home
-              renovations for over 10 years. Our team of experienced
-              professionals is dedicated to exceeding your expectations with
-              every project we undertake.
+We specialize in transforming spaces—from basement development and remodelling to roofing and new builds. Let our expert team bring your vision to life with quality craftsmanship and attention to detail.
             </p>
             <a
               href="#contact"

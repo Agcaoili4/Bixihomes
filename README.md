@@ -1,140 +1,102 @@
-# Bixihomes
+# Bixi Homes Website
 
-Production-ready project setup for the Bixi Homes website.
+This is the website project for **Bixi Homes**.
 
-## Tech Stack
+It is designed so you can run it locally, update business content easily, and keep the user experience smooth and modern.
 
-- Frontend: Vite + React (project root)
-- Backend: Node server in `backend/`
-- Styling: Tailwind CSS (frontend)
+## What Is New
 
-## Prerequisites
+Recent improvements now live in this project:
 
-- Node.js `>=18.18.0` (LTS recommended)
-- npm `>=9`
+- Dynamic business hours in the header based on today’s day.
+- Smooth in-page travel when clicking menu/buttons (Home, Services, Gallery, Contact, etc.).
+- Improved desktop scrolling fluency.
+- Liquid-glass style UI treatment for buttons and selected gallery surfaces.
+- Gallery click-to-open modal behavior with improved visual polish.
 
-Verify versions:
+## Quick Start (No Technical Experience Needed)
 
-```text
-node -v
-npm -v
-```
+1. Install Node.js (version 18 or newer).
+2. Open this project folder in your terminal.
+3. Run:
 
-## Project Structure
-
-```text
-.
-├── backend/
-│   ├── package.json
-│   └── server.js
-├── src/
-│   ├── App.jsx
-│   ├── App.css
-│   ├── index.css
-│   └── main.jsx
-├── index.html
-├── package.json
-├── package-lock.json
-└── vite.config.js
-```
-
-## Frontend Setup (Vite)
-
-Install frontend dependencies from the project root:
-
-```text
+```bash
 npm install
-```
-
-Run development server:
-
-```text
 npm run dev
 ```
 
-Build for production:
+4. Open the local link shown in terminal (usually `http://localhost:5173`).
 
-```text
+To create a production build:
+
+```bash
 npm run build
 ```
 
-Preview production build:
+To preview production build locally:
 
-```text
+```bash
 npm run preview
 ```
 
-## Backend Setup
+## Where To Edit Common Business Content
 
-Install backend dependencies from the `backend/` folder:
+If you only want to update content (not code logic), these are the main files:
 
-```text
-cd backend
-npm install
-```
+- Header contact + business hours logic:
+  - `src/components/Navbar.jsx`
+- Footer contact details:
+  - `src/components/Footer.jsx`
+- Hero section text/buttons:
+  - `src/components/Hero.jsx`
+- Services section content:
+  - `src/components/Services.jsx`
+- Gallery titles/descriptions/images:
+  - `src/components/Gallery.jsx`
+- News section cards:
+  - `src/components/News.jsx`
 
-Run backend in watch mode:
+## Updating Business Hours (Header)
 
-```text
-npm run dev
-```
+Business hours are controlled in:
 
-Run backend normally:
+- `src/components/Navbar.jsx`
 
-```text
-npm run start
-```
+Look for `businessSchedule` and edit the times there.
 
-## Tailwind CSS Setup (Frontend)
-
-Run these commands from the project root:
-
-```text
-npm install tailwindcss @tailwindcss/vite
-```
-
-Update `vite.config.js`:
+Current format example:
 
 ```js
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
-
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-});
+{ day: "Monday", hours: "09:00 AM – 05:00 PM" }
 ```
 
-Update `src/index.css`:
+Use `Closed` for closed days.
 
-```css
-@import "tailwindcss";
-```
-
-Then start the frontend:
+## Project Structure (Simple View)
 
 ```text
-npm run dev
+.
+├── src/                 # Main website code
+├── public/              # Static assets (if used)
+├── backend/             # Backend folder (currently not required for frontend run)
+├── index.html
+├── package.json
+└── vite.config.js
 ```
 
-## Environment Variables
+## Backend Note
 
-Git-ignored environment files:
+The frontend website runs independently.
 
-- `.env`
-- `.env.*`
-
-Frontend variables must start with `VITE_`:
-
-```text
-VITE_API_BASE_URL=https://api.example.com
-```
+There is a `backend/` folder, but for normal website editing and preview, you only need the frontend commands shown above.
 
 ## Troubleshooting
 
-- If `npm install` fails with network errors, verify internet/proxy settings and retry.
-- If port `5173` is busy, Vite usually switches to another available port.
-- If dependencies get corrupted, remove `node_modules/` and reinstall.
+- If install fails, retry:
+  - `npm install`
+- If the local site doesn’t load, restart:
+  - stop terminal (`Ctrl + C`) then run `npm run dev` again.
+- If port 5173 is busy, Vite will usually offer another port automatically.
 
 ## License
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { images } from "../assets/images";
 
 const navLinks = [
@@ -9,19 +9,79 @@ const navLinks = [
   { href: "#news", label: "News" },
 ];
 
+const ALBERTA_TIMEZONE = "America/Edmonton";
+
+const businessSchedule = {
+  Sunday: "Closed",
+  Monday: "09:00 AM - 05:00 PM",
+  Tuesday: "09:00 AM - 05:00 PM",
+  Wednesday: "09:00 AM - 05:00 PM",
+  Thursday: "09:00 AM - 05:00 PM",
+  Friday: "09:00 AM - 05:00 PM",
+  Saturday: "Closed",
+};
+
+const shortDayName = {
+  Sunday: "Sun",
+  Monday: "Mon",
+  Tuesday: "Tue",
+  Wednesday: "Wed",
+  Thursday: "Thu",
+  Friday: "Fri",
+  Saturday: "Sat",
+};
+
+// Formatter to get the current day name in Alberta time
+
+const dayFormatter = new Intl.DateTimeFormat("en-CA", {
+  weekday: "long",
+  timeZone: ALBERTA_TIMEZONE,
+});
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    let minuteInterval;
+    const msToNextMinute = 60000 - (Date.now() % 60000);
+
+    const alignmentTimer = window.setTimeout(() => {
+      setNow(new Date());
+      minuteInterval = window.setInterval(() => {
+        setNow(new Date());
+      }, 60000);
+    }, msToNextMinute);
+
+    return () => {
+      window.clearTimeout(alignmentTimer);
+      if (minuteInterval) {
+        window.clearInterval(minuteInterval);
+      }
+    };
+  }, []);
+
+  const hoursLabel = useMemo(() => {
+    const todayName = dayFormatter.format(now);
+    const hours = businessSchedule[todayName] ?? "Closed";
+    const shortDay = shortDayName[todayName] ?? todayName;
+
+    return {
+      full: `Alberta time • ${todayName}: ${hours}`,
+      compact: `AB • ${shortDay}: ${hours}`,
+    };
+  }, [now]);
 
   return (
     <>
       {/* Top Contact Bar */}
-      <div className="bg-black w-full">
-        <div className="ui-navbar-top">
+      <div className="bg-black w-full" data-reveal>
+        <div className="ui-navbar-top py-2 md:py-2.5 flex-wrap gap-y-2">
           {/* Contact info */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center ui-ui-gap-3 sm:ui-ui-ui-gap-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-8 min-w-0">
             <a
               href="mailto:Info@Example.com"
-              className="flex items-center ui-ui-gap-2 group"
+              className="flex items-center gap-2 group"
             >
               <img
                 src={images.mailIcon}
@@ -33,8 +93,8 @@ export default function Navbar() {
               </span>
             </a>
             <a
-              href="tel:+01569896654"
-              className="flex items-center ui-ui-gap-2 group"
+              href="tel:+01 403 9912631"
+              className="flex items-center gap-2 group"
             >
               <img
                 src={images.callIcon}
@@ -47,15 +107,19 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Business hours — desktop only */}
-          <p className="hidden md:block font-body text-xs text-white/50">
-            Mon - Sat: 8:00 AM - 6:00 PM
-          </p>
+          {/* Live business hours in Alberta time */}
+          <div className="hidden md:flex items-center shrink-0 text-right font-body text-xs text-white/60 whitespace-nowrap">
+            <span className="lg:hidden">{hoursLabel.compact}</span>
+            <span className="hidden lg:inline">{hoursLabel.full}</span>
+          </div>
         </div>
       </div>
 
       {/* Navigation Bar */}
-      <nav className="bg-gold w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+      <nav
+        className="bg-gold w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
+        data-reveal
+      >
         <div className="ui-navbar-main">
           <a href="#home" className="shrink-0">
             <img
@@ -66,8 +130,8 @@ export default function Navbar() {
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center ui-ui-gap-6 xl:ui-ui-ui-gap-8">
-            <ul className="flex items-center ui-ui-gap-5 xl:ui-gap-7 font-body font-semibold text-[15px] xl:text-base text-navy">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+            <ul className="flex items-center gap-5 xl:gap-7 font-body font-semibold text-[15px] xl:text-base text-navy">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
@@ -80,7 +144,6 @@ export default function Navbar() {
               ))}
             </ul>
 
-            {/* CTA button — primary conversion action */}
             <a
               href="#contact"
               className="ui-btn ui-btn-secondary shrink-0 min-w-[190px]"
@@ -133,7 +196,6 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          {/* Mobile CTA */}
           <div className="ui-mobile-cta-wrapper">
             <a
               href="#contact"

@@ -1,14 +1,112 @@
+import { useEffect, useRef, useState } from "react";
 import { images } from "../assets/images";
 
 const metrics = [
-  { value: "10+", label: "Years Experience" },
-  { value: "500+", label: "Projects Completed" },
-  { value: "98%", label: "Client Satisfaction" },
+  { target: 10, suffix: "+", label: "Years Experience" },
+  { target: 500, suffix: "+", label: "Projects Completed" },
+  { target: 98, suffix: "%", label: "Client Satisfaction" },
 ];
 
+function CountUpValue({ target, suffix, shouldStart }) {
+  const [value, setValue] = useState(0);
+  const hasAnimated = useRef(false);
+  const randomTimerRef = useRef(null);
+  const settleFrameRef = useRef(null);
+
+  useEffect(() => {
+    if (!shouldStart || hasAnimated.current) return undefined;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      setValue(target);
+      hasAnimated.current = true;
+      return undefined;
+    }
+
+    hasAnimated.current = true;
+    const randomPhaseMs = 2200;
+    const settlePhaseMs = 1100;
+    const settleStartValue = Math.max(0, Math.round(target * 0.2));
+    const randomMax = Math.max(target, 9);
+
+    const randomStartTime = performance.now();
+    randomTimerRef.current = window.setInterval(() => {
+      const elapsed = performance.now() - randomStartTime;
+      if (elapsed >= randomPhaseMs) {
+        if (randomTimerRef.current) {
+          window.clearInterval(randomTimerRef.current);
+          randomTimerRef.current = null;
+        }
+        setValue(settleStartValue);
+
+        const settleStartTime = performance.now();
+        const settleTick = (currentTime) => {
+          const settleElapsed = currentTime - settleStartTime;
+          const progress = Math.min(settleElapsed / settlePhaseMs, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const nextValue = Math.round(
+            settleStartValue + (target - settleStartValue) * eased
+          );
+          setValue(nextValue);
+
+          if (progress < 1) {
+            settleFrameRef.current = window.requestAnimationFrame(settleTick);
+          } else {
+            setValue(target);
+            settleFrameRef.current = null;
+          }
+        };
+
+        settleFrameRef.current = window.requestAnimationFrame(settleTick);
+        return;
+      }
+
+      const min = elapsed > randomPhaseMs * 0.65 ? Math.round(target * 0.35) : 0;
+      const nextRandom = Math.floor(Math.random() * (randomMax - min + 1)) + min;
+      setValue(nextRandom);
+    }, 45);
+
+    return () => {
+      if (randomTimerRef.current) {
+        window.clearInterval(randomTimerRef.current);
+        randomTimerRef.current = null;
+      }
+      if (settleFrameRef.current) {
+        window.cancelAnimationFrame(settleFrameRef.current);
+        settleFrameRef.current = null;
+      }
+    };
+  }, [shouldStart, target]);
+
+  return `${value}${suffix}`;
+}
+
 export default function Hero() {
+  const sectionRef = useRef(null);
+  const [shouldStartCount, setShouldStartCount] = useState(false);
+
+  useEffect(() => {
+    const sectionEl = sectionRef.current;
+    if (!sectionEl) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          setShouldStartCount(true);
+          observer.disconnect();
+        });
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(sectionEl);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="relative w-full min-h-[60vh] md:min-h-[70vh] lg:min-h-[85vh] overflow-hidden"
       data-reveal
@@ -64,7 +162,11 @@ export default function Hero() {
             {metrics.map((m, i) => (
               <div key={m.label} className={`hero-anim-metric-${i + 1}`}>
                 <p className="font-heading font-extrabold text-2xl md:text-3xl lg:text-4xl text-gold leading-none ui-mb-xxs">
-                  {m.value}
+                  <CountUpValue
+                    target={m.target}
+                    suffix={m.suffix}
+                    shouldStart={shouldStartCount}
+                  />
                 </p>
                 <p className="font-body text-xs md:text-sm text-white/60 tracking-wide">
                   {m.label}
