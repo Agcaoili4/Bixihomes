@@ -42,7 +42,7 @@ export default function Services() {
     <section id="services" className="bg-white ui-section">
       <div className="ui-container">
         {/* Heading */}
-        <div className="text-center ui-mb-xl">
+        <div className="text-center ui-mb-xl" data-reveal>
           <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight">
             Our Services
           </h2>
@@ -54,11 +54,12 @@ export default function Services() {
         </div>
 
         {/* Service Grid */}
-        <div className="services-grid">
+        <div className="services-grid" data-reveal-group>
           {services.map((service) => (
             <div
               key={service.title}
               className="service-card"
+              data-reveal-item
             >
               <div className="service-card-head">
                 <span className="service-card-badge">{service.category}</span>

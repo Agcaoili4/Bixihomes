@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className="bg-gold">
       <div className="ui-container">
         {/* Top section: Logo + Contact Info */}
-        <div className="flex flex-col md:flex-row items-center ui-gap-lg border-b border-black/15 ui-py-lg">
+        <div className="flex flex-col md:flex-row items-center ui-gap-lg border-b border-black/15 ui-py-lg" data-reveal>
           <a href="#home" className="shrink-0">
             <img
               src={images.logo}
@@ -73,7 +73,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom section: About, Explore, Quick Links */}
-        <div className="ui-py-lg flex flex-col md:flex-row ui-gap-xl items-start border-b border-black/15">
+        <div className="ui-py-lg flex flex-col md:flex-row ui-gap-xl items-start border-b border-black/15" data-reveal>
           {/* About text + social */}
           <div className="max-w-full md:max-w-[380px] shrink-0">
             <p className="font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md md:ui-mb-lg">
@@ -151,7 +151,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="ui-py-md text-center">
+        <div className="ui-py-md text-center" data-reveal>
           <p className="font-body text-xs md:text-sm text-black/60">
             Copyright &copy; Bixi Homes | 2026 All rights reserved.
           </p>

@@ -5,18 +5,18 @@ export default function ContactForm() {
     <section id="contact" className="bg-white ui-section">
       <div className="ui-container">
         {/* Section header — centered */}
-        <div className="text-center ui-mb-xl">
+        <div className="text-center ui-mb-xl" data-reveal>
           <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight ui-mb-sm">
             Get In Touch
           </h2>
-          <p className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-center-center-body text-sm md:text-base text-black/70 max-w-[520px] mx-auto text-center leading-relaxed">
+          <p className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-center">
             Have a project in mind? Fill out the form below and our team will
             get back to you within 24 hours.
           </p>
         </div>
 
         {/* Card container — centered with constrained width */}
-        <div className="ui-card-wrapper">
+        <div className="ui-card-wrapper" data-reveal>
           <div className="flex flex-col md:flex-row items-stretch overflow-hidden shadow-xl rounded-sm">
             {/* Form side */}
             <div className="bg-gold flex-1 ui-form-inner">

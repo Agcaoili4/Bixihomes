@@ -82,6 +82,7 @@ const MediaItem = ({ item, className, onClick }) => {
           ref={videoRef}
           className="w-full h-full object-cover"
           onClick={onClick}
+          draggable={false}
           playsInline
           muted
           loop
@@ -110,6 +111,7 @@ const MediaItem = ({ item, className, onClick }) => {
       alt={item.title}
       className={`${className ?? ''} object-cover cursor-pointer`}
       onClick={onClick}
+      draggable={false}
       loading="lazy"
       decoding="async"
     />
@@ -117,8 +119,6 @@ const MediaItem = ({ item, className, onClick }) => {
 };
 
 const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaItems }) => {
-  const [dockPosition, setDockPosition] = useState({ x: 0, y: 0 });
-
   if (!isOpen) return null;
 
   return (
@@ -158,13 +158,6 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
       </motion.button>
 
       <motion.div
-        drag
-        dragMomentum={false}
-        dragElastic={0.1}
-        animate={{ x: dockPosition.x, y: dockPosition.y }}
-        onDragEnd={(_, info) => {
-          setDockPosition((prev) => ({ x: prev.x + info.offset.x, y: prev.y + info.offset.y }));
-        }}
         className="fixed z-50 left-1/2 bottom-4 -translate-x-1/2"
       >
         <motion.div className="rounded-xl border border-slate-200/30 bg-white/90 p-2 shadow-lg backdrop-blur-md">
@@ -201,11 +194,10 @@ const GalleryModal = ({ selectedItem, isOpen, onClose, setSelectedItem, mediaIte
 const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [items, setItems] = useState(mediaItems);
-  const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
-      <div className="mb-8 text-center gallery-heading">
+    <div className="ui-gallery-shell">
+      <div className="mb-8 text-center gallery-heading" data-reveal>
         <motion.h2
           className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight"
           initial={{ opacity: 0, y: 20 }}
@@ -236,6 +228,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
         ) : (
           <motion.div
             className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4"
+            data-reveal-group
             initial="hidden"
             animate="visible"
             variants={{
@@ -246,29 +239,14 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
             {items.map((item, index) => (
               <motion.div
                 key={item.id}
+                data-reveal-item
                 className={`relative overflow-hidden rounded-xl ${item.span}`}
-                onClick={() => !isDragging && setSelectedItem(item)}
+                onClick={() => setSelectedItem(item)}
                 variants={{
                   hidden: { opacity: 0, y: 40, scale: 0.95 },
                   visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } },
                 }}
                 whileHover={{ scale: 1.02 }}
-                drag
-                dragElastic={1}
-                dragMomentum={false}
-                onDragStart={() => setIsDragging(true)}
-                onDragEnd={(_, info) => {
-                  setIsDragging(false);
-                  const moveDistance = info.offset.x + info.offset.y;
-                  if (Math.abs(moveDistance) > 50) {
-                    const newItems = [...items];
-                    const draggedItem = newItems[index];
-                    const targetIndex = moveDistance > 0 ? Math.min(index + 1, items.length - 1) : Math.max(index - 1, 0);
-                    newItems.splice(index, 1);
-                    newItems.splice(targetIndex, 0, draggedItem);
-                    setItems(newItems);
-                  }
-                }}
               >
                 <MediaItem item={item} className="h-72 w-full" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-200 hover:opacity-100" />

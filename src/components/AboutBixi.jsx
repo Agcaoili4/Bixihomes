@@ -14,7 +14,7 @@ export default function AboutBixi() {
     <section className="bg-white ui-section">
       <div className="ui-container">
         {/* Heading */}
-        <div className="text-center ui-mb-xl about-bixi-heading">
+        <div className="text-center ui-mb-xl about-bixi-heading" data-reveal>
           <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight">
             About Bixi Homes
           </h2>
@@ -25,11 +25,15 @@ export default function AboutBixi() {
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap items-center justify-center ui-gap-3 md:ui-gap-5 ui-mb-xl">
+        <div
+          className="flex flex-wrap items-center justify-center ui-gap-3 md:ui-gap-5 ui-mb-xl"
+          data-reveal-group
+        >
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
+              data-reveal-item
               className={`ui-btn ui-btn-tab ${
                 activeTab === tab.id
                   ? "ui-btn-tab-active"
@@ -47,7 +51,10 @@ export default function AboutBixi() {
         </div>
 
         {/* Content */}
-        <div className="flex flex-col md:flex-row ui-gap-8 md:ui-gap-12 items-center">
+        <div
+          className="flex flex-col md:flex-row ui-gap-8 md:ui-gap-12 items-center"
+          data-reveal
+        >
           <div className="w-full md:w-[440px] lg:w-[480px] h-[260px] md:h-[360px] lg:h-[400px] shrink-0 overflow-hidden">
             <img
               src={images.storyPhoto}

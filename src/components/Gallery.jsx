@@ -46,12 +46,14 @@ export default function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="bg-white ui-section">
-      <InteractiveBentoGallery
-        mediaItems={mediaItems}
-        title="Take a Look at Our Work"
-        description="Explore our portfolio of stunning home renovations and construction projects. From modern interiors to luxurious outdoor spaces, see how we transform houses into dream homes."
-      />
+    <section id="gallery" className="bg-white ui-section" data-reveal>
+      <div className="ui-container">
+        <InteractiveBentoGallery
+          mediaItems={mediaItems}
+          title="Take a Look at Our Work"
+          description="Explore our portfolio of stunning home renovations and construction projects. From modern interiors to luxurious outdoor spaces, see how we transform houses into dream homes."
+        />
+      </div>
     </section>
   );
 }

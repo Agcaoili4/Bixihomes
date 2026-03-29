@@ -11,6 +11,7 @@ export default function Hero() {
     <section
       id="home"
       className="relative w-full min-h-[60vh] md:min-h-[70vh] lg:min-h-[85vh] overflow-hidden"
+      data-reveal
     >
       <img
         src={images.heroBg}

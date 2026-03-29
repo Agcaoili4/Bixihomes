@@ -21,7 +21,10 @@ export default function AboutUs() {
       </div>
 
       <div className="relative ui-container ui-section">
-        <div className="bg-gold flex flex-col md:flex-row items-stretch overflow-hidden shadow-xl">
+        <div
+          className="bg-gold flex flex-col md:flex-row items-stretch overflow-hidden shadow-xl"
+          data-reveal
+        >
           {/* Image */}
           <div className="w-full md:w-[45%] lg:w-[48%] h-[280px] md:h-auto shrink-0 overflow-hidden">
             <img
@@ -45,9 +48,13 @@ export default function AboutUs() {
               In pulvinar viverra diam, nec rutrum mauris maximus non. Aenean
               sed quam tristique, facilisis est ac, interdum velit.
             </p>
-            <ul className="ui-space-y-sm">
+            <ul className="ui-space-y-sm" data-reveal-group>
               {checkpoints.map((item) => (
-                <li key={item} className="flex items-start ui-gap-3 font-body text-sm md:text-base text-navy">
+                <li
+                  key={item}
+                  data-reveal-item
+                  className="flex items-start ui-gap-3 font-body text-sm md:text-base text-navy"
+                >
                   <span className="ui-mt-xs w-2 h-2 bg-navy rounded-full shrink-0" />
                   {item}
                 </li>

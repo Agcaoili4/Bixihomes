@@ -29,13 +29,16 @@ export default function News() {
 
       <div className="relative bg-gold/90 ui-section">
         <div className="ui-container">
-          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black text-center ui-mb-xl leading-tight">
-            Latest News and Articles
+          <h2
+            className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black text-center ui-mb-xl leading-tight"
+            data-reveal
+          >
+            Latest News and Projects
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 ui-gap-8 md:ui-gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 ui-gap-8 md:ui-gap-10" data-reveal-group>
             {articles.map((article) => (
-              <article key={article.title}>
+              <article key={article.title} data-reveal-item>
                 <div className="h-[220px] md:h-[280px] lg:h-[340px] overflow-hidden ui-mb-sm">
                   <img
                     src={article.photo}

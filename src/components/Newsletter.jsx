@@ -1,9 +1,9 @@
 export default function Newsletter() {
   return (
-    <section className="bg-navy ui-section">
-      <div className="ui-container flex flex-col lg:flex-row items-center ui-gap-xl">
+    <section className="bg-navy ui-section" data-reveal>
+      <div className="ui-container flex flex-col lg:flex-row items-center ui-gap-xl" data-reveal-group>
         {/* Text */}
-        <div className="max-w-[520px] text-center shrink-0">
+        <div className="max-w-[520px] text-center shrink-0" data-reveal-item>
           <h2 className="font-heading font-extrabold text-[26px] md:text-[34px] lg:text-[40px] text-white ui-mb-xs leading-tight">
             Subscribe Our Newsletter
           </h2>
@@ -14,7 +14,7 @@ export default function Newsletter() {
         </div>
 
         {/* Email Input */}
-        <div className="flex w-full lg:flex-1">
+        <div className="flex w-full lg:flex-1" data-reveal-item>
           <input
             type="email"
             placeholder="Enter your email address"

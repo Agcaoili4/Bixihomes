@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <>
       {/* Top Contact Bar */}
-      <div className="bg-black w-full">
+      <div className="bg-black w-full" data-reveal>
         <div className="ui-navbar-top">
           {/* Contact info */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center ui-gap-3 sm:ui-gap-8">
@@ -55,7 +55,10 @@ export default function Navbar() {
       </div>
 
       {/* Navigation Bar */}
-      <nav className="bg-gold w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+      <nav
+        className="bg-gold w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
+        data-reveal
+      >
         <div className="ui-navbar-main">
           <a href="#home" className="shrink-0">
             <img
