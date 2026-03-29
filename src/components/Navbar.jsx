@@ -16,12 +16,12 @@ export default function Navbar() {
     <>
       {/* Top Contact Bar */}
       <div className="bg-black w-full">
-        <div className="w-full max-w-[1200px] mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-2.5 md:py-0 md:h-[56px]">
+        <div className="ui-navbar-top">
           {/* Contact info */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-8">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center ui-gap-3 sm:ui-gap-8">
             <a
               href="mailto:Info@Example.com"
-              className="flex items-center gap-2 group"
+              className="flex items-center ui-gap-2 group"
             >
               <img
                 src={images.mailIcon}
@@ -34,7 +34,7 @@ export default function Navbar() {
             </a>
             <a
               href="tel:+01569896654"
-              className="flex items-center gap-2 group"
+              className="flex items-center ui-gap-2 group"
             >
               <img
                 src={images.callIcon}
@@ -56,7 +56,7 @@ export default function Navbar() {
 
       {/* Navigation Bar */}
       <nav className="bg-gold w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
-        <div className="w-full max-w-[1200px] mx-auto flex justify-between px-4 sm:px-6 lg:px-8 h-[60px] md:h-[76px]">
+        <div className="ui-navbar-main">
           <a href="#home" className="shrink-0">
             <img
               src={images.logo}
@@ -66,13 +66,13 @@ export default function Navbar() {
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-            <ul className="flex items-center gap-5 xl:gap-7 font-body font-semibold text-[15px] xl:text-base text-navy">
+          <div className="hidden lg:flex items-center ui-gap-6 xl:ui-gap-8">
+            <ul className="flex items-center ui-gap-5 xl:ui-gap-7 font-body font-semibold text-[15px] xl:text-base text-navy">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="relative py-2 hover:text-black transition-colors after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-navy hover:after:w-full after:transition-all after:duration-300"
+                    className="ui-nav-link hover:text-black transition-colors"
                   >
                     {link.label}
                   </a>
@@ -92,7 +92,7 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 cursor-pointer"
+            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 ui-gap-1-5 cursor-pointer"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
@@ -120,13 +120,13 @@ export default function Navbar() {
             menuOpen ? "max-h-[500px]" : "max-h-0"
           }`}
         >
-          <ul className="flex flex-col font-body font-semibold text-base text-navy px-6 pb-3 gap-0">
+          <ul className="ui-mobile-menu-list">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block py-3.5 border-b border-navy/10 hover:text-black hover:pl-2 transition-all"
+                  className="ui-mobile-nav-link"
                 >
                   {link.label}
                 </a>
@@ -134,7 +134,7 @@ export default function Navbar() {
             ))}
           </ul>
           {/* Mobile CTA */}
-          <div className="px-6 pb-5 pt-2">
+          <div className="ui-mobile-cta-wrapper">
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}

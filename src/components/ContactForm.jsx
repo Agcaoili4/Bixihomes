@@ -2,11 +2,11 @@ import { images } from "../assets/images";
 
 export default function ContactForm() {
   return (
-    <section id="contact" className="bg-white py-16 md:py-24">
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="bg-white ui-section">
+      <div className="ui-container">
         {/* Section header — centered */}
-        <div className="text-center mb-10 md:mb-14">
-          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight mb-4">
+        <div className="text-center ui-mb-xl">
+          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight ui-mb-sm">
             Get In Touch
           </h2>
           <p className="font-body text-sm md:text-base text-black/70 max-w-[520px] mx-auto leading-relaxed">
@@ -16,39 +16,39 @@ export default function ContactForm() {
         </div>
 
         {/* Card container — centered with constrained width */}
-        <div className="max-w-[960px] mx-auto">
+        <div className="ui-card-wrapper">
           <div className="flex flex-col md:flex-row items-stretch overflow-hidden shadow-xl rounded-sm">
             {/* Form side */}
-            <div className="bg-gold flex-1 px-6 sm:px-10 md:px-12 py-10 md:py-12">
-              <h3 className="font-heading font-bold text-lg md:text-xl text-black mb-6">
+            <div className="bg-gold flex-1 ui-form-inner">
+              <h3 className="font-heading font-bold text-lg md:text-xl text-black ui-mb-lg">
                 Send Us a Message
               </h3>
-              <form className="flex flex-col gap-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <form className="flex flex-col ui-gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 ui-gap-4">
                   <input
                     type="text"
                     placeholder="Your Name"
-                    className="w-full h-[48px] md:h-[52px] px-4 md:px-5 bg-white border-2 border-black/15 font-body text-sm text-black placeholder:text-black/45 outline-none focus:border-black transition-colors"
+                    className="w-full h-[48px] md:h-[52px] ui-input"
                   />
                   <input
                     type="email"
                     placeholder="Email Address"
-                    className="w-full h-[48px] md:h-[52px] px-4 md:px-5 bg-white border-2 border-black/15 font-body text-sm text-black placeholder:text-black/45 outline-none focus:border-black transition-colors"
+                    className="w-full h-[48px] md:h-[52px] ui-input"
                   />
                 </div>
                 <input
                   type="tel"
                   placeholder="Phone Number"
-                  className="w-full h-[48px] md:h-[52px] px-4 md:px-5 bg-white border-2 border-black/15 font-body text-sm text-black placeholder:text-black/45 outline-none focus:border-black transition-colors"
+                  className="w-full h-[48px] md:h-[52px] ui-input"
                 />
                 <textarea
                   placeholder="Describe your project or service needed..."
                   rows={4}
-                  className="w-full px-4 md:px-5 py-3.5 bg-white border-2 border-black/15 font-body text-sm text-black placeholder:text-black/45 outline-none focus:border-black transition-colors resize-none h-[120px] md:h-[140px]"
+                  className="w-full ui-textarea"
                 />
                 <button
                   type="submit"
-                  className="ui-btn ui-btn-secondary ui-btn-full sm:w-auto sm:self-start mt-1"
+                  className="ui-btn ui-btn-secondary ui-btn-full sm:w-auto sm:self-start ui-mt-xxs"
                 >
                   Send Message
                 </button>

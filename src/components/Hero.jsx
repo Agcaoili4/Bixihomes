@@ -19,10 +19,10 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/50 to-black/25" />
 
-      <div className="relative w-full max-w-[1200px] mx-auto h-full flex flex-col justify-center items-center lg:items-end px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
+      <div className="relative ui-container h-full flex flex-col justify-center items-center lg:items-end ui-section-hero">
         <div className="max-w-[620px] text-center lg:text-right">
           {/* Subtitle badge */}
-          <div className="hero-anim-badge bg-gold/20 border border-gold/40 inline-flex items-center gap-2.5 px-4 py-1.5 mb-6 backdrop-blur-sm">
+          <div className="hero-anim-badge bg-gold/20 border border-gold/40 inline-flex items-center ui-gap-2-5 ui-px-md ui-pt-xs ui-mb-md backdrop-blur-sm">
             <img
               src={images.heroSubIcon}
               alt=""
@@ -34,20 +34,20 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="hero-anim-h1 font-heading font-extrabold text-[28px] md:text-[40px] lg:text-[50px] leading-[1.12] text-white mb-5">
+          <h1 className="hero-anim-h1 font-heading font-extrabold text-[28px] md:text-[40px] lg:text-[50px] leading-[1.12] text-white ui-mb-sm">
             Building Homes,{" "}
             <span className="text-gold">Building Trust</span>
           </h1>
 
           {/* Subheading */}
-          <p className="hero-anim-sub font-body text-sm md:text-base lg:text-lg text-white/75 leading-relaxed mb-8 max-w-[520px] ml-auto lg:ml-auto mx-auto lg:mx-0">
+          <p className="hero-anim-sub font-body text-sm md:text-base lg:text-lg text-white/75 leading-relaxed ui-mb-lg max-w-[520px]">
             Professional home renovation and construction services. From concept
             to completion, we deliver quality craftsmanship that stands the test
             of time.
           </p>
 
           {/* Dual CTAs */}
-          <div className="hero-anim-cta flex flex-col sm:flex-row items-center lg:justify-end gap-4">
+          <div className="hero-anim-cta flex flex-col sm:flex-row items-center lg:justify-end ui-gap-4">
             <a href="#contact" className="ui-btn ui-btn-primary">
               Contact Us
             </a>
@@ -58,11 +58,11 @@ export default function Hero() {
         </div>
 
         {/* Trust metrics strip */}
-        <div className="hero-anim-metrics w-full mt-12 md:mt-16 pt-8 border-t border-white/15">
-          <div className="flex flex-wrap justify-center lg:justify-end gap-8 md:gap-14 lg:gap-20">
+        <div className="hero-anim-metrics w-full ui-mt-xl ui-pt-lg border-t border-white/15">
+          <div className="flex flex-wrap justify-center lg:justify-end ui-gap-8 md:ui-gap-14 lg:ui-gap-20">
             {metrics.map((m, i) => (
               <div key={m.label} className={`hero-anim-metric-${i + 1}`}>
-                <p className="font-heading font-extrabold text-2xl md:text-3xl lg:text-4xl text-gold leading-none mb-1">
+                <p className="font-heading font-extrabold text-2xl md:text-3xl lg:text-4xl text-gold leading-none ui-mb-xxs">
                   {m.value}
                 </p>
                 <p className="font-body text-xs md:text-sm text-white/60 tracking-wide">

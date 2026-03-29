@@ -27,26 +27,26 @@ export default function News() {
         />
       </div>
 
-      <div className="relative bg-gold/90 py-16 md:py-24">
-        <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black text-center mb-10 md:mb-12 leading-tight">
+      <div className="relative bg-gold/90 ui-section">
+        <div className="ui-container">
+          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black text-center ui-mb-xl leading-tight">
             Latest News and Articles
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 ui-gap-8 md:ui-gap-10">
             {articles.map((article) => (
               <article key={article.title}>
-                <div className="h-[220px] md:h-[280px] lg:h-[340px] overflow-hidden mb-5">
+                <div className="h-[220px] md:h-[280px] lg:h-[340px] overflow-hidden ui-mb-sm">
                   <img
                     src={article.photo}
                     alt={article.title}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="font-heading font-bold text-xl md:text-2xl lg:text-[28px] text-black leading-tight mb-3">
+                <h3 className="font-heading font-bold text-xl md:text-2xl lg:text-[28px] text-black leading-tight ui-mb-xs">
                   {article.title}
                 </h3>
-                <p className="font-body text-sm md:text-base text-black/65 leading-relaxed mb-5">
+                <p className="font-body text-sm md:text-base text-black/65 leading-relaxed ui-mb-sm">
                   {article.description}
                 </p>
                 <a

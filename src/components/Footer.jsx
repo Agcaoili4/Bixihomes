@@ -10,9 +10,9 @@ const socialIcons = [
 export default function Footer() {
   return (
     <footer className="bg-gold">
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="ui-container">
         {/* Top section: Logo + Contact Info */}
-        <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 py-8 md:py-10 border-b border-black/15">
+        <div className="flex flex-col md:flex-row items-center ui-gap-lg border-b border-black/15 ui-py-lg">
           <a href="#home" className="shrink-0">
             <img
               src={images.logo}
@@ -21,8 +21,8 @@ export default function Footer() {
             />
           </a>
 
-          <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-6 md:gap-10 md:ml-auto">
-            <div className="flex items-center gap-2.5">
+          <div className="flex flex-col sm:flex-row items-center ui-gap-5 sm:ui-gap-6 md:ui-gap-10 md:ml-auto">
+            <div className="flex items-center ui-gap-2-5">
               <img
                 src={images.footerMailIcon}
                 alt=""
@@ -38,7 +38,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center ui-gap-2-5">
               <img
                 src={images.footerCallIcon}
                 alt=""
@@ -54,7 +54,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center ui-gap-2-5">
               <img
                 src={images.footerLocationIcon}
                 alt=""
@@ -73,15 +73,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom section: About, Explore, Quick Links */}
-        <div className="py-8 md:py-10 flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 items-start border-b border-black/15">
+        <div className="ui-py-lg flex flex-col md:flex-row ui-gap-xl items-start border-b border-black/15">
           {/* About text + social */}
           <div className="max-w-full md:max-w-[380px] shrink-0">
-            <p className="font-body text-sm md:text-base text-black/70 leading-relaxed mb-6 md:mb-8">
+            <p className="font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md md:ui-mb-lg">
               Denouncing pleasure and praising pain was born and I will give you
               a complete account of the system, and expound the actual
               teachings of the great explorer.
             </p>
-            <div className="flex gap-3">
+            <div className="flex ui-gap-3">
               {socialIcons.map((icon) => (
                 <a
                   key={icon.label}
@@ -103,12 +103,12 @@ export default function Footer() {
           <div className="hidden md:block w-px self-stretch bg-black/20" />
 
           {/* Links columns */}
-          <div className="flex gap-12 md:gap-14 lg:gap-20">
+          <div className="flex ui-gap-12 md:ui-gap-14 lg:ui-gap-20">
             <div>
-              <h4 className="font-heading font-bold text-sm md:text-base text-black mb-4">
+              <h4 className="font-heading font-bold text-sm md:text-base text-black ui-mb-sm">
                 Explore
               </h4>
-              <ul className="font-body text-sm md:text-base text-black/70 space-y-2.5">
+              <ul className="font-body text-sm md:text-base text-black/70 ui-space-y-2-5">
                 <li>
                   <a href="#" className="hover:text-navy transition-colors">
                     About Us
@@ -123,10 +123,10 @@ export default function Footer() {
             </div>
 
             <div>
-              <h4 className="font-heading font-bold text-sm md:text-base text-black mb-4">
+              <h4 className="font-heading font-bold text-sm md:text-base text-black ui-mb-sm">
                 Quick Links
               </h4>
-              <ul className="font-body text-sm md:text-base text-black/70 space-y-2.5">
+              <ul className="font-body text-sm md:text-base text-black/70 ui-space-y-2-5">
                 <li>
                   <a href="#services" className="hover:text-navy transition-colors">
                     Services
@@ -153,7 +153,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="py-4 md:py-5 text-center">
+        <div className="ui-py-md text-center">
           <p className="font-body text-xs md:text-sm text-black/60">
             Copyright &copy; Bixi Homes | Powered by Bixi Homes
           </p>

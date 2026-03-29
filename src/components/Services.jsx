@@ -9,14 +9,14 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-white py-16 md:py-24">
-      <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="bg-white ui-section">
+      <div className="ui-container">
         {/* Heading */}
-        <div className="text-center mb-10 md:mb-12">
-          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black mb-4 leading-tight">
+        <div className="text-center ui-mb-xl">
+          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight">
             Our Services
           </h2>
-          <p className="font-body text-sm md:text-base lg:text-lg text-black/70 max-w-[640px] mx-auto leading-relaxed">
+          <p className="font-body text-sm md:text-base lg:text-lg text-black/70 max-w-[640px] ui-mb-md leading-relaxed">
             Pellentesque vehicula eros neque, maximus mattis est sagittis Nulla
             facilisi. In sed pretium metus. Proin pretium id urna sit amet
             tincidunt.
@@ -24,11 +24,11 @@ export default function Services() {
         </div>
 
         {/* Service Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 place-items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 ui-gap-lg place-items-stretch">
           {services.map((service) => (
             <div
               key={service.title}
-              className="bg-gold px-6 md:px-8 py-8 md:py-10 hover:bg-gold-dark transition-colors group"
+              className="bg-gold ui-gap-md ui-py-lg hover:bg-gold-dark transition-colors group"
             >
               <h3 className="font-heading font-bold text-lg md:text-[22px] text-black mb-3 leading-snug">
                 {service.title}
