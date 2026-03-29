@@ -16,3 +16,6 @@ pnpm-debug.log*
 
 # macOS
 .DS_Store
+
+# misc
+ui-ux-skill

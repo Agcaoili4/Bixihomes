@@ -1,15 +1,179 @@
-:root {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #1f2937;
-  background: #f9fafb;
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #faad14;
+  --color-gold-dark: #d99a00;
+  --color-navy: #000000;
+  --color-gray-text: #000000;
+  --font-heading: "Mulish", sans-serif;
+  --font-body: "Inter", sans-serif;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 body {
-  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.5;
+  color: #000000;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Unified button system */
+.ui-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  min-width: 190px;
+  padding: 0 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.ui-btn:hover {
+  transform: translateY(-1px);
+}
+
+.ui-btn-primary {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+.ui-btn-primary:hover {
+  background: var(--color-gold-dark);
+  color: #ffffff;
+}
+
+.ui-btn-secondary {
+  background: var(--color-navy);
+  color: #ffffff;
+}
+
+.ui-btn-secondary:hover {
+  background: #000000;
+}
+
+.ui-btn-outline-light {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.ui-btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.75);
+}
+
+.ui-btn-outline-dark {
+  background: transparent;
+  color: #000000;
+  border-color: rgba(0, 0, 0, 0.28);
+}
+
+.ui-btn-outline-dark:hover {
+  border-color: var(--color-navy);
+  color: var(--color-navy);
+}
+
+.ui-btn-full {
+  width: 100%;
+}
+
+.ui-btn-tab {
+  min-width: 220px;
+}
+
+.ui-btn-tab-active {
+  background: var(--color-navy);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+}
+
+.ui-btn-tab-active img {
+  filter: brightness(0) invert(1);
+}
+
+/* Hero entrance animations — staggered fade-up */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-metric-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.hero-anim-badge   { animation: hero-slide-in 500ms ease-out 200ms both; }
+.hero-anim-h1      { animation: hero-fade-up  600ms ease-out 400ms both; }
+.hero-anim-sub     { animation: hero-fade-up  500ms ease-out 650ms both; }
+.hero-anim-cta     { animation: hero-fade-up  500ms ease-out 850ms both; }
+.hero-anim-metrics { animation: hero-fade-up  500ms ease-out 1050ms both; }
+.hero-anim-metric-1 { animation: hero-metric-pop 400ms ease-out 1200ms both; }
+.hero-anim-metric-2 { animation: hero-metric-pop 400ms ease-out 1350ms both; }
+.hero-anim-metric-3 { animation: hero-metric-pop 400ms ease-out 1500ms both; }
+
+/* Focus-visible for keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-navy);
+  outline-offset: 2px;
 }
