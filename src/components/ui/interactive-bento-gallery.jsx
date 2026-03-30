@@ -264,7 +264,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
       </div>
 
       <motion.div
-        className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:grid-cols-4"
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
         data-reveal-group
         initial="hidden"
         animate="visible"
@@ -277,7 +277,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
           <motion.div
             key={item.id}
             data-reveal-item
-            className={`relative overflow-hidden rounded-xl ${item.span}`}
+            className="relative overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.08)] aspect-[4/3]"
             onClick={() => setSelectedItem(item)}
             variants={{
               hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -290,11 +290,11 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
             }}
             whileHover={{ scale: 1.02 }}
           >
-            <MediaItem item={item} className="h-72 w-full" />
+            <MediaItem item={item} className="h-full w-full" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-200 hover:opacity-100" />
-            <div className="absolute bottom-2 left-2 right-2 text-white">
-              <h3 className="text-xs font-bold sm:text-sm">{item.title}</h3>
-              <p className="text-[10px] text-white/80 sm:text-xs">
+            <div className="absolute bottom-3 left-3 right-3 text-white">
+              <h3 className="text-xs font-bold sm:text-sm leading-snug">{item.title}</h3>
+              <p className="mt-1 text-[10px] text-white/85 sm:text-xs leading-relaxed">
                 {item.desc}
               </p>
             </div>

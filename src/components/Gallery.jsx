@@ -9,7 +9,6 @@ export default function Gallery() {
       title: "Modern living room interior",
       desc: "Spacious, bright interior with premium finish",
       url: images.galleryImg1,
-      span: "sm:col-span-2 sm:row-span-2 lg:col-span-2 lg:row-span-2",
     },
     {
       id: 2,
@@ -17,7 +16,6 @@ export default function Gallery() {
       title: "Luxury kitchen design",
       desc: "Beautiful lighting and smart storage",
       url: images.galleryImg2,
-      span: "sm:col-span-1 sm:row-span-1 lg:col-span-1 lg:row-span-1",
     },
     {
       id: 3,
@@ -25,7 +23,6 @@ export default function Gallery() {
       title: "Bright bedroom details",
       desc: "Comfort-focused residential space",
       url: images.galleryImg3,
-      span: "sm:col-span-1 sm:row-span-1 lg:col-span-1 lg:row-span-1",
     },
     {
       id: 4,
@@ -33,7 +30,6 @@ export default function Gallery() {
       title: "Spacious backyard patio",
       desc: "Outdoor luxury designed for family",
       url: images.galleryImg4,
-      span: "sm:col-span-1 sm:row-span-1 lg:col-span-2 lg:row-span-1",
     },
     {
       id: 5,
@@ -41,7 +37,6 @@ export default function Gallery() {
       title: "Stylish bathroom aesthetic",
       desc: "Clean lines with modern fixtures",
       url: images.galleryImg5,
-      span: "sm:col-span-2 sm:row-span-1 lg:col-span-1 lg:row-span-2",
     },
   ];
 
