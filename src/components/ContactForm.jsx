@@ -12,54 +12,56 @@ const serviceOptions = [
 
 export default function ContactForm() {
   return (
-    <section id="contact" className="bg-white ui-section">
+    <section id="contact" className="ui-section" style={{ background: "#f8f8f6" }}>
       <div className="ui-container">
         <div className="flex flex-col lg:flex-row ui-gap-10 lg:ui-gap-14 items-start">
-          {/* Left — persuasion + direct contact options */}
+          {/* Left — persuasion + direct contact */}
           <div className="flex-1 min-w-0" data-reveal>
             <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight ui-mb-sm">
               Let&apos;s Talk About Your Project
             </h2>
-            <p className="font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed ui-mb-lg max-w-[520px]">
+            <p className="font-body text-sm md:text-base lg:text-lg text-black/60 leading-relaxed ui-mb-lg max-w-[520px]">
               Whether it&apos;s a quick question or a full renovation plan, our
-              team is ready to help. Fill out the form or reach us directly
-              &mdash; we respond within 24 hours.
+              team is ready to help. Fill out the form or reach us directly.
             </p>
 
             {/* Direct contact cards */}
-            <div className="flex flex-col ui-gap-4 ui-mb-lg max-w-[520px]">
+            <div className="flex flex-col ui-gap-3 ui-mb-lg max-w-[520px]" data-reveal-group>
               <a
                 href="tel:+014039912631"
-                className="flex items-center ui-gap-3 p-4 bg-black/[0.03] rounded-sm hover:bg-black/[0.06] transition-colors group cursor-pointer"
+                className="contact-direct-card"
+                data-reveal-item
               >
-                <img
-                  src={images.callIcon}
-                  alt=""
-                  className="w-10 h-10 object-contain shrink-0"
-                />
+                <div className="contact-direct-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
                 <div>
                   <p className="font-heading font-bold text-sm text-black">
                     Call Us Directly
                   </p>
-                  <p className="font-body text-sm text-black/60 group-hover:text-black/80 transition-colors">
+                  <p className="font-body text-sm text-black/50">
                     +01 403 991-2631
                   </p>
                 </div>
               </a>
               <a
                 href="mailto:Info@Example.com"
-                className="flex items-center ui-gap-3 p-4 bg-black/[0.03] rounded-sm hover:bg-black/[0.06] transition-colors group cursor-pointer"
+                className="contact-direct-card"
+                data-reveal-item
               >
-                <img
-                  src={images.mailIcon}
-                  alt=""
-                  className="w-10 h-10 object-contain shrink-0"
-                />
+                <div className="contact-direct-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M22 7l-10 7L2 7" />
+                  </svg>
+                </div>
                 <div>
                   <p className="font-heading font-bold text-sm text-black">
                     Email Us
                   </p>
-                  <p className="font-body text-sm text-black/60 group-hover:text-black/80 transition-colors">
+                  <p className="font-body text-sm text-black/50">
                     Info@Example.com
                   </p>
                 </div>
@@ -67,7 +69,7 @@ export default function ContactForm() {
             </div>
 
             {/* Photo — hidden on mobile */}
-            <div className="hidden md:block w-full max-w-[520px] h-[280px] lg:h-[320px] overflow-hidden rounded-sm shadow-lg">
+            <div className="hidden md:block w-full max-w-[520px] h-[280px] lg:h-[320px] overflow-hidden rounded-sm" data-reveal>
               <img
                 src={images.contactPhoto}
                 alt="Bixi Homes construction project"
@@ -76,30 +78,24 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Right — branded form card */}
+          {/* Right — form card (same surface as service cards) */}
           <div
             className="w-full lg:w-[480px] xl:w-[520px] shrink-0"
             data-reveal
           >
-            {/* Gold accent bar */}
-            <div className="h-1.5 bg-gold rounded-t-sm" />
-
-            <div className="bg-white border border-black/10 border-t-0 p-5 sm:p-7 md:p-8 rounded-b-sm shadow-lg">
+            <div className="contact-form-card">
               <h3 className="font-heading font-bold text-xl md:text-2xl text-black ui-mb-xxs">
                 Request a Free Estimate
               </h3>
-              <p className="font-body text-sm text-black/50 ui-mb-lg">
-                No obligation. No spam. Just a straightforward quote.
+              <p className="font-body text-sm text-black/45 ui-mb-lg">
+                No obligation &mdash; just a straightforward quote.
               </p>
 
               <form className="flex flex-col ui-gap-5">
                 {/* Name row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 ui-gap-4">
                   <div>
-                    <label
-                      htmlFor="cf-first"
-                      className="block font-body font-semibold text-sm text-black mb-1.5"
-                    >
+                    <label htmlFor="cf-first" className="contact-label">
                       First Name<span className="text-red-600">*</span>
                     </label>
                     <input
@@ -107,14 +103,11 @@ export default function ContactForm() {
                       type="text"
                       required
                       placeholder="John"
-                      className="w-full ui-input ui-input-compact"
+                      className="w-full contact-input"
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="cf-last"
-                      className="block font-body font-semibold text-sm text-black mb-1.5"
-                    >
+                    <label htmlFor="cf-last" className="contact-label">
                       Last Name<span className="text-red-600">*</span>
                     </label>
                     <input
@@ -122,7 +115,7 @@ export default function ContactForm() {
                       type="text"
                       required
                       placeholder="Smith"
-                      className="w-full ui-input ui-input-compact"
+                      className="w-full contact-input"
                     />
                   </div>
                 </div>
@@ -130,10 +123,7 @@ export default function ContactForm() {
                 {/* Contact row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 ui-gap-4">
                   <div>
-                    <label
-                      htmlFor="cf-email"
-                      className="block font-body font-semibold text-sm text-black mb-1.5"
-                    >
+                    <label htmlFor="cf-email" className="contact-label">
                       Email<span className="text-red-600">*</span>
                     </label>
                     <input
@@ -141,14 +131,11 @@ export default function ContactForm() {
                       type="email"
                       required
                       placeholder="you@example.com"
-                      className="w-full ui-input ui-input-compact"
+                      className="w-full contact-input"
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="cf-phone"
-                      className="block font-body font-semibold text-sm text-black mb-1.5"
-                    >
+                    <label htmlFor="cf-phone" className="contact-label">
                       Phone<span className="text-red-600">*</span>
                     </label>
                     <input
@@ -156,23 +143,20 @@ export default function ContactForm() {
                       type="tel"
                       required
                       placeholder="(403) XXX-XXXX"
-                      className="w-full ui-input ui-input-compact"
+                      className="w-full contact-input"
                     />
                   </div>
                 </div>
 
                 {/* Service type */}
                 <div>
-                  <label
-                    htmlFor="cf-service"
-                    className="block font-body font-semibold text-sm text-black mb-1.5"
-                  >
+                  <label htmlFor="cf-service" className="contact-label">
                     What do you need help with?
                   </label>
                   <select
                     id="cf-service"
                     defaultValue=""
-                    className="w-full ui-input ui-input-compact bg-white cursor-pointer"
+                    className="w-full contact-input cursor-pointer"
                   >
                     <option value="" disabled>
                       Choose a service...
@@ -187,30 +171,27 @@ export default function ContactForm() {
 
                 {/* Message */}
                 <div>
-                  <label
-                    htmlFor="cf-message"
-                    className="block font-body font-semibold text-sm text-black mb-1.5"
-                  >
+                  <label htmlFor="cf-message" className="contact-label">
                     Tell us about your project
                   </label>
                   <textarea
                     id="cf-message"
                     rows={4}
                     placeholder="Budget, timeline, anything that helps us give you an accurate quote..."
-                    className="w-full ui-textarea ui-textarea-compact"
+                    className="w-full contact-textarea"
                   />
                 </div>
 
-                {/* Submit — full-width gold CTA */}
+                {/* Submit */}
                 <button
                   type="submit"
-                  className="ui-btn ui-btn-primary ui-btn-form self-center w-full max-w-[260px]"
+                  className="ui-btn ui-btn-primary ui-btn-full"
                 >
                   Get My Free Estimate
                 </button>
 
                 {/* Trust line */}
-                <p className="font-body text-xs text-black/40 text-center leading-relaxed">
+                <p className="font-body text-xs text-black/35 text-center leading-relaxed">
                   We respond within 24 hours on business days.
                   Your info is never shared with third parties.
                 </p>
