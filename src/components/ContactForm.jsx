@@ -12,9 +12,9 @@ const serviceOptions = [
 
 export default function ContactForm() {
   return (
-    <section id="contact" className="ui-section" style={{ background: "#f8f8f6" }}>
+    <section id="contact" className="ui-section bg-[#f8f8f6]">
       <div className="ui-container">
-        <div className="flex flex-col lg:flex-row ui-gap-10 lg:ui-gap-14 items-start">
+        <div className="flex flex-col lg:flex-row ui-gap-10 lg:ui-gap-14 items-stretch">
           {/* Left — persuasion + direct contact */}
           <div className="flex-1 min-w-0" data-reveal>
             <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight ui-mb-sm">
@@ -26,7 +26,10 @@ export default function ContactForm() {
             </p>
 
             {/* Direct contact cards */}
-            <div className="flex flex-col ui-gap-3 ui-mb-lg max-w-[520px]" data-reveal-group>
+            <div
+              className="flex flex-col ui-gap-3 ui-mb-lg max-w-[520px]"
+              data-reveal-group
+            >
               <a
                 href="tel:+014039912631"
                 className="contact-direct-card"
@@ -69,7 +72,10 @@ export default function ContactForm() {
             </div>
 
             {/* Photo — hidden on mobile */}
-            <div className="hidden md:block w-full max-w-[520px] h-[280px] lg:h-[320px] overflow-hidden rounded-sm" data-reveal>
+            <div
+              className="hidden md:block w-full max-w-[520px] h-[280px] lg:h-[320px] overflow-hidden rounded-xl border border-black/10 shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              data-reveal
+            >
               <img
                 src={images.contactPhoto}
                 alt="Bixi Homes construction project"
@@ -80,21 +86,21 @@ export default function ContactForm() {
 
           {/* Right — form card (same surface as service cards) */}
           <div
-            className="w-full lg:w-[480px] xl:w-[520px] shrink-0"
+            className="w-full lg:w-[520px] xl:w-[560px] shrink-0"
             data-reveal
           >
             <div className="contact-form-card">
-              <h3 className="font-heading font-bold text-xl md:text-2xl text-black ui-mb-xxs">
+              <h3 className="font-heading font-bold text-[26px] md:text-[32px] text-black ui-mb-xxs leading-tight">
                 Request a Free Estimate
               </h3>
-              <p className="font-body text-sm text-black/45 ui-mb-lg">
+              <p className="font-body text-sm md:text-[15px] text-black/55 ui-mb-lg">
                 No obligation &mdash; just a straightforward quote.
               </p>
 
-              <form className="flex flex-col ui-gap-5">
+              <form className="flex flex-col gap-5 md:gap-6">
                 {/* Name row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 ui-gap-4">
-                  <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
                     <label htmlFor="cf-first" className="contact-label">
                       First Name<span className="text-red-600">*</span>
                     </label>
@@ -106,7 +112,7 @@ export default function ContactForm() {
                       className="w-full contact-input"
                     />
                   </div>
-                  <div>
+                  <div className="space-y-2">
                     <label htmlFor="cf-last" className="contact-label">
                       Last Name<span className="text-red-600">*</span>
                     </label>
@@ -121,8 +127,8 @@ export default function ContactForm() {
                 </div>
 
                 {/* Contact row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 ui-gap-4">
-                  <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
                     <label htmlFor="cf-email" className="contact-label">
                       Email<span className="text-red-600">*</span>
                     </label>
@@ -134,7 +140,7 @@ export default function ContactForm() {
                       className="w-full contact-input"
                     />
                   </div>
-                  <div>
+                  <div className="space-y-2">
                     <label htmlFor="cf-phone" className="contact-label">
                       Phone<span className="text-red-600">*</span>
                     </label>
@@ -149,7 +155,7 @@ export default function ContactForm() {
                 </div>
 
                 {/* Service type */}
-                <div>
+                <div className="space-y-2">
                   <label htmlFor="cf-service" className="contact-label">
                     What do you need help with?
                   </label>
@@ -170,7 +176,7 @@ export default function ContactForm() {
                 </div>
 
                 {/* Message */}
-                <div>
+                <div className="space-y-2">
                   <label htmlFor="cf-message" className="contact-label">
                     Tell us about your project
                   </label>
@@ -191,9 +197,10 @@ export default function ContactForm() {
                 </button>
 
                 {/* Trust line */}
-                <p className="font-body text-xs text-black/35 text-center leading-relaxed">
+                <p className="font-body text-xs text-black/45 text-center leading-relaxed">
                   We respond within 24 hours on business days.
-                  Your info is never shared with third parties.
+                  <br />
+                  Your information is kept private and never shared.
                 </p>
               </form>
             </div>
