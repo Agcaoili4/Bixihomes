@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { images } from "../assets/images";
 
 const serviceOptions = [
@@ -11,6 +12,71 @@ const serviceOptions = [
 ];
 
 export default function ContactForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({
+    type: "",
+    message: "",
+  });
+
+  const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ||
+    "http://localhost:5050";
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    const formData = new FormData(event.currentTarget);
+    const payload = {
+      firstName: String(formData.get("firstName") || "").trim(),
+      lastName: String(formData.get("lastName") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      phone: String(formData.get("phone") || "").trim(),
+      message: String(formData.get("message") || "").trim(),
+    };
+
+    const selectedService = String(formData.get("service") || "").trim();
+    if (selectedService) {
+      payload.service = selectedService;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: "", message: "" });
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        const errorMessage =
+          data?.message || "Unable to send your request right now.";
+        throw new Error(errorMessage);
+      }
+
+      setSubmitStatus({
+        type: "success",
+        message:
+          data?.message ||
+          "Your request was sent successfully. We will reply soon.",
+      });
+      event.currentTarget.reset();
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message:
+          error?.message ||
+          "Something went wrong. Please try again in a few minutes.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="ui-section bg-[#f8f8f6]">
       <div className="ui-container">
@@ -97,7 +163,7 @@ export default function ContactForm() {
                 No obligation &mdash; just a straightforward quote.
               </p>
 
-              <form className="flex flex-col gap-5 md:gap-6">
+              <form className="flex flex-col gap-5 md:gap-6" onSubmit={handleSubmit}>
                 {/* Name row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -106,10 +172,12 @@ export default function ContactForm() {
                     </label>
                     <input
                       id="cf-first"
+                      name="firstName"
                       type="text"
                       required
                       placeholder="John"
                       className="w-full contact-input"
+                      autoComplete="given-name"
                     />
                   </div>
                   <div className="space-y-2">
@@ -118,10 +186,12 @@ export default function ContactForm() {
                     </label>
                     <input
                       id="cf-last"
+                      name="lastName"
                       type="text"
                       required
                       placeholder="Smith"
                       className="w-full contact-input"
+                      autoComplete="family-name"
                     />
                   </div>
                 </div>
@@ -134,10 +204,12 @@ export default function ContactForm() {
                     </label>
                     <input
                       id="cf-email"
+                      name="email"
                       type="email"
                       required
                       placeholder="you@example.com"
                       className="w-full contact-input"
+                      autoComplete="email"
                     />
                   </div>
                   <div className="space-y-2">
@@ -146,10 +218,12 @@ export default function ContactForm() {
                     </label>
                     <input
                       id="cf-phone"
+                      name="phone"
                       type="tel"
                       required
                       placeholder="(403) XXX-XXXX"
                       className="w-full contact-input"
+                      autoComplete="tel"
                     />
                   </div>
                 </div>
@@ -161,6 +235,7 @@ export default function ContactForm() {
                   </label>
                   <select
                     id="cf-service"
+                    name="service"
                     defaultValue=""
                     className="w-full contact-input cursor-pointer"
                   >
@@ -182,6 +257,7 @@ export default function ContactForm() {
                   </label>
                   <textarea
                     id="cf-message"
+                    name="message"
                     rows={4}
                     placeholder="Budget, timeline, anything that helps us give you an accurate quote..."
                     className="w-full contact-textarea"
@@ -192,8 +268,9 @@ export default function ContactForm() {
                 <button
                   type="submit"
                   className="ui-btn ui-btn-primary ui-btn-full"
+                  disabled={isSubmitting}
                 >
-                  Get My Free Estimate
+                  {isSubmitting ? "Sending..." : "Get My Free Estimate"}
                 </button>
 
                 {/* Trust line */}
@@ -202,6 +279,20 @@ export default function ContactForm() {
                   <br />
                   Your information is kept private and never shared.
                 </p>
+
+                {submitStatus.message ? (
+                  <p
+                    role="status"
+                    aria-live="polite"
+                    className={`text-center font-body text-sm ${
+                      submitStatus.type === "success"
+                        ? "text-emerald-700"
+                        : "text-red-700"
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </p>
+                ) : null}
               </form>
             </div>
           </div>

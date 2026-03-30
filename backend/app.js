@@ -11,7 +11,17 @@ const app = express();
 
 // --- Security middleware ---
 app.use(helmet());
-app.use(cors({ origin: env.CORS_ORIGIN, optionsSuccessStatus: 200 }));
+app.use(
+  cors({
+    origin(origin, callback) {
+      // Allow non-browser or same-origin requests that may not send Origin header.
+      if (!origin) return callback(null, true);
+      if (env.CORS_ORIGINS.includes(origin)) return callback(null, true);
+      return callback(new Error(`Origin ${origin} is not allowed by CORS`));
+    },
+    optionsSuccessStatus: 200,
+  })
+);
 app.use(express.json({ limit: '10kb' }));
 app.use(globalLimiter);
 

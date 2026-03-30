@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.coerce.number().int().positive().default(5000),
-  CORS_ORIGIN: z.string().url().default('http://localhost:5173'),
+  CORS_ORIGIN: z.string().min(1).default('http://localhost:5173,http://localhost:5174'),
   JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
   JWT_EXPIRES_IN: z.string().default('1h'),
   ADMIN_EMAIL: z.string().email(),
@@ -29,6 +29,32 @@ if (!parsed.success) {
   process.exit(1);
 }
 
-const env = Object.freeze(parsed.data);
+const parseCorsOrigins = (rawOrigins) => {
+  const origins = rawOrigins
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+  if (origins.length === 0) {
+    throw new Error('CORS_ORIGIN must contain at least one origin');
+  }
+
+  origins.forEach((origin) => {
+    try {
+      // Validate URL format for each origin entry.
+      // eslint-disable-next-line no-new
+      new URL(origin);
+    } catch {
+      throw new Error(`Invalid CORS origin: ${origin}`);
+    }
+  });
+
+  return origins;
+};
+
+const env = Object.freeze({
+  ...parsed.data,
+  CORS_ORIGINS: parseCorsOrigins(parsed.data.CORS_ORIGIN),
+});
 
 export default env;

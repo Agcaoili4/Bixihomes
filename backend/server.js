@@ -5,5 +5,5 @@ import logger from './src/utils/logger.js';
 const PORT = env.PORT;
 
 app.listen(PORT, () => {
-  logger.info(`Server running in ${env.NODE_ENV} mode on port ${PORT}`);
+  logger.info(`Server running in ${env.NODE_ENV} mode on port http://localhost:${PORT}`);
 });
