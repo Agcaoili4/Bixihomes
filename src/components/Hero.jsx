@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { images } from "../assets/images";
+import useHoverParallax from "../hooks/useHoverParallax";
 
 const metrics = [
   { target: 10, suffix: "+", label: "Years Experience" },
@@ -84,6 +85,7 @@ function CountUpValue({ target, suffix, shouldStart }) {
 export default function Hero() {
   const sectionRef = useRef(null);
   const [shouldStartCount, setShouldStartCount] = useState(false);
+  useHoverParallax(sectionRef, { maxShift: 20 });
 
   useEffect(() => {
     const sectionEl = sectionRef.current;
@@ -114,7 +116,7 @@ export default function Hero() {
       <img
         src={images.heroBg}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover hero-bg-parallax"
       />
       <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/50 to-black/25" />
       <div className="hero-accent-grid absolute inset-0 pointer-events-none" />

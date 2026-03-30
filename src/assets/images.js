@@ -1,3 +1,4 @@
+import aboutPhotoVideo from "./downloaded_assets/about-photo.mp4";
 // Figma design asset URLs
 export const images = {
   // Hero
@@ -10,7 +11,7 @@ export const images = {
 
   // About section
   aboutBg: "https://www.figma.com/api/mcp/asset/6c66e38b-f0b2-451a-8a16-b8535693cf35",
-  aboutPhoto: "https://www.figma.com/api/mcp/asset/c4a615ab-739f-49c3-bcd2-bebe3820608b",
+  aboutPhoto: aboutPhotoVideo,
   commercialIcon: "https://www.figma.com/api/mcp/asset/0ac3f6e9-a8fc-483c-ad1d-fccb3d4547b2",
   residentialIcon: "https://www.figma.com/api/mcp/asset/caccdfc2-786d-412d-b2fb-97d6bfccff42",
   industrialIcon: "https://www.figma.com/api/mcp/asset/232e0295-dc4d-4585-9009-260978dfc29b",

@@ -30,10 +30,14 @@ export default function AboutUs() {
         <div className="aboutus-shell" data-reveal>
           {/* Image */}
           <div className="aboutus-image-wrap">
-            <img
+            <video
               src={images.aboutPhoto}
-              alt="Construction worker"
               className="w-full h-full object-cover aboutus-image"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
             />
             <div className="aboutus-image-overlay" />
             <div className="aboutus-image-badge">
@@ -44,7 +48,7 @@ export default function AboutUs() {
 
           {/* Content */}
           <div className="aboutus-content about-us-content">
-            <p className="aboutus-eyebrow">About Us</p>
+            <p className="ui-kicker-pill aboutus-eyebrow">About Us</p>
             <h2 className="w-full font-heading font-extrabold text-[26px] md:text-[34px] lg:text-[42px] text-black ui-mb-sm leading-tight text-left">
               Built with Craftsmanship, Driven by Trust
             </h2>

@@ -48,7 +48,7 @@ export default function AboutBixi() {
     <section className="about-bixi-section ui-section">
       <div className="ui-container">
         {/* Heading */}
-        <div className="text-center ui-mb-xl about-bixi-heading" data-reveal>
+        <div className="text-center ui-mb-xl about-bixi-heading">
           <p className="ui-kicker-pill about-bixi-kicker">Who We Are</p>
           <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight">
             About Bixi Homes
@@ -60,70 +60,82 @@ export default function AboutBixi() {
           </p>
         </div>
 
-        {/* Tabs */}
-        <div
-          className="flex flex-wrap items-center justify-center ui-gap-3 md:ui-gap-5 ui-mb-xl about-bixi-tabs"
-          data-reveal-group
-        >
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              data-reveal-item
-              className={`ui-btn ui-btn-tab ${
-                activeTab === tab.id
-                  ? "ui-btn-tab-active"
-                  : "ui-btn-outline-dark"
-              }`}
-            >
-              <img
-                src={tab.icon}
-                alt=""
-                className="w-6 h-6 md:w-7 md:h-7 object-contain"
-              />
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
         {/* Content */}
         <div
-          className="about-bixi-panel"
-          data-reveal
+          id={`about-bixi-panel-${activeTab}`}
+          className={`about-bixi-panel about-bixi-panel-${activeTab}`}
+          role="tabpanel"
         >
-          <div className="about-bixi-media">
-            <img
-              src={images.storyPhoto}
-              alt="Construction work"
-              className="w-full h-full object-cover about-bixi-media-img"
-            />
-            <div className="about-bixi-media-overlay" />
-            <div className="about-bixi-media-badge">{currentContent.metric}</div>
-          </div>
-          <div className="about-bixi-content">
-            <h3 className="font-heading font-extrabold text-2xl md:text-[32px] text-black ui-mb-sm leading-tight">
-              {currentContent.title}
-            </h3>
-            <p className="font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed ui-mb-lg">
-              {currentContent.copy}
-            </p>
+          <div className="about-bixi-panel-head">
+            <div className="about-bixi-head-copy">
+              <p className="about-bixi-head-kicker">Choose Your Segment</p>
+              <p className="about-bixi-head-sub">
+                Tailored renovation strategy aligned with your project type.
+              </p>
+            </div>
 
-            <ul className="about-bixi-points ui-mb-lg" data-reveal-group>
-              {currentContent.points.map((point) => (
-                <li key={point} data-reveal-item className="about-bixi-point-item">
-                  <span className="about-bixi-point-dot" />
-                  <span>{point}</span>
-                </li>
+            <div
+              className="about-bixi-choice-corner"
+              role="tablist"
+              aria-label="Service type"
+            >
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id)}
+                  role="tab"
+                  aria-selected={activeTab === tab.id}
+                  aria-controls={`about-bixi-panel-${tab.id}`}
+                  className={`about-bixi-choice-btn ${activeTab === tab.id ? "is-active" : ""}`}
+                >
+                  <img
+                    src={tab.icon}
+                    alt=""
+                    className="w-4 h-4 md:w-5 md:h-5 object-contain"
+                  />
+                  <span>{tab.label}</span>
+                </button>
               ))}
-            </ul>
+            </div>
+          </div>
 
-            <div className="about-bixi-cta-row">
-              <a href="#contact" className="ui-btn ui-btn-primary">
-                Start Your Project
-              </a>
-              <a href="#gallery" className="ui-btn ui-btn-outline-dark">
-                See Portfolio
-              </a>
+          <div className="about-bixi-body">
+            <div className="about-bixi-media">
+              <img
+                src={images.storyPhoto}
+                alt="Construction work"
+                className="w-full h-full object-cover about-bixi-media-img"
+              />
+              <div className="about-bixi-media-overlay" />
+              <div className="about-bixi-media-badge">{currentContent.metric}</div>
+            </div>
+            <div className="about-bixi-content">
+              <p className="about-bixi-metric-chip">{currentContent.metric}</p>
+              <h3 className="font-heading font-extrabold text-2xl md:text-[32px] text-black ui-mb-sm leading-tight">
+                {currentContent.title}
+              </h3>
+              <p className="font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed ui-mb-lg">
+                {currentContent.copy}
+              </p>
+
+              <ul className="about-bixi-points ui-mb-lg">
+                {currentContent.points.map((point) => (
+                  <li key={point} className="about-bixi-point-item">
+                    <span className="about-bixi-point-dot" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="about-bixi-cta-row">
+                <a href="#contact" className="ui-btn ui-btn-primary">
+                  Start Your Project
+                </a>
+                <a href="#gallery" className="ui-btn ui-btn-outline-dark">
+                  See Portfolio
+                </a>
+              </div>
             </div>
           </div>
         </div>
