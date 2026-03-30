@@ -140,7 +140,7 @@ const GalleryModal = ({
       >
         <div
           onClick={(event) => event.stopPropagation()}
-          className="relative w-full max-w-5xl p-4"
+          className="relative w-full max-w-5xl p-3 sm:p-4"
         >
           <motion.div
             className="relative overflow-hidden rounded-2xl border border-white/28 bg-black/30 shadow-[0_28px_60px_rgba(0,0,0,0.42)] backdrop-blur-2xl"
@@ -151,7 +151,7 @@ const GalleryModal = ({
           >
             <MediaItem
               item={selectedItem}
-              className="w-full h-[70vh] min-h-[360px]"
+              className="w-full h-[58vh] min-h-[260px] sm:h-[70vh] sm:min-h-[360px]"
             />
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/82 via-black/32 to-transparent backdrop-blur-md">
               <h3 className="text-white text-lg font-semibold font-heading">
@@ -172,9 +172,9 @@ const GalleryModal = ({
         <X className="h-4 w-4" />
       </motion.button>
 
-      <motion.div className="fixed z-[80] left-1/2 bottom-4 -translate-x-1/2">
+      <motion.div className="fixed z-[80] left-1/2 bottom-3 sm:bottom-4 -translate-x-1/2 w-[calc(100vw-1rem)] sm:w-auto">
         <motion.div className="rounded-xl border border-white/40 bg-black/28 p-2 shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-2xl">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 overflow-x-auto ui-hide-scrollbar">
             {mediaItems.map((item, index) => {
               const isSelected = selectedItem.id === item.id;
               return (
@@ -246,7 +246,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
   return (
     <div className="ui-gallery-shell">
       <div className="mb-8 text-center gallery-heading" data-reveal>
-        <p className="gallery-kicker">Portfolio</p>
+        <p className="ui-kicker-pill gallery-kicker">Portfolio</p>
         <motion.h2
           className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight"
           initial={{ opacity: 0, y: 20 }}

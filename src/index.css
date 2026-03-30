@@ -163,6 +163,160 @@ body {
   text-align: center;
 }
 
+.about-bixi-section {
+  background:
+    radial-gradient(circle at 8% 8%, rgba(250, 173, 20, 0.12) 0%, rgba(250, 173, 20, 0) 36%),
+    radial-gradient(circle at 94% 0%, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0) 26%),
+    #ffffff;
+}
+
+.about-bixi-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding-inline: 0.8rem;
+  margin-bottom: var(--space-3);
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(250, 173, 20, 0.14);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.about-bixi-tabs {
+  width: fit-content;
+  margin-inline: auto;
+  padding: 0.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.about-bixi-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.96) 0%, rgba(250, 173, 20, 0.07) 100%);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.09);
+}
+
+@media (min-width: 768px) {
+  .about-bixi-panel {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-12);
+  }
+}
+
+.about-bixi-media {
+  position: relative;
+  width: 100%;
+  min-height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .about-bixi-media {
+    width: 44%;
+    min-height: 360px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-bixi-media {
+    width: 46%;
+    min-height: 400px;
+  }
+}
+
+.about-bixi-media-img {
+  transform: scale(1);
+  transition: transform 550ms ease;
+}
+
+.about-bixi-panel:hover .about-bixi-media-img {
+  transform: scale(1.035);
+}
+
+.about-bixi-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.04) 0%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
+}
+
+.about-bixi-media-badge {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  min-height: 34px;
+  padding-inline: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  background: rgba(0, 0, 0, 0.44);
+  color: rgba(255, 255, 255, 0.96);
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.about-bixi-content {
+  flex: 1;
+}
+
+.about-bixi-points {
+  display: flex;
+  flex-direction: column;
+  gap: 0.68rem;
+}
+
+.about-bixi-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.about-bixi-point-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 0.52rem;
+  border-radius: 999px;
+  background: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.about-bixi-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
 .about-us-content p {
   text-align: left;
 }
@@ -171,6 +325,15 @@ body {
   width: 100%;
   max-width: 68ch;
   margin-inline: auto;
+}
+
+.ui-hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ui-hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 .ui-gallery-shell {
@@ -299,6 +462,118 @@ body {
 
   .ui-gallery-shell {
     padding-block: var(--space-1);
+  }
+
+  .about-bixi-tabs {
+    width: 100%;
+    padding: 0.45rem;
+    border-radius: 14px;
+  }
+
+  .about-bixi-tabs .ui-btn-tab {
+    max-width: none;
+    min-height: 46px;
+    font-size: 0.9rem;
+  }
+
+  .about-bixi-panel {
+    gap: var(--space-5);
+    padding: 0.85rem;
+    border-radius: 16px;
+  }
+
+  .about-bixi-media {
+    min-height: 220px;
+    border-radius: 14px;
+  }
+
+  .about-bixi-media-badge {
+    left: 0.65rem;
+    right: 0.65rem;
+    bottom: 0.65rem;
+    justify-content: center;
+    font-size: 0.64rem;
+    letter-spacing: 0.05em;
+    padding-inline: 0.7rem;
+    min-height: 30px;
+  }
+
+  .about-bixi-content h3 {
+    font-size: 1.5rem;
+    line-height: 1.22;
+  }
+
+  .about-bixi-point-item {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .about-bixi-cta-row {
+    width: 100%;
+    gap: 0.55rem;
+  }
+
+  .about-bixi-cta-row .ui-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .gallery-grid {
+    padding: 0.6rem;
+    border-radius: 16px;
+  }
+
+  .gallery-kicker {
+    min-height: 28px;
+    font-size: 0.66rem;
+    padding-inline: 0.65rem;
+  }
+
+  .gallery-card-chip {
+    min-height: 24px;
+    font-size: 0.6rem;
+    padding-inline: 0.55rem;
+  }
+
+  .aboutus-shell {
+    border-radius: 16px;
+  }
+
+  .aboutus-image-wrap {
+    min-height: 240px;
+  }
+
+  .aboutus-image-badge {
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    min-width: 0;
+    padding: 0.6rem 0.7rem;
+  }
+
+  .aboutus-content {
+    padding: 1rem;
+  }
+
+  .aboutus-stat {
+    border-radius: 10px;
+    padding: 0.65rem;
+  }
+
+  .aboutus-stat-value {
+    font-size: 1.2rem;
+  }
+
+  .hero-content-shell {
+    border-radius: 14px;
+    padding: 0.95rem;
+  }
+
+  .hero-trust-pill {
+    min-height: 30px;
+    font-size: 0.65rem;
+    letter-spacing: 0.03em;
+    padding-inline: 0.6rem;
   }
 }
 
