@@ -108,7 +108,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="home"
-      className="relative w-full min-h-[60vh] md:min-h-[70vh] lg:min-h-[85vh] overflow-hidden"
+      className="relative w-full min-h-[60vh] md:min-h-[70vh] lg:min-h-[85vh] overflow-hidden isolate"
       data-reveal
     >
       <img
@@ -117,9 +117,12 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/50 to-black/25" />
+      <div className="hero-accent-grid absolute inset-0 pointer-events-none" />
+      <div className="hero-accent-orb hero-accent-orb-1" aria-hidden="true" />
+      <div className="hero-accent-orb hero-accent-orb-2" aria-hidden="true" />
 
       <div className="relative ui-container h-full flex flex-col justify-center items-center lg:items-end ui-section-hero">
-        <div className="max-w-[620px] text-center lg:text-right">
+        <div className="hero-content-shell max-w-[640px] text-center lg:text-right">
           {/* Subtitle badge */}
           <div className="hero-anim-badge bg-gold/20 border border-gold/40 inline-flex items-center ui-gap-2-5 ui-px-md ui-pt-xs ui-mb-md backdrop-blur-sm">
             <img
@@ -147,12 +150,18 @@ export default function Hero() {
 
           {/* Dual CTAs */}
           <div className="hero-anim-cta flex flex-col sm:flex-row items-center lg:justify-end ui-gap-4">
-            <a href="#contact" className="ui-btn ui-btn-primary">
+            <a href="#contact" className="ui-btn ui-btn-primary hero-primary-cta">
               Contact Us
             </a>
             <a href="#gallery" className="ui-btn ui-btn-outline-light">
               View Our Work
             </a>
+          </div>
+
+          <div className="hero-anim-trust ui-mt-lg flex flex-wrap items-center justify-center lg:justify-end ui-gap-2-5">
+            <span className="hero-trust-pill">WSIB Insured</span>
+            <span className="hero-trust-pill">Licensed Builders</span>
+            <span className="hero-trust-pill">On-Time Delivery</span>
           </div>
         </div>
 

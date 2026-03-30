@@ -1,10 +1,16 @@
 import { images } from "../assets/images";
 
 const checkpoints = [
-  "Sed varius ipsum lacus",
-  "Pulvinar tortor dignissim sit amet",
-  "Quisque tristique diam quis placerat",
-  "Aliquam id ante suscipi fringilla",
+  "Locally owned team with reliable project coordination",
+  "Code-compliant workmanship and transparent communication",
+  "Premium materials selected for Alberta weather",
+  "Detailed scheduling with clean and respectful site practices",
+];
+
+const stats = [
+  { value: "10+", label: "Years Serving Homeowners" },
+  { value: "500+", label: "Projects Delivered" },
+  { value: "98%", label: "Client Satisfaction" },
 ];
 
 export default function AboutUs() {
@@ -21,45 +27,68 @@ export default function AboutUs() {
       </div>
 
       <div className="relative ui-container ui-section">
-        <div
-          className="bg-gold flex flex-col md:flex-row items-stretch overflow-hidden shadow-xl"
-          data-reveal
-        >
+        <div className="aboutus-shell" data-reveal>
           {/* Image */}
-          <div className="w-full md:w-[45%] lg:w-[48%] h-[280px] md:h-auto shrink-0 overflow-hidden">
+          <div className="aboutus-image-wrap">
             <img
               src={images.aboutPhoto}
               alt="Construction worker"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover aboutus-image"
             />
+            <div className="aboutus-image-overlay" />
+            <div className="aboutus-image-badge">
+              <span className="aboutus-image-badge-label">Trusted Renovation Team</span>
+              <span className="aboutus-image-badge-copy">Serving Calgary &amp; Area</span>
+            </div>
           </div>
 
           {/* Content */}
-          <div className="flex-1 flex flex-col justify-center ui-container ui-section about-us-content">
+          <div className="aboutus-content about-us-content">
+            <p className="aboutus-eyebrow">About Us</p>
             <h2 className="w-full font-heading font-extrabold text-[26px] md:text-[34px] lg:text-[42px] text-black ui-mb-sm leading-tight text-left">
-              We Provide Your Future
+              Built with Craftsmanship, Driven by Trust
             </h2>
             <p className="w-full font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-xs text-left">
-              Pellentesque vehicula eros neque, maximus mattis est sagittis
-              Nulla facilisi. In sed pretium metus. Proin pretium id urna sit
-              amet tincidunt. Interdum et malesuada.
+              We help homeowners reimagine their spaces with renovation work
+              that is practical, elegant, and made to last. Every project is
+              handled with clear communication, precise execution, and respect
+              for your home.
             </p>
             <p className="w-full font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md text-left">
-              In pulvinar viverra diam, nec rutrum mauris maximus non. Aenean
-              sed quam tristique, facilisis est ac, interdum velit.
+              From kitchens and basements to full exterior upgrades, our team
+              focuses on quality details, schedule accountability, and
+              long-term value for your investment.
             </p>
-            <ul className="ui-space-y-sm" data-reveal-group>
+            <ul className="ui-space-y-sm aboutus-checks" data-reveal-group>
               {checkpoints.map((item) => (
                 <li
                   key={item}
                   data-reveal-item
                   className="flex items-start ui-gap-3 font-body text-sm md:text-base text-navy"
                 >
-                  <span className="ui-mt-xs w-2 h-2 bg-navy rounded-full shrink-0" />
+                  <span className="ui-mt-xs w-2 h-2 bg-gold rounded-full shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
+
+            <div className="aboutus-stats" data-reveal-group>
+              {stats.map((stat) => (
+                <div key={stat.label} className="aboutus-stat" data-reveal-item>
+                  <p className="aboutus-stat-value">{stat.value}</p>
+                  <p className="aboutus-stat-label">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center ui-gap-3 ui-mt-lg">
+              <a href="#contact" className="ui-btn ui-btn-primary">
+                Get a Free Estimate
+              </a>
+              <a href="#gallery" className="ui-btn ui-btn-outline-dark">
+                View Recent Work
+              </a>
+            </div>
           </div>
         </div>
       </div>

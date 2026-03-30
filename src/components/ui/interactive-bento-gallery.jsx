@@ -136,14 +136,14 @@ const GalleryModal = ({
         exit={{ scale: 0.98 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
         onClick={onClose}
-        className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/45 backdrop-blur-xl"
+        className="fixed inset-0 z-[70] flex items-center justify-center bg-black/60 backdrop-blur-xl"
       >
         <div
           onClick={(event) => event.stopPropagation()}
           className="relative w-full max-w-5xl p-4"
         >
           <motion.div
-            className="relative overflow-hidden rounded-2xl border border-white/35 bg-white/12 shadow-[0_28px_60px_rgba(15,23,42,0.38)] backdrop-blur-2xl"
+            className="relative overflow-hidden rounded-2xl border border-white/28 bg-black/30 shadow-[0_28px_60px_rgba(0,0,0,0.42)] backdrop-blur-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -153,18 +153,18 @@ const GalleryModal = ({
               item={selectedItem}
               className="w-full h-[70vh] min-h-[360px]"
             />
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950/72 via-slate-900/20 to-transparent backdrop-blur-md">
-              <h3 className="text-white text-lg font-semibold">
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/82 via-black/32 to-transparent backdrop-blur-md">
+              <h3 className="text-white text-lg font-semibold font-heading">
                 {selectedItem.title}
               </h3>
-              <p className="text-white/80 text-sm mt-1">{selectedItem.desc}</p>
+              <p className="text-white/80 text-sm mt-1 font-body">{selectedItem.desc}</p>
             </div>
           </motion.div>
         </div>
       </motion.div>
 
       <motion.button
-        className="fixed top-4 right-4 z-[80] rounded-full border border-white/45 bg-white/16 p-2 text-white shadow-[0_10px_24px_rgba(15,23,42,0.28)] backdrop-blur-2xl transition-colors duration-200 hover:bg-white/24"
+        className="fixed top-4 right-4 z-[80] rounded-full border border-white/45 bg-black/35 p-2 text-white shadow-[0_10px_24px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition-colors duration-200 hover:bg-black/55"
         onClick={onClose}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -173,8 +173,8 @@ const GalleryModal = ({
       </motion.button>
 
       <motion.div className="fixed z-[80] left-1/2 bottom-4 -translate-x-1/2">
-        <motion.div className="rounded-xl border border-white/40 bg-white/16 p-2 shadow-[0_16px_36px_rgba(15,23,42,0.3)] backdrop-blur-2xl">
-          <div className="flex items-center -space-x-2">
+        <motion.div className="rounded-xl border border-white/40 bg-black/28 p-2 shadow-[0_16px_36px_rgba(0,0,0,0.35)] backdrop-blur-2xl">
+          <div className="flex items-center gap-2">
             {mediaItems.map((item, index) => {
               const isSelected = selectedItem.id === item.id;
               return (
@@ -182,20 +182,21 @@ const GalleryModal = ({
                   key={item.id}
                   className={`relative h-10 w-10 rounded-lg overflow-hidden border shadow-sm cursor-pointer transition-colors duration-200 ${
                     isSelected
-                      ? "border-white/70 bg-white/28 shadow-[0_0_0_1px_rgba(255,255,255,0.55),0_10px_20px_rgba(249,115,22,0.24)]"
+                      ? "border-gold bg-white/30 shadow-[0_0_0_1px_rgba(250,173,20,0.55),0_10px_20px_rgba(250,173,20,0.26)]"
                       : "border-white/45 bg-white/10"
                   }`}
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedItem(item);
                   }}
-                  initial={{ rotate: index % 2 === 0 ? -15 : 15 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{
-                    scale: isSelected ? 1.2 : 1,
-                    rotate: isSelected ? 0 : index % 2 === 0 ? -15 : 15,
-                    y: isSelected ? -5 : 0,
+                    opacity: 1,
+                    scale: isSelected ? 1.1 : 1,
+                    y: isSelected ? -2 : 0,
                   }}
-                  whileHover={{ scale: 1.25, rotate: 0, y: -8 }}
+                  transition={{ delay: index * 0.03 }}
+                  whileHover={{ scale: 1.12, y: -4 }}
                 >
                   <MediaItem
                     item={item}
@@ -216,7 +217,7 @@ const GalleryModal = ({
 
 const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [items, setItems] = useState(mediaItems);
+  const items = mediaItems;
 
   useEffect(() => {
     if (!selectedItem) return undefined;
@@ -245,6 +246,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
   return (
     <div className="ui-gallery-shell">
       <div className="mb-8 text-center gallery-heading" data-reveal>
+        <p className="gallery-kicker">Portfolio</p>
         <motion.h2
           className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight"
           initial={{ opacity: 0, y: 20 }}
@@ -264,7 +266,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
       </div>
 
       <motion.div
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        className="gallery-grid grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
         data-reveal-group
         initial="hidden"
         animate="visible"
@@ -277,7 +279,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
           <motion.div
             key={item.id}
             data-reveal-item
-            className="relative overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.08)] aspect-[4/3]"
+            className="gallery-card group relative overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.08)] aspect-[4/3]"
             onClick={() => setSelectedItem(item)}
             variants={{
               hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -290,11 +292,14 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
             }}
             whileHover={{ scale: 1.02 }}
           >
-            <MediaItem item={item} className="h-full w-full" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-200 hover:opacity-100" />
+            <MediaItem item={item} className="h-full w-full gallery-card-image" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="absolute top-3 left-3">
+              <span className="gallery-card-chip">Featured Project</span>
+            </div>
             <div className="absolute bottom-3 left-3 right-3 text-white">
-              <h3 className="text-xs font-bold sm:text-sm leading-snug">{item.title}</h3>
-              <p className="mt-1 text-[10px] text-white/85 sm:text-xs leading-relaxed">
+              <h3 className="text-xs font-bold sm:text-sm leading-snug font-heading">{item.title}</h3>
+              <p className="mt-1 text-[10px] text-white/85 sm:text-xs leading-relaxed font-body">
                 {item.desc}
               </p>
             </div>

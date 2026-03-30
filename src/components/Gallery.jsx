@@ -41,7 +41,7 @@ export default function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="bg-white ui-section" data-reveal>
+    <section id="gallery" className="gallery-section ui-section" data-reveal>
       <div className="ui-container">
         <InteractiveBentoGallery
           mediaItems={mediaItems}
