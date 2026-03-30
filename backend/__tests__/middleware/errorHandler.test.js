@@ -45,10 +45,12 @@ describe('errorHandler', () => {
   });
 
   it('defaults to 500 when no statusCode on error', () => {
+    const originalEnv = process.env.NODE_ENV;
     process.env.NODE_ENV = 'development';
     const err = new Error('oops');
     const res = mockRes();
     errorHandler(err, {}, res, () => {});
     expect(res.status).toHaveBeenCalledWith(500);
+    process.env.NODE_ENV = originalEnv;
   });
 });

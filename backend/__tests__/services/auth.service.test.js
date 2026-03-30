@@ -1,18 +1,33 @@
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, beforeAll, vi } from 'vitest';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { verifyCredentials, signToken } from '../../src/services/auth.service.js';
 
 const TEST_SECRET = 'a-test-secret-that-is-at-least-32-chars-long!!';
 const TEST_EMAIL = 'admin@test.com';
 let TEST_HASH;
 
+// Mock the env config module so auth.service uses our test values
+vi.mock('../../src/config/env.js', () => {
+  return {
+    default: {
+      JWT_SECRET: 'a-test-secret-that-is-at-least-32-chars-long!!',
+      JWT_EXPIRES_IN: '1h',
+      ADMIN_EMAIL: 'admin@test.com',
+      // ADMIN_PASSWORD_HASH is set dynamically in beforeAll via the mock
+      get ADMIN_PASSWORD_HASH() {
+        return process.env.__TEST_ADMIN_HASH || '';
+      },
+    },
+  };
+});
+
+// Import after mock is set up
+const { verifyCredentials, signToken } = await import('../../src/services/auth.service.js');
+
 beforeAll(async () => {
   TEST_HASH = await bcrypt.hash('correct-password', 12);
-  process.env.JWT_SECRET = TEST_SECRET;
-  process.env.JWT_EXPIRES_IN = '1h';
-  process.env.ADMIN_EMAIL = TEST_EMAIL;
-  process.env.ADMIN_PASSWORD_HASH = TEST_HASH;
+  // Pass the hash to the mock via a process.env bridge
+  process.env.__TEST_ADMIN_HASH = TEST_HASH;
 });
 
 describe('verifyCredentials', () => {

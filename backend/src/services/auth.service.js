@@ -1,20 +1,18 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import env from '../config/env.js';
 
 export const verifyCredentials = async (email, password) => {
-  const adminEmail = process.env.ADMIN_EMAIL;
-  const adminHash = process.env.ADMIN_PASSWORD_HASH;
+  if (email !== env.ADMIN_EMAIL) return null;
 
-  if (email !== adminEmail) return null;
-
-  const valid = await bcrypt.compare(password, adminHash);
+  const valid = await bcrypt.compare(password, env.ADMIN_PASSWORD_HASH);
   if (!valid) return null;
 
-  return { email: adminEmail, role: 'admin' };
+  return { email: env.ADMIN_EMAIL, role: 'admin' };
 };
 
 export const signToken = (payload) => {
-  return jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRES_IN || '1h',
+  return jwt.sign(payload, env.JWT_SECRET, {
+    expiresIn: env.JWT_EXPIRES_IN,
   });
 };
