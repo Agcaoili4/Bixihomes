@@ -45,11 +45,17 @@ export default function ContactForm() {
     setSubmitStatus({ type: "", message: "" });
 
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 60000);
+
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeout);
 
       const data = await response.json().catch(() => ({}));
 
@@ -67,12 +73,22 @@ export default function ContactForm() {
       });
       formElement?.reset();
     } catch (error) {
-      setSubmitStatus({
-        type: "error",
-        message:
+      let message;
+      if (error?.name === "AbortError") {
+        message =
+          "The server is waking up. Please wait a moment and try again.";
+      } else if (
+        error?.message === "Failed to fetch" ||
+        error?.message === "Load failed"
+      ) {
+        message =
+          "Could not reach the server. Please check your connection and try again.";
+      } else {
+        message =
           error?.message ||
-          "Something went wrong. Please try again in a few minutes.",
-      });
+          "Something went wrong. Please try again in a few minutes.";
+      }
+      setSubmitStatus({ type: "error", message });
     } finally {
       setIsSubmitting(false);
     }
