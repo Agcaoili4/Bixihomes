@@ -1,26 +1,8 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import env from '../config/env.js';
 import logger from '../utils/logger.js';
 
-let transporter;
-
-const getTransporter = () => {
-  if (!transporter) {
-    transporter = nodemailer.createTransport({
-      host: env.SMTP_HOST,
-      port: env.SMTP_PORT,
-      secure: env.SMTP_PORT === 465,
-      auth: {
-        user: env.SMTP_USER,
-        pass: env.SMTP_PASS,
-      },
-      connectionTimeout: 10000,
-      greetingTimeout: 10000,
-      socketTimeout: 15000,
-    });
-  }
-  return transporter;
-};
+const resend = new Resend(env.RESEND_API_KEY);
 
 // Escape HTML entities to prevent malformed email HTML
 const escapeHtml = (str) =>
@@ -40,15 +22,18 @@ export const sendContactEmail = async (data) => {
     </table>
   `;
 
-  const mailOptions = {
-    from: `"Bixihomes Website" <${env.SMTP_USER}>`,
-    to: env.CONTACT_EMAIL_TO,
+  const result = await resend.emails.send({
+    from: `Bixihomes Website <${env.RESEND_FROM_EMAIL}>`,
+    to: [env.CONTACT_EMAIL_TO],
     replyTo: email,
     subject: `New Estimate Request from ${firstName} ${lastName}`,
     html,
-  };
+  });
 
-  const info = await getTransporter().sendMail(mailOptions);
-  logger.info('Contact email sent', { messageId: info.messageId });
-  return info;
+  if (result.error) {
+    throw new Error(result.error.message);
+  }
+
+  logger.info('Contact email sent', { id: result.data.id });
+  return result.data;
 };
