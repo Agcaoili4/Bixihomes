@@ -1,10 +1,21 @@
 import { images } from "../assets/images";
 
 const socialIcons = [
-  { src: images.socialIcon1, label: "Facebook" },
-  { src: images.socialIcon2, label: "Twitter" },
-  { src: images.socialIcon3, label: "Instagram" },
-  { src: images.socialIcon4, label: "LinkedIn" },
+ {
+    src: images.facebookIcon,
+    label: "Facebook",
+    href: "https://www.facebook.com/",
+  },
+  {
+    src: images.whatsappIcon,
+    label: "WhatsApp",
+    href: "https://wa.me/14039912631",
+  },
+  {
+    src: images.instagramIcon,
+    label: "Instagram",
+    href: "https://www.instagram.com/bixihomes/",
+  },
 ];
 
 export default function Footer() {
@@ -33,7 +44,7 @@ export default function Footer() {
                   Mail Us
                 </p>
                 <p className="font-body text-xs md:text-sm text-black/70">
-                  bixihr@gmail.com
+                  Info@Example.com
                 </p>
               </div>
             </div>
@@ -49,7 +60,7 @@ export default function Footer() {
                   Call Us
                 </p>
                 <p className="font-body text-xs md:text-sm text-black/70">
-                  +01 569 896 654
+                  +01 403 9912631
                 </p>
               </div>
             </div>
