@@ -10,23 +10,23 @@ const metrics = [
 
 function CountUpValue({ target, suffix, shouldStart }) {
   const [value, setValue] = useState(0);
-  const hasAnimated = useRef(false);
   const randomTimerRef = useRef(null);
   const settleFrameRef = useRef(null);
 
   useEffect(() => {
-    if (!shouldStart || hasAnimated.current) return undefined;
+    if (!shouldStart) {
+      setValue(0);
+      return undefined;
+    }
 
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     if (prefersReducedMotion) {
       setValue(target);
-      hasAnimated.current = true;
       return undefined;
     }
 
-    hasAnimated.current = true;
     const randomPhaseMs = 2200;
     const settlePhaseMs = 1100;
     const settleStartValue = Math.max(0, Math.round(target * 0.2));
@@ -98,9 +98,7 @@ export default function Hero() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          setShouldStartCount(true);
-          observer.disconnect();
+          setShouldStartCount(entry.isIntersecting);
         });
       },
       { threshold: 0.35 },

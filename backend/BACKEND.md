@@ -2,7 +2,7 @@
 
 ## Overview
 
-Express 5 API server that handles contact form submissions and admin authentication for the Bixihomes website. All input is validated with Zod, emails are sent via Nodemailer, and authentication uses stateless JWT tokens.
+Express 5 API server that handles contact form submissions and admin authentication for the Bixihomes website. All input is validated with Zod, emails are sent via Resend, and authentication uses stateless JWT tokens.
 
 ## How It Works
 
@@ -48,12 +48,12 @@ HTML tags stripped, whitespace trimmed, types enforced
     ↓
 Controller calls emailService.sendContactEmail()
     ↓
-Nodemailer sends HTML email to business owner (CONTACT_EMAIL_TO)
+Resend sends HTML email to business owner (CONTACT_EMAIL_TO)
     ↓
 Client gets: { success: true, message: "Your message has been sent..." }
 ```
 
-On email failure, the client gets a safe 503 error. SMTP details are logged server-side only.
+On email failure, the client gets a safe 503 error. Provider/internal details are logged server-side only.
 
 ### Authentication Flow
 
@@ -119,7 +119,7 @@ backend/
 │   │   └── contact.routes.js # POST /api/contact
 │   ├── services/
 │   │   ├── auth.service.js   # bcrypt + JWT signing
-│   │   └── email.service.js  # Nodemailer with HTML escaping
+│   │   └── email.service.js  # Resend email sending with HTML escaping
 │   ├── validators/
 │   │   ├── auth.validator.js
 │   │   └── contact.validator.js
@@ -164,10 +164,8 @@ All configuration comes from `.env`. See `.env.example` for the full list. Never
 | `JWT_EXPIRES_IN` | Token expiry | `1h` |
 | `ADMIN_EMAIL` | Admin login email | `admin@bixihomes.com` |
 | `ADMIN_PASSWORD_HASH` | bcrypt hash of admin password | `$2a$12$...` |
-| `SMTP_HOST` | Mail server host | `smtp.gmail.com` |
-| `SMTP_PORT` | Mail server port | `587` |
-| `SMTP_USER` | Mail server username | `you@gmail.com` |
-| `SMTP_PASS` | Mail server password (Gmail: use App Password) | `abcdefghijklmnop` |
+| `RESEND_API_KEY` | Resend API key (must start with `re_`) | `re_xxxxx` |
+| `RESEND_FROM_EMAIL` | Verified sender address in Resend | `onboarding@resend.dev` |
 | `CONTACT_EMAIL_TO` | Where contact emails are delivered | `info@bixihomes.com` |
 
 ## Running the Server
