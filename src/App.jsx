@@ -135,8 +135,8 @@ function App() {
       <AboutBixi />
       <AboutUs />
       <Services />
-      <Gallery />
       <TeamServices />
+      <Gallery />
       <ContactForm />
       <News />
       {/* <Newsletter /> */}
