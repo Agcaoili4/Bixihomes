@@ -19,7 +19,7 @@ Recent improvements now live in this project:
 - About Bixi section restored and upgraded with a premium, business-first layout.
 - Team Services section redesigned to a product-grade style while staying true to brand palette (white + yellow).
 - Section reveal behavior stabilized so interactive sections no longer disappear after button clicks.
-- Used Claude to make the flow of Architecture more precise and understandable.
+- Used Claude to make a documents for the flow of Architecture for more precise and understandable.
 
 ## Quick Start (No Technical Experience Needed)
 
