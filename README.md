@@ -19,8 +19,7 @@ Recent improvements now live in this project:
 - About Bixi section restored and upgraded with a premium, business-first layout.
 - Team Services section redesigned to a product-grade style while staying true to brand palette (white + yellow).
 - Section reveal behavior stabilized so interactive sections no longer disappear after button clicks.
-- Used Claude to make a documents for the flow of Architecture for more precise and understandable.
-
+- Used Claude to make documents for the flow of Architecture on backend side.
 ## Quick Start (No Technical Experience Needed)
 
 1. Install Node.js (version 18 or newer).
