@@ -17,7 +17,9 @@ function CountUpValue({ target, suffix, shouldStart }) {
   useEffect(() => {
     if (!shouldStart || hasAnimated.current) return undefined;
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (prefersReducedMotion) {
       setValue(target);
       hasAnimated.current = true;
@@ -46,7 +48,7 @@ function CountUpValue({ target, suffix, shouldStart }) {
           const progress = Math.min(settleElapsed / settlePhaseMs, 1);
           const eased = 1 - Math.pow(1 - progress, 4);
           const nextValue = Math.round(
-            settleStartValue + (target - settleStartValue) * eased
+            settleStartValue + (target - settleStartValue) * eased,
           );
           setValue(nextValue);
 
@@ -62,8 +64,10 @@ function CountUpValue({ target, suffix, shouldStart }) {
         return;
       }
 
-      const min = elapsed > randomPhaseMs * 0.65 ? Math.round(target * 0.35) : 0;
-      const nextRandom = Math.floor(Math.random() * (randomMax - min + 1)) + min;
+      const min =
+        elapsed > randomPhaseMs * 0.65 ? Math.round(target * 0.35) : 0;
+      const nextRandom =
+        Math.floor(Math.random() * (randomMax - min + 1)) + min;
       setValue(nextRandom);
     }, 45);
 
@@ -99,7 +103,7 @@ export default function Hero() {
           observer.disconnect();
         });
       },
-      { threshold: 0.35 }
+      { threshold: 0.35 },
     );
 
     observer.observe(sectionEl);
@@ -131,26 +135,28 @@ export default function Hero() {
               className="w-5 h-5 md:w-6 md:h-6 shrink-0"
             />
             <p className="font-body font-semibold text-xs md:text-sm text-gold tracking-wide uppercase">
-              Licensed &amp; Insured Contractors
+              Bixi Homes & Renovations
             </p>
           </div>
 
           {/* Headline */}
           <h1 className="hero-anim-h1 font-heading font-extrabold text-[28px] md:text-[40px] lg:text-[50px] leading-[1.12] text-white ui-mb-sm">
-            Building Homes,{" "}
-            <span className="text-gold">Building Trust</span>
+            Crafted to Last, <span className="text-gold">Trusted to Deliver</span>
           </h1>
 
           {/* Subheading */}
           <p className="hero-anim-sub font-body text-sm md:text-base lg:text-lg text-white/75 leading-relaxed ui-mb-lg max-w-auto lg:ml-auto lg:text-right">
-            Professional home renovation and construction services. From concept
-            to completion, we deliver quality craftsmanship that stands the test
-            of time.
+            Exceptional building and renovation with integrity and precision.
+            Enhancing homes and communities through innovative solutions and
+            craftsmanship.
           </p>
 
           {/* Dual CTAs */}
           <div className="hero-anim-cta flex flex-col sm:flex-row items-center lg:justify-end ui-gap-4">
-            <a href="#contact" className="ui-btn ui-btn-primary hero-primary-cta">
+            <a
+              href="#contact"
+              className="ui-btn ui-btn-primary hero-primary-cta"
+            >
               Contact Us
             </a>
             <a href="#gallery" className="ui-btn ui-btn-outline-light">

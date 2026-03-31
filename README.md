@@ -16,6 +16,9 @@ Recent improvements now live in this project:
 - Gallery click-to-open modal behavior with improved visual polish.
 - Hero section cleanup: floating bubble accents removed for a cleaner business look.
 - Contact form now posts to backend API with success/error feedback and cleaner field layout.
+- About Bixi section restored and upgraded with a premium, business-first layout.
+- Team Services section redesigned to a product-grade style while staying true to brand palette (white + yellow).
+- Section reveal behavior stabilized so interactive sections no longer disappear after button clicks.
 
 ## Quick Start (No Technical Experience Needed)
 
@@ -52,8 +55,12 @@ If you only want to update content (not code logic), these are the main files:
   - `src/components/Footer.jsx`
 - Hero section text/buttons:
   - `src/components/Hero.jsx`
+- About Bixi section (business story + tabs):
+  - `src/components/AboutBixi.jsx`
 - Services section content:
   - `src/components/Services.jsx`
+- Team Services section design/content:
+  - `src/components/TeamServices.jsx`
 - Gallery titles/descriptions/images:
   - `src/components/Gallery.jsx`
 - News section cards:
