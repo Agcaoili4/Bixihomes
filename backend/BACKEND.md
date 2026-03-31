@@ -2,7 +2,7 @@
 
 ## Overview
 
-Express 5 API server that handles contact form submissions and admin authentication for the Bixihomes website.
+Express 5 API server that handles contact form submissions and admin authentication for the Bixihomes website. All input is validated with Zod, emails are sent via Nodemailer, and authentication uses stateless JWT tokens.
 
 ## How It Works
 
@@ -19,19 +19,19 @@ server.js  →  app.js  →  mounts middleware + routes  →  listens on PORT
 Every request flows through this pipeline in order:
 
 ```
-1. Helmet          → Sets security headers
-2. CORS            → Checks origin against allowlist
-3. JSON Parser     → Parses body (max 10kb)
-4. Rate Limiter    → Blocks if IP exceeded limit
+1. Helmet          → Sets 13 security headers (CSP, HSTS, X-Frame-Options, etc.)
+2. CORS            → Checks origin against comma-separated allowlist
+3. JSON Parser     → Parses body (max 10kb, rejects oversized payloads)
+4. Rate Limiter    → Blocks if IP exceeded limit (100 req / 15 min global)
 5. Router          → Matches the route
-6. Validate        → Zod checks req.body against schema
+6. Validate        → Zod checks req.body, strips HTML, trims whitespace
 7. Auth (if needed)→ Verifies JWT + role
 8. Controller      → Handles request, calls service
 9. Service         → Business logic (send email, sign JWT)
 10. Response       → JSON back to client
 ```
 
-If anything throws at any step, the **centralized error handler** catches it and returns a safe response.
+If anything throws at any step, the **centralized error handler** catches it and returns a safe response. Stack traces and internal details are never exposed to the client in any environment.
 
 ### Contact Form Flow
 
@@ -44,17 +44,23 @@ Rate limiter (5 req / 15 min per IP)
     ↓
 Zod validates: firstName, lastName, email, phone, service, message
     ↓
+HTML tags stripped, whitespace trimmed, types enforced
+    ↓
 Controller calls emailService.sendContactEmail()
     ↓
 Nodemailer sends HTML email to business owner (CONTACT_EMAIL_TO)
     ↓
-Client gets: { success: true, message: "Your message has been sent" }
+Client gets: { success: true, message: "Your message has been sent..." }
 ```
+
+On email failure, the client gets a safe 503 error. SMTP details are logged server-side only.
 
 ### Authentication Flow
 
 ```
 POST /api/auth/login  { email, password }
+    ↓
+Rate limiter (10 req / 15 min per IP)
     ↓
 Zod validates input
     ↓
@@ -66,6 +72,8 @@ Sign JWT: { email, role: 'admin' }, expires in JWT_EXPIRES_IN
     ↓
 Client gets: { token: "eyJ..." }
 ```
+
+Failed logins return the same generic message regardless of whether the email or password was wrong (prevents user enumeration).
 
 ### Protecting a Route
 
@@ -79,31 +87,88 @@ router.get('/profile', authenticate, controller);
 router.get('/admin/stats', authenticate, authorize('admin'), controller);
 ```
 
+### Health Check
+
+```
+GET /api/health  →  { success: true, message: "OK" }
+```
+
+Useful for load balancers and uptime monitors.
+
 ## Folder Map
 
-| Folder/File         | Purpose                                      |
-|---------------------|----------------------------------------------|
-| `server.js`         | Entry point — starts HTTP server             |
-| `app.js`            | Express config — middleware + route mounting  |
-| `src/config/`       | Environment variable loading and validation  |
-| `src/controllers/`  | Handle requests, call services, send responses |
-| `src/services/`     | Business logic (email sending, JWT signing)  |
-| `src/middleware/`    | Auth, validation, rate limiting, error handling |
-| `src/routes/`       | Route definitions — maps URLs to controllers |
-| `src/validators/`   | Zod schemas for request validation           |
-| `src/utils/`        | Logger and shared utilities                  |
+```
+backend/
+├── app.js                    # Express app (middleware stack, routes)
+├── server.js                 # HTTP entry point (listen on PORT)
+├── .env.example              # Documented env template
+├── package.json
+├── src/
+│   ├── config/
+│   │   └── env.js            # Zod-validated env config (fail-fast on bad vars)
+│   ├── controllers/
+│   │   ├── auth.controller.js
+│   │   └── contact.controller.js
+│   ├── middleware/
+│   │   ├── auth.js           # JWT authenticate + role-based authorize
+│   │   ├── errorHandler.js   # Centralized error handler (no stack leaks)
+│   │   ├── rateLimiter.js    # Global, contact, and auth rate limiters
+│   │   └── validate.js       # Generic Zod validation middleware
+│   ├── routes/
+│   │   ├── auth.routes.js    # POST /api/auth/login
+│   │   └── contact.routes.js # POST /api/contact
+│   ├── services/
+│   │   ├── auth.service.js   # bcrypt + JWT signing
+│   │   └── email.service.js  # Nodemailer with HTML escaping
+│   ├── validators/
+│   │   ├── auth.validator.js
+│   │   └── contact.validator.js
+│   └── utils/
+│       └── logger.js         # Structured logger (info, warn, error, debug)
+└── __tests__/                # 27 unit tests across 4 files
+    ├── middleware/
+    │   └── errorHandler.test.js
+    ├── services/
+    │   └── auth.service.test.js
+    └── validators/
+        ├── auth.validator.test.js
+        └── contact.validator.test.js
+```
+
+## Security
+
+| Layer | Protection |
+|-------|-----------|
+| HTTP headers | Helmet (CSP, HSTS, X-Frame-Options, X-Content-Type-Options, etc.) |
+| CORS | Origin allowlist from env var (comma-separated, validated) |
+| Body size | 10kb limit on JSON payloads |
+| Rate limiting | Global 100/15m, contact 5/15m, auth 10/15m per IP |
+| Input validation | Zod schemas enforce strict types — rejects objects in string fields |
+| XSS | HTML tags stripped from all text inputs + HTML entity escaping in emails |
+| NoSQL injection | Zod rejects non-string types in all fields |
+| Prototype pollution | Zod strips unrecognized keys from request body |
+| User enumeration | Same error message for wrong email vs wrong password |
+| Error leakage | Stack traces never sent to client in any environment |
+| Secrets | All credentials in `.env` (gitignored), validated at startup |
 
 ## Environment Variables
 
 All configuration comes from `.env`. See `.env.example` for the full list. Never commit `.env` — it's gitignored.
 
-Key variables:
-- `PORT` — server port (default 5000)
-- `CORS_ORIGIN` — allowed frontend origin
-- `JWT_SECRET` — signing key for tokens
-- `SMTP_*` — mail server credentials
-- `CONTACT_EMAIL_TO` — where contact form emails are delivered
-- `ADMIN_EMAIL` / `ADMIN_PASSWORD_HASH` — admin login credentials
+| Variable | Purpose | Example |
+|----------|---------|---------|
+| `NODE_ENV` | Environment mode | `development` |
+| `PORT` | Server port | `5050` |
+| `CORS_ORIGIN` | Allowed frontend origins (comma-separated) | `http://localhost:5173` |
+| `JWT_SECRET` | Signing key (min 32 chars, use crypto random) | `a0b1c2d3...` |
+| `JWT_EXPIRES_IN` | Token expiry | `1h` |
+| `ADMIN_EMAIL` | Admin login email | `admin@bixihomes.com` |
+| `ADMIN_PASSWORD_HASH` | bcrypt hash of admin password | `$2a$12$...` |
+| `SMTP_HOST` | Mail server host | `smtp.gmail.com` |
+| `SMTP_PORT` | Mail server port | `587` |
+| `SMTP_USER` | Mail server username | `you@gmail.com` |
+| `SMTP_PASS` | Mail server password (Gmail: use App Password) | `abcdefghijklmnop` |
+| `CONTACT_EMAIL_TO` | Where contact emails are delivered | `info@bixihomes.com` |
 
 ## Running the Server
 
@@ -113,4 +178,14 @@ npm install
 cp .env.example .env   # Then fill in your values
 npm run dev             # Development with auto-reload
 npm start               # Production
+npm test                # Run all 27 tests
+npm run test:watch      # Run tests in watch mode
 ```
+
+## Generating an Admin Password Hash
+
+```bash
+node -e "import('bcryptjs').then(b => b.hash('your-password', 12).then(console.log))"
+```
+
+Copy the output into `ADMIN_PASSWORD_HASH` in your `.env`.
