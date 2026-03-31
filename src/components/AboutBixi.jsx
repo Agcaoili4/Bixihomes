@@ -17,6 +17,7 @@ const tabContent = {
       "Code-compliant execution and quality assurance",
     ],
     metric: "250+ Commercial Projects",
+    promise: "Built to keep your operations moving while we renovate.",
   },
   residential: {
     title: "Residential Spaces Built for Living",
@@ -27,6 +28,7 @@ const tabContent = {
       "Transparent communication from start to finish",
     ],
     metric: "98% Homeowner Satisfaction",
+    promise: "Designed around daily life, comfort, and resale value.",
   },
   industrial: {
     title: "Industrial Work with Precision",
@@ -37,8 +39,16 @@ const tabContent = {
       "Coordinated execution for large-scale scopes",
     ],
     metric: "10+ Years of Field Experience",
+    promise:
+      "Engineered execution for demanding, safety-critical environments.",
   },
 };
+
+const trustHighlights = [
+  { value: "500+", label: "Projects Delivered" },
+  { value: "98%", label: "Client Satisfaction" },
+  { value: "24h", label: "Response Time" },
+];
 
 export default function AboutBixi() {
   const [activeTab, setActiveTab] = useState("commercial");
@@ -47,7 +57,6 @@ export default function AboutBixi() {
   return (
     <section className="about-bixi-section ui-section">
       <div className="ui-container">
-        {/* Heading */}
         <div className="text-center ui-mb-xl about-bixi-heading">
           <p className="ui-kicker-pill about-bixi-kicker">Who We Are</p>
           <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight">
@@ -60,7 +69,15 @@ export default function AboutBixi() {
           </p>
         </div>
 
-        {/* Content */}
+        <div className="about-bixi-trust-strip ui-mb-lg">
+          {trustHighlights.map((item) => (
+            <div key={item.label} className="about-bixi-trust-card">
+              <p className="about-bixi-trust-value">{item.value}</p>
+              <p className="about-bixi-trust-label">{item.label}</p>
+            </div>
+          ))}
+        </div>
+
         <div
           id={`about-bixi-panel-${activeTab}`}
           className={`about-bixi-panel about-bixi-panel-${activeTab}`}
@@ -70,7 +87,7 @@ export default function AboutBixi() {
             <div className="about-bixi-head-copy">
               <p className="about-bixi-head-kicker">Choose Your Segment</p>
               <p className="about-bixi-head-sub">
-                Tailored renovation strategy aligned with your project type.
+                Tailored renovation strategy aligned to your exact project type.
               </p>
             </div>
 
@@ -87,7 +104,9 @@ export default function AboutBixi() {
                   role="tab"
                   aria-selected={activeTab === tab.id}
                   aria-controls={`about-bixi-panel-${tab.id}`}
-                  className={`about-bixi-choice-btn ${activeTab === tab.id ? "is-active" : ""}`}
+                  className={`about-bixi-choice-btn ${
+                    activeTab === tab.id ? "is-active" : ""
+                  }`}
                 >
                   <img
                     src={tab.icon}
@@ -119,6 +138,10 @@ export default function AboutBixi() {
                 {currentContent.copy}
               </p>
 
+              <div className="about-bixi-promise ui-mb-md">
+                <p className="about-bixi-promise-text">{currentContent.promise}</p>
+              </div>
+
               <ul className="about-bixi-points ui-mb-lg">
                 {currentContent.points.map((point) => (
                   <li key={point} className="about-bixi-point-item">
@@ -127,6 +150,27 @@ export default function AboutBixi() {
                   </li>
                 ))}
               </ul>
+
+              <div className="about-bixi-feature-grid ui-mb-lg">
+                <article className="about-bixi-feature-card">
+                  <p className="about-bixi-feature-title">Clear Planning</p>
+                  <p className="about-bixi-feature-copy">
+                    Scope, schedule, and deliverables aligned before work begins.
+                  </p>
+                </article>
+                <article className="about-bixi-feature-card">
+                  <p className="about-bixi-feature-title">Quality Control</p>
+                  <p className="about-bixi-feature-copy">
+                    Consistent inspections and finish checks through every phase.
+                  </p>
+                </article>
+                <article className="about-bixi-feature-card">
+                  <p className="about-bixi-feature-title">Reliable Turnover</p>
+                  <p className="about-bixi-feature-copy">
+                    Handover that is clean, documented, and ready for occupancy.
+                  </p>
+                </article>
+              </div>
 
               <div className="about-bixi-cta-row">
                 <a href="#contact" className="ui-btn ui-btn-primary">
