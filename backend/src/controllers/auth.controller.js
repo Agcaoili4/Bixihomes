@@ -1,7 +1,7 @@
 import { verifyCredentials, signToken } from '../services/auth.service.js';
 import logger from '../utils/logger.js';
 
-export const login = async (req, res, next) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await verifyCredentials(email, password);
@@ -23,6 +23,10 @@ export const login = async (req, res, next) => {
     });
   } catch (err) {
     logger.error('Login failed', { error: err.message });
-    next(err);
+
+    return res.status(500).json({
+      success: false,
+      message: 'Login unavailable. Please try again later.',
+    });
   }
 };

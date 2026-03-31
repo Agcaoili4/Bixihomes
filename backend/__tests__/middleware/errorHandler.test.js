@@ -1,5 +1,4 @@
 import { describe, it, expect, vi } from 'vitest';
-import errorHandler from '../../src/middleware/errorHandler.js';
 
 const mockRes = () => {
   const res = {};
@@ -8,14 +7,18 @@ const mockRes = () => {
   return res;
 };
 
+const mockReq = { originalUrl: '/test', method: 'POST' };
+
 describe('errorHandler', () => {
-  it('returns 500 with generic message in production', () => {
-    const originalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'production';
+  it('returns 500 with generic message in production', async () => {
+    vi.doMock('../../src/config/env.js', () => ({
+      default: { NODE_ENV: 'production' },
+    }));
+    const { default: errorHandler } = await import('../../src/middleware/errorHandler.js');
 
     const err = new Error('DB connection failed');
     const res = mockRes();
-    errorHandler(err, {}, res, () => {});
+    errorHandler(err, mockReq, res, () => {});
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
@@ -23,34 +26,48 @@ describe('errorHandler', () => {
       message: 'Internal server error',
     });
 
-    process.env.NODE_ENV = originalEnv;
+    vi.restoreAllMocks();
+    vi.resetModules();
   });
 
-  it('returns error details in development', () => {
-    const originalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'development';
+  it('returns message without stack for 4xx in development', async () => {
+    vi.doMock('../../src/config/env.js', () => ({
+      default: { NODE_ENV: 'development' },
+    }));
+    const { default: errorHandler } = await import('../../src/middleware/errorHandler.js');
 
-    const err = new Error('Something broke');
-    err.statusCode = 422;
+    const err = new Error('Bad request');
+    err.statusCode = 400;
     const res = mockRes();
-    errorHandler(err, {}, res, () => {});
+    errorHandler(err, mockReq, res, () => {});
 
-    expect(res.status).toHaveBeenCalledWith(422);
+    expect(res.status).toHaveBeenCalledWith(400);
     const body = res.json.mock.calls[0][0];
     expect(body.success).toBe(false);
-    expect(body.message).toBe('Something broke');
-    expect(body.stack).toBeDefined();
+    expect(body.message).toBe('Bad request');
+    expect(body.stack).toBeUndefined();
 
-    process.env.NODE_ENV = originalEnv;
+    vi.restoreAllMocks();
+    vi.resetModules();
   });
 
-  it('defaults to 500 when no statusCode on error', () => {
-    const originalEnv = process.env.NODE_ENV;
-    process.env.NODE_ENV = 'development';
-    const err = new Error('oops');
+  it('returns generic message for 500 even in development', async () => {
+    vi.doMock('../../src/config/env.js', () => ({
+      default: { NODE_ENV: 'development' },
+    }));
+    const { default: errorHandler } = await import('../../src/middleware/errorHandler.js');
+
+    const err = new Error('internal secret leaked');
     const res = mockRes();
-    errorHandler(err, {}, res, () => {});
+    errorHandler(err, mockReq, res, () => {});
+
     expect(res.status).toHaveBeenCalledWith(500);
-    process.env.NODE_ENV = originalEnv;
+    expect(res.json).toHaveBeenCalledWith({
+      success: false,
+      message: 'Internal server error',
+    });
+
+    vi.restoreAllMocks();
+    vi.resetModules();
   });
 });

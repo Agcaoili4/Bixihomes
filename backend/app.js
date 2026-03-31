@@ -6,6 +6,7 @@ import { globalLimiter } from './src/middleware/rateLimiter.js';
 import errorHandler from './src/middleware/errorHandler.js';
 import contactRoutes from './src/routes/contact.routes.js';
 import authRoutes from './src/routes/auth.routes.js';
+import logger from './src/utils/logger.js';
 
 const app = express();
 
@@ -14,10 +15,11 @@ app.use(helmet());
 app.use(
   cors({
     origin(origin, callback) {
-      // Allow non-browser or same-origin requests that may not send Origin header.
       if (!origin) return callback(null, true);
       if (env.CORS_ORIGINS.includes(origin)) return callback(null, true);
-      return callback(new Error(`Origin ${origin} is not allowed by CORS`));
+      // Log blocked origin server-side, return generic error to client
+      logger.warn('CORS request blocked', { origin });
+      return callback(new Error('Not allowed'));
     },
     optionsSuccessStatus: 200,
   })
