@@ -80,7 +80,7 @@ export default function Navbar() {
           {/* Contact info */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-8 min-w-0">
             <a
-              href="mailto:Info@Example.com"
+              href="mailto:bixihr@gmail.com"
               className="flex items-center gap-2 group"
             >
               <img
@@ -89,7 +89,7 @@ export default function Navbar() {
                 className="w-7 h-7 md:w-9 md:h-9 object-contain"
               />
               <span className="font-body text-xs md:text-sm text-gold group-hover:text-white transition-colors">
-                Info@Example.com
+                bixihr@gmail.com
               </span>
             </a>
             <a

@@ -9,10 +9,13 @@ It is designed so you can run it locally, update business content easily, and ke
 Recent improvements now live in this project:
 
 - Dynamic business hours in the header based on today’s day.
+- Header business time now uses Alberta time (`America/Edmonton`) for live display.
 - Smooth in-page travel when clicking menu/buttons (Home, Services, Gallery, Contact, etc.).
 - Improved desktop scrolling fluency.
 - Liquid-glass style UI treatment for buttons and selected gallery surfaces.
 - Gallery click-to-open modal behavior with improved visual polish.
+- Hero section cleanup: floating bubble accents removed for a cleaner business look.
+- Contact form now posts to backend API with success/error feedback and cleaner field layout.
 
 ## Quick Start (No Technical Experience Needed)
 
@@ -86,9 +89,25 @@ Use `Closed` for closed days.
 
 ## Backend Note
 
-The frontend website runs independently.
+The frontend website runs independently for visual/UI work.
 
-There is a `backend/` folder, but for normal website editing and preview, you only need the frontend commands shown above.
+There is a `backend/` folder, but for full contact form submission you should also run the backend API.
+
+Backend quick run:
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+Default backend URL used by frontend:
+
+- `http://localhost:5050`
+
+You can override it in frontend with:
+
+- `VITE_API_BASE_URL`
 
 ## Troubleshooting
 

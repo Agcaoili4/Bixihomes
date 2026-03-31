@@ -33,7 +33,7 @@ export default function Footer() {
                   Mail Us
                 </p>
                 <p className="font-body text-xs md:text-sm text-black/70">
-                  Info@Example.com
+                  bixihr@gmail.com
                 </p>
               </div>
             </div>

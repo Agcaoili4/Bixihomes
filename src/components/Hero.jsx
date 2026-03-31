@@ -120,8 +120,6 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/50 to-black/25" />
       <div className="hero-accent-grid absolute inset-0 pointer-events-none" />
-      <div className="hero-accent-orb hero-accent-orb-1" aria-hidden="true" />
-      <div className="hero-accent-orb hero-accent-orb-2" aria-hidden="true" />
 
       <div className="relative ui-container h-full flex flex-col justify-center items-center lg:items-end ui-section-hero">
         <div className="hero-content-shell max-w-[640px] text-center lg:text-right">

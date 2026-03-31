@@ -26,7 +26,8 @@ export default function ContactForm() {
     event.preventDefault();
     if (isSubmitting) return;
 
-    const formData = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const formData = new FormData(formElement);
     const payload = {
       firstName: String(formData.get("firstName") || "").trim(),
       lastName: String(formData.get("lastName") || "").trim(),
@@ -64,7 +65,7 @@ export default function ContactForm() {
           data?.message ||
           "Your request was sent successfully. We will reply soon.",
       });
-      event.currentTarget.reset();
+      formElement?.reset();
     } catch (error) {
       setSubmitStatus({
         type: "error",
@@ -116,7 +117,7 @@ export default function ContactForm() {
                 </div>
               </a>
               <a
-                href="mailto:Info@Example.com"
+                href="mailto:bixihr@gmail.com"
                 className="contact-direct-card"
                 data-reveal-item
               >
@@ -131,7 +132,7 @@ export default function ContactForm() {
                     Email Us
                   </p>
                   <p className="font-body text-sm text-black/50">
-                    Info@Example.com
+                    bixihr@gmail.com
                   </p>
                 </div>
               </a>
