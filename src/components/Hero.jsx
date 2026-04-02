@@ -3,7 +3,7 @@ import { images } from "../assets/images";
 import useHoverParallax from "../hooks/useHoverParallax";
 
 const metrics = [
-  { target: 10, suffix: "+", label: "Years Experience" },
+  { target: 20, suffix: "+", label: "Years Experience" },
   { target: 100, suffix: "+", label: "Projects Completed" },
   { target: 98, suffix: "%", label: "Client Satisfaction" },
 ];

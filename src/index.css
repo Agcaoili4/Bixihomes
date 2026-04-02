@@ -2,12 +2,12 @@
 @import "tailwindcss";
 
 :root {
-  --color-gold: #B6B8B9;
+  --color-gold: #b6b8b9;
   --color-gold-dark: #256464;
   --color-navy: #256464;
   --color-gray-text: #256464;
-  --color-warm: #90826E;
-  --color-mist: #B6B8B9;
+  --color-warm: #90826e;
+  --color-mist: #b6b8b9;
   --font-heading: "Libre Baskerville", serif;
   --font-body: "Manrope", sans-serif;
 }
@@ -169,7 +169,7 @@ section:not(#home) .text-white\/50 {
 
 /* Global icon tone */
 svg {
-  color: #90826E;
+  color: #90826e;
 }
 
 :root {
@@ -230,8 +230,16 @@ svg {
 
 .about-bixi-section {
   background:
-    radial-gradient(circle at 8% 8%, rgba(182, 184, 185, 0.12) 0%, rgba(182, 184, 185, 0) 36%),
-    radial-gradient(circle at 94% 0%, rgba(37, 100, 100, 0.05) 0%, rgba(37, 100, 100, 0) 26%),
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(182, 184, 185, 0.12) 0%,
+      rgba(182, 184, 185, 0) 36%
+    ),
+    radial-gradient(
+      circle at 94% 0%,
+      rgba(37, 100, 100, 0.05) 0%,
+      rgba(37, 100, 100, 0) 26%
+    ),
     #ffffff;
 }
 
@@ -259,8 +267,16 @@ svg {
   border-radius: 14px;
   border: 1px solid rgba(37, 100, 100, 0.08);
   background:
-    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0) 55%),
-    linear-gradient(150deg, rgba(255, 255, 255, 0.95) 0%, rgba(182, 184, 185, 0.08) 100%);
+    radial-gradient(
+      circle at 18% 0%,
+      rgba(255, 255, 255, 0.65) 0%,
+      rgba(255, 255, 255, 0) 55%
+    ),
+    linear-gradient(
+      150deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(182, 184, 185, 0.08) 100%
+    );
   box-shadow: 0 8px 18px rgba(37, 100, 100, 0.06);
 }
 
@@ -296,7 +312,11 @@ svg {
   padding: clamp(1rem, 2vw, 1.4rem);
   border-radius: 20px;
   border: 1px solid rgba(37, 100, 100, 0.08);
-  background: linear-gradient(158deg, rgba(255, 255, 255, 0.98) 0%, rgba(182, 184, 185, 0.08) 100%);
+  background: linear-gradient(
+    158deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(182, 184, 185, 0.08) 100%
+  );
   box-shadow: 0 20px 42px rgba(37, 100, 100, 0.1);
 }
 
@@ -310,7 +330,11 @@ svg {
 
 .about-bixi-panel-industrial {
   border-color: rgba(37, 100, 100, 0.18);
-  background: linear-gradient(158deg, rgba(255, 255, 255, 0.96) 0%, rgba(37, 100, 100, 0.04) 100%);
+  background: linear-gradient(
+    158deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(37, 100, 100, 0.04) 100%
+  );
 }
 
 .about-bixi-panel-head {
@@ -398,8 +422,16 @@ svg {
 .about-bixi-choice-btn.is-active {
   border-color: rgba(37, 100, 100, 0.68);
   background:
-    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 56%),
-    linear-gradient(135deg, rgba(182, 184, 185, 0.95) 0%, rgba(37, 100, 100, 0.9) 100%);
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0) 56%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(182, 184, 185, 0.95) 0%,
+      rgba(37, 100, 100, 0.9) 100%
+    );
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.75),
     0 8px 16px rgba(37, 100, 100, 0.26);
@@ -612,8 +644,16 @@ svg {
 
 .gallery-section {
   background:
-    radial-gradient(circle at 6% 10%, rgba(182, 184, 185, 0.14) 0%, rgba(182, 184, 185, 0) 35%),
-    radial-gradient(circle at 92% 0%, rgba(182, 184, 185, 0.1) 0%, rgba(182, 184, 185, 0) 30%),
+    radial-gradient(
+      circle at 6% 10%,
+      rgba(182, 184, 185, 0.14) 0%,
+      rgba(182, 184, 185, 0) 35%
+    ),
+    radial-gradient(
+      circle at 92% 0%,
+      rgba(182, 184, 185, 0.1) 0%,
+      rgba(182, 184, 185, 0) 30%
+    ),
     #ffffff;
 }
 
@@ -631,7 +671,11 @@ svg {
   padding: clamp(0.8rem, 1.8vw, 1.1rem);
   border-radius: 14px;
   border: 1px solid rgba(37, 100, 100, 0.12);
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.92) 0%, rgba(182, 184, 185, 0.1) 100%);
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(182, 184, 185, 0.1) 100%
+  );
 }
 
 .gallery-heading .gallery-kicker {
@@ -662,7 +706,11 @@ svg {
   padding: clamp(0.75rem, 1.8vw, 1.2rem);
   border-radius: 20px;
   border: 1px solid rgba(37, 100, 100, 0.08);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92) 0%, rgba(182, 184, 185, 0.06) 100%);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(182, 184, 185, 0.06) 100%
+  );
   box-shadow: 0 14px 34px rgba(37, 100, 100, 0.08);
 }
 
@@ -1457,7 +1505,11 @@ svg {
 .ui-mobile-menu-button {
   border-radius: 0.875rem;
   border: 1px solid rgba(37, 100, 100, 0.12);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 245, 245, 0.98));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(245, 245, 245, 0.98)
+  );
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.9) inset,
     0 2px 8px rgba(37, 100, 100, 0.08);
@@ -1489,8 +1541,16 @@ svg {
 
 .services-section-themed {
   background:
-    radial-gradient(circle at 6% 10%, rgba(182, 184, 185, 0.18) 0%, rgba(182, 184, 185, 0) 38%),
-    radial-gradient(circle at 94% 90%, rgba(37, 100, 100, 0.06) 0%, rgba(37, 100, 100, 0) 32%),
+    radial-gradient(
+      circle at 6% 10%,
+      rgba(182, 184, 185, 0.18) 0%,
+      rgba(182, 184, 185, 0) 38%
+    ),
+    radial-gradient(
+      circle at 94% 90%,
+      rgba(37, 100, 100, 0.06) 0%,
+      rgba(37, 100, 100, 0) 32%
+    ),
     #ffffff;
 }
 
@@ -1544,7 +1604,9 @@ svg {
   font-weight: 700;
   color: #90826e;
   text-decoration: none;
-  transition: color 180ms ease, gap 180ms ease;
+  transition:
+    color 180ms ease,
+    gap 180ms ease;
 }
 
 .services-header-link:hover {
@@ -1694,13 +1756,96 @@ svg {
   border: 1px solid rgba(37, 100, 100, 0.12);
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 10px 22px rgba(37, 100, 100, 0.08);
-  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
 }
 
 .news-card:hover {
   transform: translateY(-4px);
   border-color: rgba(182, 184, 185, 0.5);
   box-shadow: 0 16px 34px rgba(37, 100, 100, 0.12);
+}
+
+.news-header-shell {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.news-header-kicker {
+  justify-self: start;
+}
+
+.news-header-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+@media (min-width: 900px) {
+  .news-header-layout {
+    grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 1.4rem;
+  }
+}
+
+.news-header-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.news-header-title {
+  letter-spacing: -0.015em;
+  max-width: 18ch;
+}
+
+.news-header-title-rule {
+  display: block;
+  width: min(220px, 55%);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(144, 130, 110, 0.92) 0%,
+    rgba(37, 100, 100, 0.65) 55%,
+    rgba(37, 100, 100, 0) 100%
+  );
+}
+
+.news-header-copy-wrap {
+  border-radius: 14px;
+  border: 1px solid rgba(144, 130, 110, 0.3);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 10px 26px rgba(37, 100, 100, 0.08);
+  padding: 0.9rem 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.news-header-copy {
+  margin: 0;
+}
+
+.news-header-meta {
+  margin: 0;
+  display: inline-flex;
+  align-self: flex-start;
+  min-height: 28px;
+  align-items: center;
+  padding-inline: 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(144, 130, 110, 0.34);
+  background: rgba(255, 255, 255, 0.84);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.74);
 }
 
 .news-card-media {
@@ -1733,9 +1878,16 @@ svg {
   gap: 0.75rem;
   border-radius: 10px;
   border: 1px solid rgba(182, 184, 185, 0.32);
-  background: linear-gradient(120deg, rgba(182, 184, 185, 0.2) 0%, rgba(255, 255, 255, 0.8) 100%);
+  background: linear-gradient(
+    120deg,
+    rgba(182, 184, 185, 0.2) 0%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
   padding-inline: 0.82rem;
-  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .news-card:hover .news-card-interactive {
@@ -1789,34 +1941,38 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem;
-  background: rgba(37, 100, 100, 0.58);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
 }
 
 .news-modal {
   position: relative;
-  width: min(1120px, 100%);
-  max-height: min(90vh, 860px);
+  width: min(1040px, 100%);
+  max-height: min(90vh, 880px);
   overflow: auto;
-  border-radius: 16px;
+  border-radius: 18px;
   border: 1px solid rgba(182, 184, 185, 0.36);
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.98) 0%, rgba(182, 184, 185, 0.1) 100%);
-  box-shadow: 0 24px 64px rgba(37, 100, 100, 0.3);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.995) 0%,
+    rgba(245, 245, 245, 0.96) 100%
+  );
+  box-shadow: 0 30px 70px rgba(37, 100, 100, 0.3);
 }
 
 .news-modal-close {
-  position: sticky;
-  top: 0.75rem;
-  left: calc(100% - 3rem);
+  position: absolute;
+  top: 0.72rem;
+  right: 0.72rem;
   z-index: 1;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 999px;
   border: 1px solid rgba(37, 100, 100, 0.14);
-  background: rgba(255, 255, 255, 0.85);
-  color: rgba(37, 100, 100, 0.8);
+  background: rgba(255, 255, 255, 0.92);
+  color: rgba(0, 0, 0, 0.85);
   font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
@@ -1826,20 +1982,20 @@ svg {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  padding: 0.8rem 0.95rem 0.4rem;
+  padding: 1rem 1rem 0.55rem;
 }
 
 @media (min-width: 900px) {
   .news-modal-main {
-    grid-template-columns: 48% 1fr;
-    gap: 1.1rem;
-    padding: 0.9rem 1rem 0.45rem;
+    grid-template-columns: 50% 1fr;
+    gap: 1.25rem;
+    padding: 1rem 1.05rem 0.6rem;
   }
 }
 
 .news-modal-media-wrap {
-  min-height: 240px;
-  border-radius: 12px;
+  min-height: 260px;
+  border-radius: 14px;
   overflow: hidden;
 }
 
@@ -1858,7 +2014,7 @@ svg {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.72rem;
 }
 
 .news-modal-meta span {
@@ -1868,9 +2024,9 @@ svg {
   border: 1px solid rgba(37, 100, 100, 0.12);
   background: rgba(255, 255, 255, 0.9);
   font-family: var(--font-body);
-  font-size: 0.67rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  color: rgba(37, 100, 100, 0.7);
+  color: rgba(0, 0, 0, 0.72);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -1879,16 +2035,16 @@ svg {
   font-family: var(--font-heading);
   font-size: clamp(1.28rem, 2.4vw, 2rem);
   line-height: 1.2;
-  color: #256464;
-  margin-bottom: 0.55rem;
+  color: #000000;
+  margin-bottom: 0.62rem;
 }
 
 .news-modal-summary {
   font-family: var(--font-body);
-  font-size: 0.96rem;
-  line-height: 1.65;
-  color: rgba(37, 100, 100, 0.68);
-  margin-bottom: 0.75rem;
+  font-size: 0.98rem;
+  line-height: 1.72;
+  color: rgba(0, 0, 0, 0.78);
+  margin-bottom: 0.82rem;
 }
 
 .news-modal-details {
@@ -1899,25 +2055,25 @@ svg {
 
 .news-modal-details p {
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: rgba(37, 100, 100, 0.76);
+  font-size: 0.93rem;
+  line-height: 1.76;
+  color: rgba(0, 0, 0, 0.82);
 }
 
 .news-modal-list {
-  padding: 0.35rem 0.95rem 0.9rem;
+  padding: 0.42rem 1rem 1rem;
 }
 
 @media (min-width: 900px) {
   .news-modal-list {
-    padding: 0.4rem 1rem 1rem;
+    padding: 0.5rem 1.05rem 1.05rem;
   }
 }
 
 .news-modal-list-title {
   font-family: var(--font-heading);
   font-size: 1.02rem;
-  color: rgba(37, 100, 100, 0.88);
+  color: rgba(0, 0, 0, 0.88);
   margin-bottom: 0.55rem;
 }
 
@@ -1938,13 +2094,16 @@ svg {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.2rem;
-  border-radius: 10px;
+  border-radius: 11px;
   border: 1px solid rgba(37, 100, 100, 0.11);
   background: rgba(255, 255, 255, 0.88);
-  padding: 0.62rem 0.68rem;
+  padding: 0.68rem 0.76rem;
   text-align: left;
   cursor: pointer;
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
 .news-modal-list-item:hover {
@@ -1963,7 +2122,7 @@ svg {
   font-size: 0.83rem;
   font-weight: 700;
   line-height: 1.45;
-  color: rgba(37, 100, 100, 0.82);
+  color: rgba(0, 0, 0, 0.82);
 }
 
 .news-modal-list-item-meta {
@@ -1973,6 +2132,114 @@ svg {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: rgba(144, 130, 110, 0.78);
+}
+
+@media (max-width: 640px) {
+  .news-header-shell {
+    gap: 0.55rem;
+  }
+
+  .news-header-title {
+    max-width: 100%;
+    font-size: clamp(1.55rem, 7.2vw, 2rem);
+    line-height: 1.16;
+  }
+
+  .news-header-title-rule {
+    width: min(160px, 62%);
+    height: 2px;
+  }
+
+  .news-header-copy-wrap {
+    padding: 0.75rem 0.8rem;
+    border-radius: 12px;
+    gap: 0.55rem;
+  }
+
+  .news-header-copy {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .news-header-meta {
+    min-height: 26px;
+    font-size: 0.66rem;
+    padding-inline: 0.55rem;
+  }
+
+  .news-card {
+    padding: 0.68rem;
+    border-radius: 12px;
+  }
+
+  .news-card-title {
+    font-size: 1.08rem;
+    line-height: 1.34;
+  }
+
+  .news-card-copy {
+    font-size: 0.9rem;
+    line-height: 1.58;
+  }
+
+  .news-modal-overlay {
+    padding: 0.55rem;
+    align-items: flex-end;
+  }
+
+  .news-modal {
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .news-modal-close {
+    top: 0.55rem;
+    right: 0.55rem;
+    width: 34px;
+    height: 34px;
+  }
+
+  .news-modal-main {
+    gap: 0.72rem;
+    padding: 0.78rem 0.78rem 0.5rem;
+  }
+
+  .news-modal-media-wrap {
+    min-height: 210px;
+    border-radius: 12px;
+  }
+
+  .news-modal-title {
+    font-size: 1.2rem;
+    line-height: 1.22;
+    margin-bottom: 0.48rem;
+  }
+
+  .news-modal-summary {
+    font-size: 0.9rem;
+    line-height: 1.58;
+    margin-bottom: 0.58rem;
+  }
+
+  .news-modal-details p {
+    font-size: 0.86rem;
+    line-height: 1.62;
+  }
+
+  .news-modal-list {
+    padding: 0.35rem 0.78rem 0.82rem;
+  }
+
+  .news-modal-list-title {
+    font-size: 0.96rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .news-modal-list-item {
+    padding: 0.58rem 0.62rem;
+    border-radius: 10px;
+  }
 }
 
 footer .border-black\/15 {
@@ -1999,8 +2266,16 @@ footer .bg-black\/20 {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 8% 8%, rgba(182, 184, 185, 0.14) 0%, rgba(182, 184, 185, 0) 36%),
-    radial-gradient(circle at 96% 0%, rgba(182, 184, 185, 0.08) 0%, rgba(182, 184, 185, 0) 32%),
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(182, 184, 185, 0.14) 0%,
+      rgba(182, 184, 185, 0) 36%
+    ),
+    radial-gradient(
+      circle at 96% 0%,
+      rgba(182, 184, 185, 0.08) 0%,
+      rgba(182, 184, 185, 0) 32%
+    ),
     #ffffff;
 }
 
@@ -2020,7 +2295,11 @@ footer .bg-black\/20 {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.92) 0%, rgba(182, 184, 185, 0.12) 100%);
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(182, 184, 185, 0.12) 100%
+  );
 }
 
 .team-services-section .ui-container {
@@ -2081,12 +2360,23 @@ footer .bg-black\/20 {
   border-radius: 16px;
   border: 1px solid rgba(37, 100, 100, 0.1);
   background:
-    radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 60%),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.96) 0%, rgba(182, 184, 185, 0.12) 100%);
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0) 60%
+    ),
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(182, 184, 185, 0.12) 100%
+    );
   box-shadow: 0 16px 32px rgba(37, 100, 100, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
 }
 
 .team-service-card:hover {
@@ -2115,7 +2405,11 @@ footer .bg-black\/20 {
 .team-service-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(37, 100, 100, 0.04) 0%, rgba(37, 100, 100, 0.26) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(37, 100, 100, 0.04) 0%,
+    rgba(37, 100, 100, 0.26) 100%
+  );
 }
 
 .team-service-content {
@@ -2334,7 +2628,9 @@ footer .bg-black\/20 {
   font-size: 0.9375rem;
   color: #000000;
   outline: none;
-  transition: border-color 180ms ease, box-shadow 180ms ease;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .contact-input::placeholder {
@@ -2361,7 +2657,9 @@ footer .bg-black\/20 {
   color: #000000;
   outline: none;
   resize: none;
-  transition: border-color 180ms ease, box-shadow 180ms ease;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .contact-textarea::placeholder {
@@ -2427,7 +2725,12 @@ footer .bg-black\/20 {
   overflow: hidden;
   border-radius: 20px;
   border: 1px solid rgba(182, 184, 185, 0.4);
-  background: linear-gradient(140deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.92) 60%, rgba(182, 184, 185, 0.3) 100%);
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(255, 255, 255, 0.92) 60%,
+    rgba(182, 184, 185, 0.3) 100%
+  );
   box-shadow: 0 22px 42px rgba(37, 100, 100, 0.2);
 }
 
@@ -2590,16 +2893,8 @@ footer .bg-black\/20 {
 .hero-accent-grid {
   opacity: 0.22;
   background-image:
-    linear-gradient(
-      to right,
-      rgba(182, 184, 185, 0.13) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(182, 184, 185, 0.1) 1px,
-      transparent 1px
-    );
+    linear-gradient(to right, rgba(182, 184, 185, 0.13) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(182, 184, 185, 0.1) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: linear-gradient(
     120deg,
@@ -2788,8 +3083,17 @@ textarea:focus-visible {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 12% 8%, rgba(182, 184, 185, 0.24) 0%, rgba(182, 184, 185, 0) 36%),
-    linear-gradient(145deg, rgba(20, 34, 24, 0.7) 0%, rgba(37, 100, 100, 0.5) 46%, rgba(144, 130, 110, 0.42) 100%);
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(182, 184, 185, 0.24) 0%,
+      rgba(182, 184, 185, 0) 36%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(20, 34, 24, 0.7) 0%,
+      rgba(37, 100, 100, 0.5) 46%,
+      rgba(144, 130, 110, 0.42) 100%
+    );
 }
 
 .notfound-card {
@@ -2797,7 +3101,11 @@ textarea:focus-visible {
   border-radius: 18px;
   border: 1px solid rgba(144, 130, 110, 0.34);
   background:
-    radial-gradient(140% 180% at 20% 0%, rgba(255, 255, 255, 0.64) 0%, rgba(255, 255, 255, 0) 54%),
+    radial-gradient(
+      140% 180% at 20% 0%,
+      rgba(255, 255, 255, 0.64) 0%,
+      rgba(255, 255, 255, 0) 54%
+    ),
     rgba(255, 255, 255, 0.9);
   padding: clamp(1.1rem, 2.2vw, 2rem);
   box-shadow: 0 30px 60px rgba(20, 34, 24, 0.22);

@@ -215,9 +215,15 @@ const GalleryModal = ({
   return createPortal(modalContent, document.body);
 };
 
-const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
+const InteractiveBentoGallery = ({
+  mediaItems,
+  title,
+  description,
+  featuredCount = 6,
+}) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const items = mediaItems;
+  const visibleItems = items.slice(0, Math.max(1, featuredCount));
 
   useEffect(() => {
     if (!selectedItem) return undefined;
@@ -277,7 +283,7 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
           visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
         }}
       >
-        {items.map((item) => (
+        {visibleItems.map((item) => (
           <motion.div
             key={item.id}
             data-reveal-item

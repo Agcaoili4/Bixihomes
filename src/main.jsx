@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
-import NotFoundPage from './pages/NotFoundPage.jsx';
+import NotFoundPage from './components/NotFoundPage.jsx';
 import './index.css';
 
 const path = window.location.pathname;

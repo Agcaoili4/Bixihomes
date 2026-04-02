@@ -17,7 +17,7 @@ const socialIcons = [
   {
     Icon: WhatsAppIcon,
     label: "WhatsApp",
-    href: "https://wa.me/https://www.whatsapp.com/channel/0029Vb7ttzvCXC3S1HPavQ0n",
+    href: "#NotFoundPage",
   },
   {
     Icon: InstagramIcon,

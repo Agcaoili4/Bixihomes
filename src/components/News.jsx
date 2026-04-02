@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { images } from "../assets/images";
+import fullHouse001 from "../assets/downloaded_assets/full_house/full_house_001.jpeg";
+import fullHouse002 from "../assets/downloaded_assets/full_house/full_house_002.jpeg";
+import fullHouse003 from "../assets/downloaded_assets/full_house/full_house_003.jpeg";
+import roofDetail024 from "../assets/downloaded_assets/roof_detail/roof_detail_024.jpeg";
 
 const articles = [
   {
@@ -7,10 +11,8 @@ const articles = [
     title: "Basement Development Program",
     description:
       "A complete basement development service focused on legal suite readiness, efficient layouts, and long-term property value.",
-    photo: images.newsPhoto1,
-    location: "Calgary, AB",
-    schedule: "Q2 2026",
-    timeline: "8-12 weeks",
+    photo: fullHouse003,
+    location: "Calgary",
     details: [
       "Scope includes framing, insulation, drywall, flooring, lighting, and mechanical rough-ins tailored to code requirements.",
       "Layouts are planned for family living, rental potential, and future flexibility without compromising comfort.",
@@ -22,10 +24,8 @@ const articles = [
     title: "Bathroom Remodeling Series",
     description:
       "A renovation series for modern bathroom transformations with improved function, clean detailing, and durable finishes.",
-    photo: images.newsPhoto2,
-    location: "Airdrie, AB",
-    schedule: "Q3 2026",
-    timeline: "3-6 weeks",
+    photo: fullHouse002,
+    location: "Calgary",
     details: [
       "Work scope includes tile replacement, vanity upgrades, fixture updates, shower/tub redesign, and improved ventilation.",
       "We prioritize moisture control, practical storage, and elegant material selection for long-term durability.",
@@ -37,10 +37,8 @@ const articles = [
     title: "Garage Building and Expansion Projects",
     description:
       "New garage builds and expansions designed for vehicle protection, storage optimization, and curb appeal alignment.",
-    photo: images.newsPhoto1,
-    location: "Mount Royal, AB",
-    schedule: "Q4 2026",
-    timeline: "6-10 weeks",
+    photo: roofDetail024,
+    location: "Calgary",
     details: [
       "Projects include detached and attached garage builds with structural planning and permit-aware execution.",
       "Options cover insulated walls, custom doors, integrated electrical setup, and workspace-ready layouts.",
@@ -52,10 +50,8 @@ const articles = [
     title: "Multi-Unit Interior Turnover Program",
     description:
       "Rapid renovation cycles for rental and investment units with quality control checkpoints across each turnover.",
-    photo: images.newsPhoto2,
-    location: "Calgary North, AB",
-    schedule: "Rolling 2026",
-    timeline: "2-3 weeks per unit",
+    photo: fullHouse001,
+    location: "Calgary",
     details: [
       "Standardized renovation package covers flooring, paint, lighting, kitchen refresh, and fixture replacement.",
       "Dedicated project sequencing keeps trades aligned to reduce vacancy periods and protect owner cash flow.",
@@ -104,12 +100,25 @@ export default function News() {
 
         <div className="relative bg-gold/90 ui-section">
           <div className="ui-container">
-            <h2
-              className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black text-center ui-mb-xl leading-tight"
-              data-reveal
-            >
-              Upcoming Projects and News
-            </h2>
+            <div className="news-header-shell ui-mb-xl" data-reveal>
+              <p className="ui-kicker-pill news-header-kicker">Newsroom</p>
+              <div className="news-header-layout">
+                <div className="news-header-title-wrap">
+                  <h2 className="news-header-title font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight text-left">
+                    Upcoming Projects and News
+                  </h2>
+                  <span className="news-header-title-rule" aria-hidden="true" />
+                </div>
+                <div className="news-header-copy-wrap">
+                  <p className="news-header-copy font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-left">
+                    Follow active project highlights and renovation updates from
+                    our Calgary team, including upcoming service rollouts and
+                    major build milestones.
+                  </p>
+                  <p className="news-header-meta">Calgary Project Updates</p>
+                </div>
+              </div>
+            </div>
 
             <div
               className="grid grid-cols-1 md:grid-cols-2 ui-gap-8 md:ui-gap-10"
@@ -186,8 +195,6 @@ export default function News() {
               <div className="news-modal-content">
                 <div className="news-modal-meta">
                   <span>{activeArticle.location}</span>
-                  <span>{activeArticle.schedule}</span>
-                  <span>{activeArticle.timeline}</span>
                 </div>
 
                 <h3 id="news-modal-title" className="news-modal-title">
@@ -221,7 +228,7 @@ export default function News() {
                         {article.title}
                       </span>
                       <span className="news-modal-list-item-meta">
-                        {article.schedule}
+                        {article.location}
                       </span>
                     </button>
                   );

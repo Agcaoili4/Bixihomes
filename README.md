@@ -27,11 +27,15 @@ This README focuses on what changed, where to edit content, and how to run both 
     - Fence & Decking
     - Interior renovation and basement development support
 - Gallery improved:
-  - Portfolio cards are visually consistent and click-to-open modal behavior is stabilized.
+  - Portfolio now uses curated real project photos from local `downloaded_assets`.
+  - Grid now shows 6 featured items, and clicking any photo opens a modal with the full set.
   - Drag behavior on media is controlled to avoid accidental UX issues.
 - News experience reworked:
   - Replaced basic “Read More” interaction with interactive cards + modal detail reading.
-  - Added “More Upcoming Projects” switching inside the modal.
+  - Header layout redesigned for stronger visual hierarchy.
+  - Popup redesigned for readability (darker overlay, clearer spacing, stronger text contrast).
+  - News metadata is now location-only (`Calgary`) with no date/timeline labels.
+  - Added mobile-specific layout tuning for cards and popup usability.
 - Contact form improved end-to-end:
   - Better spacing, field sizing, and clearer layout.
   - First/Last name split.
@@ -54,6 +58,7 @@ This README focuses on what changed, where to edit content, and how to run both 
 - Figma-hosted raster icons replaced by inline SVG icons for better palette control and consistency.
 - Project-count display updated to `100` where project metrics are shown.
 - Main runtime now serves homepage on `/` and fallback experience on unknown paths.
+- Image assets reorganized into categorized local sets (`roof_detail` and `full_house`) for cleaner content curation.
 
 ## Backend Architecture Status
 
