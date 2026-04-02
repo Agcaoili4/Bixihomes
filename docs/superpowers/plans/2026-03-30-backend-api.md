@@ -89,7 +89,7 @@ JWT_EXPIRES_IN=1h
 
 # Admin credentials (password hash generated with bcryptjs)
 ADMIN_EMAIL=admin@bixihomes.com
-ADMIN_PASSWORD_HASH=$2a$12$LJ3m4ys3Lk0TSwHkp6QLruMnOBbRmFV8JQz7.oe5yPjKji0pFq.iy
+ADMIN_PASSWORD_HASH=$2a$12$your-generated-bcrypt-hash-goes-here
 
 # SMTP (Nodemailer)
 SMTP_HOST=smtp.gmail.com

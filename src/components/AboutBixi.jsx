@@ -1,53 +1,41 @@
 import { useState } from "react";
 import { images } from "../assets/images";
+import { BuildingIcon, HomeIcon } from "./ui/InlineIcons";
 
 const tabs = [
-  { id: "commercial", label: "Commercial", icon: images.commercialIcon },
-  { id: "residential", label: "Residential", icon: images.residentialIcon },
-  { id: "industrial", label: "Industrial", icon: images.industrialIcon },
+  { id: "commercial", label: "Exterior", Icon: BuildingIcon },
+  { id: "residential", label: "Interior", Icon: HomeIcon },
 ];
 
 const tabContent = {
   commercial: {
-    title: "Commercial Renovation Excellence",
-    copy: "We help businesses upgrade and modernize properties with efficient planning, professional site management, and durable finishes designed for daily operations.",
+    title: "Two Decades of Exterior Restoration",
+    copy: "Bixi Homes & Renovations has focused for 20+ years on exterior home restoration with dependable workmanship built for Alberta weather.",
     points: [
-      "Tenant improvement and interior modernization",
-      "Reliable scheduling with minimal business disruption",
-      "Code-compliant execution and quality assurance",
+      "Roofing and siding restoration for long-term protection",
+      "Fascia and gutter systems that improve drainage performance",
+      "Fence and decking work that strengthens curb appeal and function",
     ],
-    metric: "250+ Commercial Projects",
-    promise: "Built to keep your operations moving while we renovate.",
+    metric: "20+ Years Exterior Focus",
+    promise: "Exterior systems built to protect your property season after season.",
   },
   residential: {
-    title: "Residential Spaces Built for Living",
-    copy: "From kitchens and basements to full-home transformations, we deliver thoughtful design and trusted craftsmanship that increases comfort and long-term value.",
+    title: "Interior Renovation With a Proven Team",
+    copy: "We have expanded into interior renovation with a strong team that builds homes, renovates living spaces, and develops basements with quality-first execution.",
     points: [
-      "Custom layouts tailored to family lifestyle",
-      "Premium materials selected for longevity",
-      "Transparent communication from start to finish",
+      "Home builds and structured renovation planning",
+      "Basement development designed for comfort and value",
+      "Clear communication, quality control, and clean turnover",
     ],
-    metric: "98% Homeowner Satisfaction",
-    promise: "Designed around daily life, comfort, and resale value.",
-  },
-  industrial: {
-    title: "Industrial Work with Precision",
-    copy: "Our industrial team manages specialized construction and upgrades with strict safety standards, robust materials, and proven workflows for complex environments.",
-    points: [
-      "High-performance systems and structural upgrades",
-      "Safety-first delivery with documented procedures",
-      "Coordinated execution for large-scale scopes",
-    ],
-    metric: "10+ Years of Field Experience",
-    promise:
-      "Engineered execution for demanding, safety-critical environments.",
+    metric: "100+ Projects Delivered",
+    promise: "Interior spaces shaped for daily life, comfort, and long-term value.",
   },
 };
 
 const trustHighlights = [
-  { value: "500+", label: "Projects Delivered" },
+  { value: "20+", label: "Years of Exterior Experience" },
+  { value: "100+", label: "Projects Delivered" },
   { value: "98%", label: "Client Satisfaction" },
-  { value: "24h", label: "Response Time" },
 ];
 
 export default function AboutBixi() {
@@ -63,9 +51,9 @@ export default function AboutBixi() {
             About Bixi Homes
           </h2>
           <p className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-center">
-            Bixi Homes is a client-first renovation and construction company
-            committed to quality, accountability, and timeless results across
-            residential, commercial, and industrial projects.
+            Bixi Homes & Renovations is a client-first team with deep exterior restoration
+            roots and a growing interior division, committed to quality, accountability,
+            and long-lasting results.
           </p>
         </div>
 
@@ -108,11 +96,7 @@ export default function AboutBixi() {
                     activeTab === tab.id ? "is-active" : ""
                   }`}
                 >
-                  <img
-                    src={tab.icon}
-                    alt=""
-                    className="w-4 h-4 md:w-5 md:h-5 object-contain"
-                  />
+                  <tab.Icon className="w-4 h-4 md:w-5 md:h-5 text-[#90826E]" />
                   <span>{tab.label}</span>
                 </button>
               ))}

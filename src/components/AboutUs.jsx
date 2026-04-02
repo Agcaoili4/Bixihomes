@@ -9,7 +9,7 @@ const checkpoints = [
 
 const stats = [
   { value: "10+", label: "Years Serving Homeowners" },
-  { value: "500+", label: "Projects Delivered" },
+  { value: "100", label: "Projects Delivered" },
   { value: "98%", label: "Client Satisfaction" },
 ];
 

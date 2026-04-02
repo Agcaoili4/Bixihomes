@@ -1,64 +1,83 @@
 const services = [
   {
-    title: "Air Conditioning",
+    title: "Flat Roofing",
     summary:
-      "Keep your home comfortable year-round with expert HVAC installation, diagnostics, and seasonal maintenance.",
+      "Durable flat roofing systems for residential and commercial properties with leak-resistant, weather-ready installation.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2v20M2 12h20M12 2a5 5 0 0 0-5 5M12 2a5 5 0 0 1 5 5M12 22a5 5 0 0 1-5-5M12 22a5 5 0 0 0 5-5M2 12a5 5 0 0 1 5-5M2 12a5 5 0 0 0 5 5M22 12a5 5 0 0 0-5-5M22 12a5 5 0 0 1-5 5" />
+        <path d="M3 19h18M5 19l2-9h10l2 9M8 10V6h8v4" />
       </svg>
     ),
   },
   {
-    title: "Electrical Installation",
+    title: "Sloped Roofing",
     summary:
-      "Code-compliant wiring, panel upgrades, and fixture installation with safety-first standards you can trust.",
+      "Complete sloped roof installation and restoration for asphalt shingles, shake, metal, rubber, and tile systems.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        <path d="M3 12 12 4l9 8M6 11.5V20h12v-8.5" />
       </svg>
     ),
   },
   {
-    title: "General Builder",
+    title: "Siding",
     summary:
-      "End-to-end structural and finishing work delivered on disciplined timelines with quality craftsmanship.",
+      "Professional siding installation and replacement with finishes that improve curb appeal and exterior protection.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-5h6v5M9 12h.01M15 12h.01" />
+        <path d="M3 6h18M3 10h18M3 14h18M3 18h18" />
       </svg>
     ),
   },
   {
-    title: "Security Systems",
+    title: "Fascia",
     summary:
-      "Modern home security with practical camera layouts, smart access control, and 24/7 monitoring options.",
+      "Fascia installation and replacement that supports roof edges and improves structural finish quality.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M3 7h18M5 7v10M19 7v10M5 17h14" />
       </svg>
     ),
   },
   {
-    title: "Service & Maintenance",
+    title: "Gutters",
     summary:
-      "Routine inspections and responsive repair programs that keep your property efficient and problem-free.",
+      "Gutter systems built for proper water flow, drainage protection, and long-term exterior performance.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+        <path d="M4 7h16v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7z" />
+        <path d="M8 15v2M12 15v2M16 15v2" />
       </svg>
     ),
   },
   {
-    title: "House Extensions",
+    title: "Window Replacement",
     summary:
-      "Thoughtful expansions that increase usable space while preserving your home's architectural character.",
+      "Energy-efficient window replacement with clean installation for better comfort and improved exterior look.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="7" height="7" />
-        <rect x="14" y="3" width="7" height="7" />
-        <rect x="3" y="14" width="7" height="7" />
-        <path d="M17.5 14v7M14 17.5h7" />
+        <rect x="4" y="4" width="16" height="16" rx="1.5" />
+        <path d="M12 4v16M4 12h16" />
+      </svg>
+    ),
+  },
+  {
+    title: "Fencing",
+    summary:
+      "Custom fencing built for privacy, safety, and curb appeal with durable materials and precise alignment.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 20V8M9 20V8M15 20V8M20 20V8M3 11h18M3 16h18" />
+      </svg>
+    ),
+  },
+  {
+    title: "Decking",
+    summary:
+      "Deck build and restoration services that create durable, functional outdoor living spaces for your home.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 15h18M5 15v5M9 15v5M15 15v5M19 15v5M3 12h18" />
       </svg>
     ),
   },
@@ -66,28 +85,39 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="ui-section" style={{ background: "#f8f8f6" }}>
+    <section id="services" className="services-section-themed ui-section">
       <div className="ui-container">
-        {/* Heading */}
-        <div className="text-center ui-mb-xl" data-reveal>
-          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight">
-            What We Do
-          </h2>
-          <p className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/60 leading-relaxed text-center">
-            From routine maintenance to full-scale construction, we bring
-            licensed expertise to every project in your home.
-          </p>
+        {/* Split Heading — title left, copy right */}
+        <div className="services-header" data-reveal>
+          <div className="services-header-left">
+            <p className="ui-kicker-pill services-kicker">Our Services</p>
+            <h2 className="services-heading-title font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] leading-tight">
+              What We Do
+            </h2>
+          </div>
+          <div className="services-header-right">
+            <p className="services-heading-copy font-body text-sm md:text-base lg:text-lg leading-relaxed">
+              We provide exterior restoration and renovation services built on practical workmanship,
+              dependable timelines, and finishes that protect long-term property value.
+            </p>
+            <a href="#contact" className="services-header-link">
+              Get a free estimate
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
         </div>
 
         {/* Service Grid */}
         <div className="services-grid" data-reveal-group>
           {services.map((service) => (
-            <div
+            <a
               key={service.title}
+              href="#contact"
               className="service-card"
               data-reveal-item
             >
-              {/* Icon */}
+              <div className="service-card-accent" aria-hidden="true" />
+
               <div className="service-card-icon" aria-hidden="true">
                 {service.icon}
               </div>
@@ -96,21 +126,14 @@ export default function Services() {
 
               <p className="service-card-copy">{service.summary}</p>
 
-              <a href="#contact" className="service-card-link">
+              <span className="service-card-link">
                 Learn more
                 <span className="service-card-arrow" aria-hidden="true">
                   &rarr;
                 </span>
-              </a>
-            </div>
+              </span>
+            </a>
           ))}
-        </div>
-
-        {/* Section-level CTA */}
-        <div className="text-center ui-mt-xl" data-reveal>
-          <a href="#contact" className="ui-btn ui-btn-primary">
-            Get a Free Estimate
-          </a>
         </div>
       </div>
     </section>

@@ -182,7 +182,7 @@ const GalleryModal = ({
                   key={item.id}
                   className={`relative h-10 w-10 rounded-lg overflow-hidden border shadow-sm cursor-pointer transition-colors duration-200 ${
                     isSelected
-                      ? "border-gold bg-white/30 shadow-[0_0_0_1px_rgba(250,173,20,0.55),0_10px_20px_rgba(250,173,20,0.26)]"
+                      ? "border-gold bg-white/30 shadow-[0_0_0_1px_rgba(37,100,100,0.55),0_10px_20px_rgba(37,100,100,0.26)]"
                       : "border-white/45 bg-white/10"
                   }`}
                   onClick={(e) => {
@@ -245,24 +245,26 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
 
   return (
     <div className="ui-gallery-shell">
-      <div className="mb-8 text-center gallery-heading" data-reveal>
+      <div className="mb-8 gallery-heading" data-reveal>
         <p className="ui-kicker-pill gallery-kicker">Portfolio</p>
-        <motion.h2
-          className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          {title}
-        </motion.h2>
-        <motion.p
-          className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-        >
-          {description}
-        </motion.p>
+        <div className="gallery-intro-layout">
+          <motion.h2
+            className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {title}
+          </motion.h2>
+          <motion.p
+            className="font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            {description}
+          </motion.p>
+        </div>
       </div>
 
       <motion.div
@@ -298,8 +300,10 @@ const InteractiveBentoGallery = ({ mediaItems, title, description }) => {
               <span className="gallery-card-chip">Featured Project</span>
             </div>
             <div className="absolute bottom-3 left-3 right-3 text-white">
-              <h3 className="text-xs font-bold sm:text-sm leading-snug font-heading">{item.title}</h3>
-              <p className="mt-1 text-[10px] text-white/85 sm:text-xs leading-relaxed font-body">
+              <h3 className="text-xs font-bold sm:text-sm leading-snug font-heading text-white/75">
+                {item.title}
+              </h3>
+              <p className="mt-1 text-[10px] text-white/75 sm:text-xs leading-relaxed font-body">
                 {item.desc}
               </p>
             </div>

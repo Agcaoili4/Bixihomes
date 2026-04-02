@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { images } from "../assets/images";
+import { MailIcon, PhoneIcon } from "./ui/InlineIcons";
 
 const navLinks = [
   { href: "#home", label: "Home" },
@@ -83,24 +84,16 @@ export default function Navbar() {
               href="mailto:bixihr@gmail.com"
               className="flex items-center gap-2 group"
             >
-              <img
-                src={images.mailIcon}
-                alt=""
-                className="w-7 h-7 md:w-9 md:h-9 object-contain"
-              />
+              <MailIcon className="w-7 h-7 md:w-9 md:h-9 text-[#90826E]" />
               <span className="font-body text-xs md:text-sm text-gold group-hover:text-white transition-colors">
                 bixihr@gmail.com
               </span>
             </a>
             <a
-              href="tel:+01 403 9912631"
+              href="tel:+1 403 9912631"
               className="flex items-center gap-2 group"
             >
-              <img
-                src={images.callIcon}
-                alt=""
-                className="w-7 h-7 md:w-9 md:h-9 object-contain"
-              />
+              <PhoneIcon className="w-7 h-7 md:w-9 md:h-9 text-[#90826E]" />
               <span className="font-body text-xs md:text-sm text-gold group-hover:text-white transition-colors">
                 +01 569 896 654
               </span>
@@ -117,7 +110,7 @@ export default function Navbar() {
 
       {/* Navigation Bar */}
       <nav
-        className="bg-gold w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
+        className="bg-white w-full sticky top-0 z-50 shadow-[0_2px_12px_rgba(0,0,0,0.08)]"
         data-reveal
       >
         <div className="ui-navbar-main">
@@ -131,7 +124,7 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-            <ul className="flex items-center gap-5 xl:gap-7 font-body font-semibold text-[15px] xl:text-base text-navy">
+            <ul className="flex items-center gap-5 xl:gap-7 font-body font-semibold text-[15px] xl:text-base text-black">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
@@ -146,7 +139,7 @@ export default function Navbar() {
 
             <a
               href="#contact"
-              className="ui-btn ui-btn-secondary shrink-0 min-w-[190px]"
+              className="ui-btn ui-btn-outline-light navbar-cta-btn shrink-0 min-w-[190px]"
             >
               Contact Us
             </a>
@@ -160,17 +153,17 @@ export default function Navbar() {
             aria-expanded={menuOpen}
           >
             <span
-              className={`block w-6 h-0.5 bg-navy transition-transform duration-300 origin-center ${
+              className={`block w-6 h-0.5 bg-black transition-transform duration-300 origin-center ${
                 menuOpen ? "translate-y-2 rotate-45" : ""
               }`}
             />
             <span
-              className={`block w-6 h-0.5 bg-navy transition-opacity duration-300 ${
+              className={`block w-6 h-0.5 bg-black transition-opacity duration-300 ${
                 menuOpen ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block w-6 h-0.5 bg-navy transition-transform duration-300 origin-center ${
+              className={`block w-6 h-0.5 bg-black transition-transform duration-300 origin-center ${
                 menuOpen ? "-translate-y-2 -rotate-45" : ""
               }`}
             />
@@ -200,7 +193,7 @@ export default function Navbar() {
             <a
               href="#contact"
               onClick={() => setMenuOpen(false)}
-              className="ui-btn ui-btn-secondary ui-btn-full"
+              className="ui-btn ui-btn-outline-light navbar-cta-btn ui-btn-full"
             >
               Contact Us
             </a>

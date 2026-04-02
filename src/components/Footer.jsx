@@ -1,18 +1,26 @@
 import { images } from "../assets/images";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  LocationIcon,
+  MailIcon,
+  PhoneIcon,
+  WhatsAppIcon,
+} from "./ui/InlineIcons";
 
 const socialIcons = [
- {
-    src: images.facebookIcon,
+  {
+    Icon: FacebookIcon,
     label: "Facebook",
-    href: "https://www.facebook.com/",
+    href: "https://www.facebook.com/profile.php?id=61576423253668",
   },
   {
-    src: images.whatsappIcon,
+    Icon: WhatsAppIcon,
     label: "WhatsApp",
-    href: "https://wa.me/14039912631",
+    href: "https://wa.me/https://www.whatsapp.com/channel/0029Vb7ttzvCXC3S1HPavQ0n",
   },
   {
-    src: images.instagramIcon,
+    Icon: InstagramIcon,
     label: "Instagram",
     href: "https://www.instagram.com/bixihomes/",
   },
@@ -20,7 +28,7 @@ const socialIcons = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gold">
+    <footer className="bg-white">
       <div className="ui-container">
         {/* Top section: Logo + Contact Info */}
         <div className="flex flex-col md:flex-row items-center ui-gap-lg border-b border-black/15 ui-py-lg" data-reveal>
@@ -34,27 +42,19 @@ export default function Footer() {
 
           <div className="flex flex-col sm:flex-row items-center ui-gap-5 sm:ui-gap-6 md:ui-gap-10 md:ml-auto">
             <div className="flex items-center ui-gap-2-5">
-              <img
-                src={images.footerMailIcon}
-                alt=""
-                className="w-10 h-10 md:w-12 md:h-12 object-contain"
-              />
+              <MailIcon className="w-10 h-10 md:w-12 md:h-12 text-[#90826E]" />
               <div>
                 <p className="font-heading font-bold text-xs md:text-sm text-black leading-tight">
                   Mail Us
                 </p>
                 <p className="font-body text-xs md:text-sm text-black/70">
-                  Info@Example.com
+                  bixihr@gmail.com
                 </p>
               </div>
             </div>
 
             <div className="flex items-center ui-gap-2-5">
-              <img
-                src={images.footerCallIcon}
-                alt=""
-                className="w-10 h-10 md:w-12 md:h-12 object-contain"
-              />
+              <PhoneIcon className="w-10 h-10 md:w-12 md:h-12 text-[#90826E]" />
               <div>
                 <p className="font-heading font-bold text-xs md:text-sm text-black leading-tight">
                   Call Us
@@ -66,11 +66,7 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center ui-gap-2-5">
-              <img
-                src={images.footerLocationIcon}
-                alt=""
-                className="w-10 h-10 md:w-12 md:h-12 object-contain"
-              />
+              <LocationIcon className="w-10 h-10 md:w-12 md:h-12 text-[#90826E]" />
               <div>
                 <p className="font-heading font-bold text-xs md:text-sm text-black leading-tight">
                   Location
@@ -94,15 +90,13 @@ export default function Footer() {
               {socialIcons.map((icon) => (
                 <a
                   key={icon.label}
-                  href="#"
+                  href={icon.href}
                   aria-label={icon.label}
-                  className="block w-10 h-10 md:w-11 md:h-11 hover:opacity-70 hover:scale-110 transition-all"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 text-[#90826E] hover:text-[#256464] hover:scale-110 transition-all"
                 >
-                  <img
-                    src={icon.src}
-                    alt=""
-                    className="w-full h-full object-contain"
-                  />
+                  <icon.Icon className="w-6 h-6 md:w-6 md:h-6" />
                 </a>
               ))}
             </div>

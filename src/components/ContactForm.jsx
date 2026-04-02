@@ -2,13 +2,17 @@ import { useState } from "react";
 import { images } from "../assets/images";
 
 const serviceOptions = [
+  "Flat Roofing",
+  "Sloped Roofing",
+  "Siding",
+  "Fascia",
+  "Gutters",
+  "Window Replacement",
+  "Fencing",
+  "Decking",
   "Home Renovation",
   "New Build",
   "Basement Development",
-  "Roofing",
-  "Electrical Installation",
-  "General Maintenance",
-  "Other",
 ];
 
 export default function ContactForm() {
@@ -95,7 +99,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="ui-section bg-[#f8f8f6]">
+    <section id="contact" className="ui-section bg-[#f5f5f4]">
       <div className="ui-container">
         <div className="flex flex-col lg:flex-row ui-gap-10 lg:ui-gap-14 items-stretch">
           {/* Left — persuasion + direct contact */}
