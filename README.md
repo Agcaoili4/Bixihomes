@@ -70,7 +70,8 @@ The backend remains:
 - JWT admin auth
 - Resend email delivery for contact submissions
 
-Architecture documentation is still valid here:  
+Architecture documentation is still valid here:
+
 - `backend/BACKEND.md`
 
 ## Quick Start
