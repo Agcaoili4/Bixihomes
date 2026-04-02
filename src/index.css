@@ -2332,13 +2332,17 @@ footer .bg-black\/20 {
   border-radius: 10px;
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  color: #256464;
+  color: #000000;
   outline: none;
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .contact-input::placeholder {
-  color: rgba(37, 100, 100, 0.3);
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.contact-input option {
+  color: #000000;
 }
 
 .contact-input:focus {
@@ -2354,14 +2358,14 @@ footer .bg-black\/20 {
   border-radius: 10px;
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  color: #256464;
+  color: #000000;
   outline: none;
   resize: none;
   transition: border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .contact-textarea::placeholder {
-  color: rgba(37, 100, 100, 0.3);
+  color: rgba(0, 0, 0, 0.38);
 }
 
 .contact-textarea:focus {
@@ -2762,4 +2766,43 @@ input:focus-visible,
 textarea:focus-visible {
   outline: 2px solid var(--color-navy);
   outline-offset: 2px;
+}
+
+.notfound-page {
+  isolation: isolate;
+}
+
+.notfound-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.notfound-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+}
+
+.notfound-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(182, 184, 185, 0.24) 0%, rgba(182, 184, 185, 0) 36%),
+    linear-gradient(145deg, rgba(20, 34, 24, 0.7) 0%, rgba(37, 100, 100, 0.5) 46%, rgba(144, 130, 110, 0.42) 100%);
+}
+
+.notfound-card {
+  width: min(760px, 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(144, 130, 110, 0.34);
+  background:
+    radial-gradient(140% 180% at 20% 0%, rgba(255, 255, 255, 0.64) 0%, rgba(255, 255, 255, 0) 54%),
+    rgba(255, 255, 255, 0.9);
+  padding: clamp(1.1rem, 2.2vw, 2rem);
+  box-shadow: 0 30px 60px rgba(20, 34, 24, 0.22);
+}
+
+.notfound-kicker {
+  margin-bottom: 0.6rem;
 }

@@ -59,8 +59,17 @@ describe('contactSchema', () => {
 
   it('accepts all valid service options', () => {
     const services = [
-      'Home Renovation', 'New Build', 'Basement Development',
-      'Roofing', 'Electrical Installation', 'General Maintenance', 'Other',
+      'Flat Roofing',
+      'Sloped Roofing',
+      'Siding',
+      'Fascia',
+      'Gutters',
+      'Window Replacement',
+      'Fencing',
+      'Decking',
+      'Home Renovation',
+      'New Build',
+      'Basement Development',
     ];
     for (const service of services) {
       const result = contactSchema.safeParse({ ...validInput, service });

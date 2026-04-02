@@ -113,7 +113,7 @@ export default function Footer() {
               </h4>
               <ul className="font-body text-sm md:text-base text-black/70 ui-space-y-2-5">
                 <li>
-                  <a href="#" className="hover:text-navy transition-colors">
+                  <a href="/not-ready" className="hover:text-navy transition-colors">
                     About Us
                   </a>
                 </li>

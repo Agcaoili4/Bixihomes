@@ -55,6 +55,20 @@ Client gets: { success: true, message: "Your message has been sent..." }
 
 On email failure, the client gets a safe 503 error. Provider/internal details are logged server-side only.
 
+Current accepted `service` values are:
+
+- `Flat Roofing`
+- `Sloped Roofing`
+- `Siding`
+- `Fascia`
+- `Gutters`
+- `Window Replacement`
+- `Fencing`
+- `Decking`
+- `Home Renovation`
+- `New Build`
+- `Basement Development`
+
 ### Authentication Flow
 
 ```

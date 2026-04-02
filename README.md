@@ -35,10 +35,14 @@ This README focuses on what changed, where to edit content, and how to run both 
 - Contact form improved end-to-end:
   - Better spacing, field sizing, and clearer layout.
   - First/Last name split.
+  - Inputted text now renders in black for stronger readability.
   - Form submit integrates to backend API with success/error feedback.
 - Service catalog refreshed:
   - Flat Roofing, Sloped Roofing, Siding, Fascia, Gutters, Window Replacement, Fencing, Decking.
   - Contact form service options now match this service list.
+- New route fallback experience:
+  - Added branded `404`/`Not Ready` page for unfinished or invalid routes.
+  - Unready footer links now point to `/not-ready` instead of dead `#` links.
 
 ### Minor Changes
 
@@ -49,6 +53,7 @@ This README focuses on what changed, where to edit content, and how to run both 
 - Small spacing and alignment fixes across desktop + mobile.
 - Figma-hosted raster icons replaced by inline SVG icons for better palette control and consistency.
 - Project-count display updated to `100` where project metrics are shown.
+- Main runtime now serves homepage on `/` and fallback experience on unknown paths.
 
 ## Backend Architecture Status
 
