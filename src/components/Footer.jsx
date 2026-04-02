@@ -156,7 +156,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="ui-py-md text-center" data-reveal>
+        <div className="ui-py-md text-center">
           <p className="font-body text-xs md:text-sm text-black/60">
             Copyright &copy; Bixi Homes | 2026 All rights reserved.
           </p>
