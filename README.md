@@ -16,10 +16,12 @@ This README focuses on what changed, where to edit content, and how to run both 
   - New business-focused headline and cleaner visual hierarchy.
   - Animated metrics now run with a random-fast-to-final count sequence.
   - Floating bubble effect removed for a cleaner, professional look.
+  - Hero subtitle icon color now aligns with the hero palette for stronger visual consistency.
 - About Bixi redesigned:
   - Segment switching is now **Exterior / Interior** (industrial removed).
   - Updated business narrative to 20+ years of exterior restoration focus.
   - Added clearer positioning for the interior expansion (home builds, renovations, basement development).
+  - Media layout improved with true cover behavior and responsive focal framing for better desktop/mobile composition.
 - Team Services redesigned:
   - Service cards now match the current business scope:
     - Roofing & Siding
@@ -59,6 +61,9 @@ This README focuses on what changed, where to edit content, and how to run both 
 - Project-count display updated to `100` where project metrics are shown.
 - Main runtime now serves homepage on `/` and fallback experience on unknown paths.
 - Image assets reorganized into categorized local sets (`roof_detail` and `full_house`) for cleaner content curation.
+- Reveal animation system refined:
+  - Replays correctly when scrolling up/down.
+  - Reduced boundary jitter/overlap glitches between sections (notably Hero → About Bixi) using stabilized observer thresholds.
 
 ## Backend Architecture Status
 

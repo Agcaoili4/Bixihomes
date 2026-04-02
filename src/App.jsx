@@ -30,18 +30,32 @@ function App() {
       });
     });
 
+    const ENTER_RATIO = 0.24;
+    const EXIT_RATIO = 0.06;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+          const el = entry.target;
+          const ratio = entry.intersectionRatio;
+          const isVisible = el.classList.contains("is-visible");
+
+          // Hysteresis: enter at a higher ratio, exit at a lower ratio.
+          // This prevents jitter/replay loops around section boundaries.
+          if (!isVisible && ratio >= ENTER_RATIO) {
+            el.classList.add("is-visible");
             return;
           }
 
-          entry.target.classList.remove("is-visible");
+          if (isVisible && ratio <= EXIT_RATIO) {
+            el.classList.remove("is-visible");
+          }
         });
       },
-      { threshold: 0.2, rootMargin: "0px 0px -8% 0px" }
+      {
+        threshold: [0, EXIT_RATIO, ENTER_RATIO, 0.5, 0.8],
+        rootMargin: "0px 0px -6% 0px",
+      }
     );
 
     revealElements.forEach((element) => observer.observe(element));

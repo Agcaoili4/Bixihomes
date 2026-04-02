@@ -88,6 +88,7 @@ function CountUpValue({ target, suffix, shouldStart }) {
 
 export default function Hero() {
   const sectionRef = useRef(null);
+  const hasStartedRef = useRef(false);
   const [shouldStartCount, setShouldStartCount] = useState(false);
   useHoverParallax(sectionRef, { maxShift: 20 });
 
@@ -98,7 +99,10 @@ export default function Hero() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setShouldStartCount(entry.isIntersecting);
+          if (!entry.isIntersecting || hasStartedRef.current) return;
+          hasStartedRef.current = true;
+          setShouldStartCount(true);
+          observer.unobserve(entry.target);
         });
       },
       { threshold: 0.35 },
@@ -130,7 +134,7 @@ export default function Hero() {
             <img
               src={images.heroSubIcon}
               alt=""
-              className="w-5 h-5 md:w-6 md:h-6 shrink-0"
+              className="hero-sub-icon w-5 h-5 md:w-6 md:h-6 shrink-0"
             />
             <p className="font-body font-semibold text-xs md:text-sm text-gold tracking-wide uppercase">
               Bixi Homes & Renovations
@@ -157,7 +161,7 @@ export default function Hero() {
             >
               Contact Us
             </a>
-            <a href="#gallery" className="ui-btn ui-btn-outline-light">
+            <a href="#gallery" className="ui-btn ui-btn-outline-dark">
               View Our Work
             </a>
           </div>
