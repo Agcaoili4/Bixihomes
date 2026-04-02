@@ -19,6 +19,7 @@ export const submitContact = async (req, res) => {
       command: err.command,
     });
 
+    // Respond with a generic error message to avoid leaking sensitive info
     return res.status(503).json({
       success: false,
       message: 'Unable to send your message right now. Please try again later or contact us directly.',

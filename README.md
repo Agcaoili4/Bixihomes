@@ -64,6 +64,9 @@ This README focuses on what changed, where to edit content, and how to run both 
 - Reveal animation system refined:
   - Replays correctly when scrolling up/down.
   - Reduced boundary jitter/overlap glitches between sections (notably Hero → About Bixi) using stabilized observer thresholds.
+- Frontend code hygiene pass completed:
+  - Removed redundant/unused CSS blocks from `index.css` (dead selectors and stale animation rules).
+  - Sanitized stylesheet structure to reduce maintenance overhead while preserving existing UI behavior.
 
 ## Backend Architecture Status
 

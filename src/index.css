@@ -162,11 +162,6 @@ section:not(#home) .text-white\/50 {
   color: #ffffff !important;
 }
 
-.logo-transparent-white {
-  background-color: transparent !important;
-  filter: brightness(0) invert(1) contrast(150%);
-}
-
 .hero-sub-icon {
   filter: brightness(0) saturate(100%) invert(78%) sepia(8%) saturate(103%)
     hue-rotate(167deg) brightness(88%) contrast(90%);
@@ -331,15 +326,6 @@ svg {
 
 .about-bixi-panel-residential {
   border-color: rgba(37, 100, 100, 0.14);
-}
-
-.about-bixi-panel-industrial {
-  border-color: rgba(37, 100, 100, 0.18);
-  background: linear-gradient(
-    158deg,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(37, 100, 100, 0.04) 100%
-  );
 }
 
 .about-bixi-panel-head {
@@ -781,6 +767,24 @@ svg {
 }
 
 @media (max-width: 767px) {
+  .services-header {
+    margin-bottom: var(--space-8);
+    gap: var(--space-3);
+  }
+
+  .services-header-right {
+    max-width: none;
+  }
+
+  .services-heading-copy {
+    margin-bottom: var(--space-3);
+  }
+
+  .services-header-link {
+    min-height: 40px;
+    font-size: 0.84rem;
+  }
+
   .ui-section {
     padding-block: var(--space-12);
   }
@@ -809,6 +813,34 @@ svg {
     padding: var(--space-5);
     padding-top: calc(var(--space-5) + 4px);
     border-radius: 14px;
+  }
+
+  .service-card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-4);
+    border-radius: 12px;
+  }
+
+  .service-card-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .service-card-title {
+    font-size: 1.08rem;
+    margin-bottom: 0.45rem;
+  }
+
+  .service-card-copy {
+    font-size: 0.89rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-5);
+  }
+
+  .service-card-link {
+    min-height: 40px;
+    font-size: 0.82rem;
   }
 
   .ui-card-wrapper {
@@ -989,6 +1021,51 @@ svg {
     font-size: 0.65rem;
     letter-spacing: 0.03em;
     padding-inline: 0.6rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .services-header {
+    margin-bottom: var(--space-7);
+  }
+
+  .services-heading-title {
+    letter-spacing: -0.012em;
+  }
+
+  .service-card {
+    padding: var(--space-4);
+    padding-top: calc(var(--space-4) + 4px);
+    border-radius: 12px;
+  }
+
+  .service-card-copy {
+    font-size: 0.86rem;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .service-card:hover {
+    transform: none;
+    box-shadow: 0 2px 8px rgba(37, 100, 100, 0.04);
+    border-color: rgba(37, 100, 100, 0.1);
+  }
+
+  .service-card:hover .service-card-accent {
+    opacity: 0;
+  }
+
+  .service-card:hover .service-card-icon {
+    color: #256464;
+    background: rgba(37, 100, 100, 0.08);
+  }
+
+  .service-card:hover .service-card-link {
+    color: #90826e;
+  }
+
+  .service-card:hover .service-card-arrow {
+    transform: none;
   }
 }
 
@@ -1296,16 +1373,6 @@ svg {
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes hero-orb-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(0, -14px, 0) scale(1.04);
   }
 }
 
@@ -2860,42 +2927,6 @@ footer .bg-black\/20 {
   animation: hero-grid-shift 26s linear infinite;
 }
 
-.hero-accent-orb {
-  position: absolute;
-  pointer-events: none;
-  border-radius: 999px;
-  filter: blur(1px);
-  mix-blend-mode: screen;
-  animation: hero-orb-float 9s ease-in-out infinite;
-}
-
-.hero-accent-orb-1 {
-  width: clamp(220px, 34vw, 420px);
-  height: clamp(220px, 34vw, 420px);
-  top: 16%;
-  right: -10%;
-  background: radial-gradient(
-    circle at 35% 35%,
-    rgba(182, 184, 185, 0.42) 0%,
-    rgba(182, 184, 185, 0.1) 45%,
-    rgba(182, 184, 185, 0) 72%
-  );
-}
-
-.hero-accent-orb-2 {
-  width: clamp(160px, 25vw, 300px);
-  height: clamp(160px, 25vw, 300px);
-  bottom: 10%;
-  left: 7%;
-  animation-delay: 1.6s;
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(255, 255, 255, 0.24) 0%,
-    rgba(182, 184, 185, 0.08) 54%,
-    rgba(255, 255, 255, 0) 78%
-  );
-}
-
 .hero-primary-cta {
   animation: hero-cta-sheen 7.8s ease-in-out infinite;
 }
@@ -2994,7 +3025,6 @@ footer .bg-black\/20 {
   }
 
   .hero-accent-grid,
-  .hero-accent-orb,
   .hero-primary-cta,
   .hero-anim-badge,
   .hero-anim-h1,
