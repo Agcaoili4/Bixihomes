@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.coerce.number().int().positive().default(5000),
-  CORS_ORIGIN: z.string().min(1).default('http://localhost:5173,http://localhost:5174,http://www.bixihomes.com'),
+  CORS_ORIGIN: z.string().min(1).default('http://localhost:5173,http://localhost:5174,http://www.bixihomes.com, https://bixihomes.com'),
   JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
   JWT_EXPIRES_IN: z.string().default('1h'),
   ADMIN_EMAIL: z.string().email(),

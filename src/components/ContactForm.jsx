@@ -158,11 +158,8 @@ export default function ContactForm() {
               </a>
             </div>
 
-            {/* Video showcase — hidden on mobile */}
-            <div
-              className="hidden md:block contact-video-wrap"
-              data-reveal
-            >
+            {/* Video showcase */}
+            <div className="contact-video-wrap" data-reveal>
               <video
                 src={images.aboutPhoto}
                 autoPlay

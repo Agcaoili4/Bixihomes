@@ -26,7 +26,7 @@ app.use(
 );
 app.use(express.json({ limit: '10kb' }));
 app.use(globalLimiter);
-
+https://dynamic.design.com/preview/logodraft/253a39ae-b924-4084-806b-8f1c053449bb/image/large.png
 // --- Health check (useful for load balancers / uptime monitors) ---
 app.get('/api/health', (req, res) => {
   res.status(200).json({ success: true, message: 'OK' });
