@@ -37,7 +37,6 @@ const dayFormatter = new Intl.DateTimeFormat("en-CA", {
 });
 
 export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
@@ -92,51 +91,19 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Right side — hours (desktop) + hamburger (mobile) */}
+        {/* Right side — hours */}
         <div className="flex items-center gap-4 navbar-right-meta">
-          <span className="hidden lg:inline font-body text-[11px] text-black/45 whitespace-nowrap">
+          <span className="font-body text-[11px] text-black/45 whitespace-nowrap navbar-hours-label">
             {hoursLabel.compact}
           </span>
-
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden flex flex-col justify-center items-center w-10 h-10 ui-gap-1-5 cursor-pointer"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-          >
-            <span
-              className={`block w-5 h-[1.5px] bg-black/70 transition-transform duration-300 origin-center ${
-                menuOpen ? "translate-y-[7px] rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`block w-5 h-[1.5px] bg-black/70 transition-opacity duration-300 ${
-                menuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block w-5 h-[1.5px] bg-black/70 transition-transform duration-300 origin-center ${
-                menuOpen ? "-translate-y-[7px] -rotate-45" : ""
-              }`}
-            />
-          </button>
         </div>
       </div>
 
-      {/* Mobile drawer */}
-      <div
-        className={`lg:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out ${
-          menuOpen ? "max-h-[400px]" : "max-h-0"
-        }`}
-      >
-        <ul className="ui-mobile-menu-list">
+      <div className="lg:hidden navbar-mobile-links-wrap">
+        <ul className="ui-mobile-menu-list navbar-mobile-links">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="ui-mobile-nav-link"
-              >
+              <a href={link.href} className="ui-mobile-nav-link">
                 {link.label}
               </a>
             </li>
