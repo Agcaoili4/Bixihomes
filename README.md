@@ -28,26 +28,35 @@ The website currently follows this order:
 
 - The homepage was reorganized into a more minimal and professional layout.
 - The Hero section now focuses more on the Bixi brand, with the logo as the main visual feature.
-- The Hero message now uses animated text to give the first screen more life without feeling too heavy.
+- The Hero message now uses a looping text animation that alternates between:
+  - `Exterior Restoration & Renovation`
+  - `Connect With Us Today`
 - The About Bixi section was redesigned to feel more polished and easier to read.
 - The About Bixi content is now split more clearly into:
   - `Exterior`
   - `Interior`
+- The About Bixi card now stays visible when visitors switch tabs, so only the content changes instead of the whole panel disappearing.
 - The Services section was refreshed with a stronger header and a cleaner overall structure.
 - The Gallery uses curated project photos and opens more items in a modal view when selected.
 - The Contact form layout was improved so it feels cleaner and more professional.
 - The Navbar was refined so it feels more centered, readable, and business-focused.
 - The buttons across the website were updated so their colors and hover states match the current Hero palette.
+- Mobile and tablet layouts were reviewed and adjusted so spacing, section flow, and readability stay consistent across smaller screens.
 
 ### Minor Changes
 
 - Hero spacing was adjusted so more important content is visible when a visitor first lands on the page.
 - About Bixi metric numbers now use the brown brand color.
-- Shared button styles were unified across the site.
-- The stylesheet was cleaned up to remove old or unused styling rules.
+- Shared button styles were unified across the site, including brand-matched hover behavior.
+- The stylesheet was cleaned up again to remove old, duplicated, and unused styling rules.
 - Scroll reveal behavior was refined so Hero animations do not clash with scrolling.
 - A fallback page is still available for unfinished or invalid routes.
-- Typography and spacing were tuned further for desktop and mobile readability.
+- Typography and spacing were tuned further for desktop, tablet, and mobile readability.
+- Responsive refinements were added for phone and tablet breakpoints, especially around:
+  - the Hero spacing
+  - About Bixi layout
+  - Services section structure
+  - buttons and general content spacing
 
 ## Current Design Direction
 

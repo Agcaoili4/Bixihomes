@@ -193,10 +193,10 @@ export default function AboutBixi() {
         </div>
 
         <div
-          id={`about-bixi-panel-${activeTab}`}
-          className={`about-bixi-panel about-bixi-panel-${activeTab}`}
+          id="about-bixi-panel"
+          className="about-bixi-panel"
           role="tabpanel"
-          data-reveal
+          aria-live="polite"
         >
           <div className="about-bixi-panel-head">
             <div className="about-bixi-panel-lead">
@@ -221,7 +221,7 @@ export default function AboutBixi() {
                   onClick={() => setActiveTab(tab.id)}
                   role="tab"
                   aria-selected={activeTab === tab.id}
-                  aria-controls={`about-bixi-panel-${tab.id}`}
+                  aria-controls="about-bixi-panel"
                   className={`about-bixi-choice-btn ${
                     activeTab === tab.id ? "is-active" : ""
                   }`}

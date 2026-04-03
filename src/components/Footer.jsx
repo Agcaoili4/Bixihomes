@@ -40,7 +40,7 @@ export default function Footer() {
             />
           </a>
 
-          <div className="flex flex-col sm:flex-row items-center ui-gap-5 sm:ui-gap-6 md:ui-gap-10 md:ml-auto">
+          <div className="footer-contact-items flex flex-col sm:flex-row items-center ui-gap-5 sm:ui-gap-6 md:ui-gap-10 md:ml-auto">
             <div className="flex items-center ui-gap-2-5">
               <MailIcon className="w-10 h-10 md:w-12 md:h-12 text-[#90826E]" />
               <div>
@@ -83,10 +83,10 @@ export default function Footer() {
         <div className="ui-py-lg flex flex-col md:flex-row ui-gap-xl items-start border-b border-black/15" data-reveal>
           {/* About text + social */}
           <div className="max-w-full md:max-w-[380px] shrink-0">
-            <p className="font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md md:ui-mb-lg">
+            <p className="footer-about-text font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md md:ui-mb-lg">
               For more updates and news, follow us on our social media.
             </p>
-            <div className="flex ui-gap-3">
+            <div className="footer-social-row flex ui-gap-3">
               {socialIcons.map((icon) => (
                 <a
                   key={icon.label}
@@ -106,7 +106,7 @@ export default function Footer() {
           <div className="hidden md:block w-px self-stretch bg-black/20" />
 
           {/* Links columns */}
-          <div className="flex ui-gap-12 md:ui-gap-14 lg:ui-gap-20">
+          <div className="footer-links-wrap flex ui-gap-12 md:ui-gap-14 lg:ui-gap-20">
             <div>
               <h4 className="font-heading font-bold text-sm md:text-base text-black ui-mb-sm">
                 Explore
