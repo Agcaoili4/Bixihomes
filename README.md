@@ -1,111 +1,105 @@
 # Bixi Homes Website
 
-Modern marketing website for **Bixi Homes**, built with React + Vite, with a separate Express backend for contact submissions and admin auth.
+This is the current website for **Bixi Homes**.
 
-This README focuses on what changed, where to edit content, and how to run both frontend and backend quickly.
+It was built to present the company in a cleaner, more professional way while keeping the experience simple for visitors:
 
-## Recent Updates
+- clear navigation
+- stronger branding
+- better service presentation
+- cleaner gallery browsing
+- working contact form flow
+
+This guide is written to be easier for non-technical readers while still giving the team enough information to manage the site.
+
+## Website Sections
+
+The website currently follows this order:
+
+1. `Home`
+2. `About`
+3. `Services`
+4. `Gallery`
+5. `Contact`
+
+## What Changed
 
 ### Major Changes
 
-- Navigation and header behavior upgraded:
-  - Live business hours now update in **Alberta time** (`America/Edmonton`).
-  - In-page anchor travel is smooth and consistent.
-  - Sticky navigation spacing and readability improved.
-- Hero section upgraded:
-  - New business-focused headline and cleaner visual hierarchy.
-  - Animated metrics now run with a random-fast-to-final count sequence.
-  - Floating bubble effect removed for a cleaner, professional look.
-  - Hero subtitle icon color now aligns with the hero palette for stronger visual consistency.
-- About Bixi redesigned:
-  - Segment switching is now **Exterior / Interior** (industrial removed).
-  - Updated business narrative to 20+ years of exterior restoration focus.
-  - Added clearer positioning for the interior expansion (home builds, renovations, basement development).
-  - Media layout improved with true cover behavior and responsive focal framing for better desktop/mobile composition.
-- Team Services redesigned:
-  - Service cards now match the current business scope:
-    - Roofing & Siding
-    - Fascia & Gutters
-    - Fence & Decking
-    - Interior renovation and basement development support
-- Gallery improved:
-  - Portfolio now uses curated real project photos from local `downloaded_assets`.
-  - Grid now shows 6 featured items, and clicking any photo opens a modal with the full set.
-  - Drag behavior on media is controlled to avoid accidental UX issues.
-- News experience reworked:
-  - Replaced basic “Read More” interaction with interactive cards + modal detail reading.
-  - Header layout redesigned for stronger visual hierarchy.
-  - Popup redesigned for readability (darker overlay, clearer spacing, stronger text contrast).
-  - News metadata is now location-only (`Calgary`) with no date/timeline labels.
-  - Added mobile-specific layout tuning for cards and popup usability.
-- Contact form improved end-to-end:
-  - Better spacing, field sizing, and clearer layout.
-  - First/Last name split.
-  - Inputted text now renders in black for stronger readability.
-  - Form submit integrates to backend API with success/error feedback.
-- Service catalog refreshed:
-  - Flat Roofing, Sloped Roofing, Siding, Fascia, Gutters, Window Replacement, Fencing, Decking.
-  - Contact form service options now match this service list.
-- New route fallback experience:
-  - Added branded `404`/`Not Ready` page for unfinished or invalid routes.
-  - Unready footer links now point to `/not-ready` instead of dead `#` links.
+- The homepage was reorganized into a more minimal and professional layout.
+- The Hero section now focuses more on the Bixi brand, with the logo as the main visual feature.
+- The Hero message now uses animated text to give the first screen more life without feeling too heavy.
+- The About Bixi section was redesigned to feel more polished and easier to read.
+- The About Bixi content is now split more clearly into:
+  - `Exterior`
+  - `Interior`
+- The Services section was refreshed with a stronger header and a cleaner overall structure.
+- The Gallery uses curated project photos and opens more items in a modal view when selected.
+- The Contact form layout was improved so it feels cleaner and more professional.
+- The Navbar was refined so it feels more centered, readable, and business-focused.
+- The buttons across the website were updated so their colors and hover states match the current Hero palette.
 
 ### Minor Changes
 
-- Palette harmonization pass applied across components.
-- Typography contrast improved for readability (black/white hierarchy outside hero).
-- Navbar and footer treatment simplified for clearer business presentation.
-- Button states and interactive surfaces polished to match the current UI direction.
-- Small spacing and alignment fixes across desktop + mobile.
-- Figma-hosted raster icons replaced by inline SVG icons for better palette control and consistency.
-- Project-count display updated to `100` where project metrics are shown.
-- Main runtime now serves homepage on `/` and fallback experience on unknown paths.
-- Image assets reorganized into categorized local sets (`roof_detail` and `full_house`) for cleaner content curation.
-- Reveal animation system refined:
-  - Replays correctly when scrolling up/down.
-  - Reduced boundary jitter/overlap glitches between sections (notably Hero → About Bixi) using stabilized observer thresholds.
-- Frontend code hygiene pass completed:
-  - Removed redundant/unused CSS blocks from `index.css` (dead selectors and stale animation rules).
-  - Sanitized stylesheet structure to reduce maintenance overhead while preserving existing UI behavior.
+- Hero spacing was adjusted so more important content is visible when a visitor first lands on the page.
+- About Bixi metric numbers now use the brown brand color.
+- Shared button styles were unified across the site.
+- The stylesheet was cleaned up to remove old or unused styling rules.
+- Scroll reveal behavior was refined so Hero animations do not clash with scrolling.
+- A fallback page is still available for unfinished or invalid routes.
+- Typography and spacing were tuned further for desktop and mobile readability.
 
-## Backend Architecture Status
+## Current Design Direction
 
-No drastic backend architecture changes were detected in the current codebase.  
-The backend remains:
+The site currently leans toward:
 
-- Express 5 API
-- Zod validation
-- JWT admin auth
-- Resend email delivery for contact submissions
+- white backgrounds
+- black text for readability
+- brown accents for brand warmth
+- simpler layouts
+- less visual clutter
 
-Architecture documentation is still valid here:
+## Contact Form and Backend
 
-- `backend/BACKEND.md`
+The website includes a working contact form that is designed to connect to the backend service.
+
+Current backend responsibilities:
+
+- receive contact form submissions
+- validate form data
+- handle admin authentication
+- send emails through Resend
+
+Backend reference:
+
+- [BACKEND.md](/Users/test/Documents/GitHub/Bixihomes/backend/BACKEND.md)
 
 ## Quick Start
 
-### Frontend
+### Start the Frontend
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL shown in terminal (usually `http://localhost:5173`).
+This usually opens locally at:
 
-Build production bundle:
+- `http://localhost:5173`
+
+### Build the Frontend
 
 ```bash
 npm run build
 ```
 
-Preview production build locally:
+### Preview the Built Version
 
 ```bash
 npm run preview
 ```
 
-### Backend (for live contact form)
+### Start the Backend
 
 ```bash
 cd backend
@@ -113,84 +107,79 @@ npm install
 npm run dev
 ```
 
-Default backend local URL used by frontend:
+This usually runs at:
 
 - `http://localhost:5050`
 
-Frontend API base override:
+If needed, the frontend can point to a different backend using:
 
 - `VITE_API_BASE_URL`
 
-## Where To Edit Content Quickly
+## Where To Edit Website Content
 
-- Header + business schedule logic:
-  - `src/components/Navbar.jsx`
-- Hero copy and CTA:
-  - `src/components/Hero.jsx`
-- About Bixi segmented content:
-  - `src/components/AboutBixi.jsx`
-- Services content:
-  - `src/components/Services.jsx`
-- Team services content/cards:
-  - `src/components/TeamServices.jsx`
-- Gallery portfolio items:
-  - `src/components/Gallery.jsx`
-  - `src/components/ui/interactive-bento-gallery.jsx`
-- News cards and modal details:
-  - `src/components/News.jsx`
-- Contact form fields and submit flow:
-  - `src/components/ContactForm.jsx`
-- Footer business details:
-  - `src/components/Footer.jsx`
+If you want to update content quickly, these are the main files:
 
-## Updating Header Business Hours
-
-Edit schedule values in:
-
-- `src/components/Navbar.jsx`
-
-Look for `businessSchedule`.
+- Hero section:
+  - [Hero.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Hero.jsx)
+- Navbar and business hours:
+  - [Navbar.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Navbar.jsx)
+- About Bixi section:
+  - [AboutBixi.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/AboutBixi.jsx)
+- Services section:
+  - [Services.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Services.jsx)
+- Gallery:
+  - [Gallery.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Gallery.jsx)
+  - [interactive-bento-gallery.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/ui/interactive-bento-gallery.jsx)
+- Contact form:
+  - [ContactForm.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/ContactForm.jsx)
+- Footer:
+  - [Footer.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Footer.jsx)
+- Global styles:
+  - [index.css](/Users/test/Documents/GitHub/Bixihomes/src/index.css)
+- Hero text animation:
+  - [text-effect.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/ui/text-effect.jsx)
 
 ## Project Structure
 
 ```text
 .
-├── src/                 # Frontend app (React + Vite)
-├── backend/             # API server (Express)
-├── docs/                # Additional documentation
-├── index.html
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── components/ui/
+│   ├── lib/
+│   └── index.css
+├── backend/
+├── docs/
 ├── package.json
 └── vite.config.js
 ```
 
 ## Troubleshooting
 
-- If dependencies fail:
-  - `npm install` again
-- If frontend does not load:
-  - Stop process (`Ctrl + C`) and run `npm run dev` again
-- If contact form fails:
-  - Confirm backend is running on the expected port
-  - Confirm frontend `VITE_API_BASE_URL` matches backend URL
-  - Confirm backend CORS allowlist includes your frontend origin
+- If the frontend does not start:
+  - run `npm install`
+  - then run `npm run dev`
+- If the site builds with an error:
+  - run `npm run build`
+  - check the first error shown in terminal
+- If the contact form does not work:
+  - make sure the backend is running
+  - make sure the frontend is pointing to the correct backend URL
+  - make sure backend CORS includes the frontend domain
+- If email does not send:
+  - make sure Resend credentials are set correctly
+  - make sure the sender email or domain is verified
 
-## Security Audit Checklist (Pre-Push)
+## Before Pushing Changes
 
-Use this quick checklist before pushing:
+Use this quick checklist:
 
-- Run frontend build:
-  - `npm run build`
-- Run backend tests:
-  - `cd backend && npm test`
-- Verify no secrets are committed:
-  - Confirm `.env` and `.env.*` are ignored by git
-  - Scan code/docs for accidental tokens/keys
-- Verify no unsafe runtime patterns were introduced:
-  - No `eval`, no `dangerouslySetInnerHTML`, and no shell execution paths from user input
-- Run dependency audit when internet is available:
-  - `npm audit --omit=dev`
-  - `cd backend && npm audit --omit=dev`
+1. Run `npm run build`
+2. Check that no secrets or `.env` values were added into the codebase
+3. If backend changes were made, test the contact form flow
+4. Confirm the current design still works on desktop and mobile
 
 ## License
 
-Licensed under [LICENSE](./LICENSE).
+Licensed under [LICENSE](/Users/test/Documents/GitHub/Bixihomes/LICENSE).

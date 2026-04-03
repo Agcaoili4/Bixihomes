@@ -1,196 +1,125 @@
 import { useEffect, useRef, useState } from "react";
-import { images } from "../assets/images";
-import useHoverParallax from "../hooks/useHoverParallax";
+import BixiLogoMark from "./ui/BixiLogoMark";
+import { TextEffect } from "./ui/text-effect";
 
-const metrics = [
-  { target: 20, suffix: "+", label: "Years Experience" },
-  { target: 100, suffix: "+", label: "Projects Completed" },
-  { target: 98, suffix: "%", label: "Client Satisfaction" },
+const heroPhrases = [
+  "Exterior Restoration & Renovation",
+  "Connect With Us Today",
 ];
 
-function CountUpValue({ target, suffix, shouldStart }) {
-  const [value, setValue] = useState(0);
-  const randomTimerRef = useRef(null);
-  const settleFrameRef = useRef(null);
-
-  useEffect(() => {
-    if (!shouldStart) {
-      setValue(0);
-      return undefined;
-    }
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReducedMotion) {
-      setValue(target);
-      return undefined;
-    }
-
-    const randomPhaseMs = 2200;
-    const settlePhaseMs = 1100;
-    const settleStartValue = Math.max(0, Math.round(target * 0.2));
-    const randomMax = Math.max(target, 9);
-
-    const randomStartTime = performance.now();
-    randomTimerRef.current = window.setInterval(() => {
-      const elapsed = performance.now() - randomStartTime;
-      if (elapsed >= randomPhaseMs) {
-        if (randomTimerRef.current) {
-          window.clearInterval(randomTimerRef.current);
-          randomTimerRef.current = null;
-        }
-        setValue(settleStartValue);
-
-        const settleStartTime = performance.now();
-        const settleTick = (currentTime) => {
-          const settleElapsed = currentTime - settleStartTime;
-          const progress = Math.min(settleElapsed / settlePhaseMs, 1);
-          const eased = 1 - Math.pow(1 - progress, 4);
-          const nextValue = Math.round(
-            settleStartValue + (target - settleStartValue) * eased,
-          );
-          setValue(nextValue);
-
-          if (progress < 1) {
-            settleFrameRef.current = window.requestAnimationFrame(settleTick);
-          } else {
-            setValue(target);
-            settleFrameRef.current = null;
-          }
-        };
-
-        settleFrameRef.current = window.requestAnimationFrame(settleTick);
-        return;
-      }
-
-      const min =
-        elapsed > randomPhaseMs * 0.65 ? Math.round(target * 0.35) : 0;
-      const nextRandom =
-        Math.floor(Math.random() * (randomMax - min + 1)) + min;
-      setValue(nextRandom);
-    }, 45);
-
-    return () => {
-      if (randomTimerRef.current) {
-        window.clearInterval(randomTimerRef.current);
-        randomTimerRef.current = null;
-      }
-      if (settleFrameRef.current) {
-        window.cancelAnimationFrame(settleFrameRef.current);
-        settleFrameRef.current = null;
-      }
-    };
-  }, [shouldStart, target]);
-
-  return `${value}${suffix}`;
-}
+const heroTextEffectVariants = {
+  container: {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.032,
+      },
+    },
+    exit: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.02,
+        staggerDirection: -1,
+      },
+    },
+  },
+  item: {
+    hidden: {
+      opacity: 0,
+      y: 8,
+      filter: "blur(5px)",
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: {
+        duration: 0.24,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -6,
+      filter: "blur(4px)",
+      transition: {
+        duration: 0.2,
+        ease: [0.4, 0, 1, 1],
+      },
+    },
+  },
+};
 
 export default function Hero() {
-  const sectionRef = useRef(null);
-  const hasStartedRef = useRef(false);
-  const [shouldStartCount, setShouldStartCount] = useState(false);
-  useHoverParallax(sectionRef, { maxShift: 20 });
+  const [activePhraseIndex, setActivePhraseIndex] = useState(0);
+  const [showPhrase, setShowPhrase] = useState(true);
+  const hideTimerRef = useRef(null);
+  const swapTimerRef = useRef(null);
 
   useEffect(() => {
-    const sectionEl = sectionRef.current;
-    if (!sectionEl) return undefined;
+    hideTimerRef.current = window.setTimeout(() => {
+      setShowPhrase(false);
+    }, 2200);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting || hasStartedRef.current) return;
-          hasStartedRef.current = true;
-          setShouldStartCount(true);
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.35 },
-    );
+    return () => {
+      if (hideTimerRef.current) {
+        window.clearTimeout(hideTimerRef.current);
+        hideTimerRef.current = null;
+      }
+    };
+  }, [activePhraseIndex]);
 
-    observer.observe(sectionEl);
-    return () => observer.disconnect();
-  }, []);
+  useEffect(() => {
+    if (showPhrase) return undefined;
+
+    swapTimerRef.current = window.setTimeout(() => {
+      setActivePhraseIndex((current) => (current + 1) % heroPhrases.length);
+      setShowPhrase(true);
+    }, 360);
+
+    return () => {
+      if (swapTimerRef.current) {
+        window.clearTimeout(swapTimerRef.current);
+        swapTimerRef.current = null;
+      }
+    };
+  }, [showPhrase]);
 
   return (
     <section
-      ref={sectionRef}
       id="home"
-      className="relative w-full min-h-[60vh] md:min-h-[70vh] lg:min-h-[85vh] overflow-hidden isolate"
+      className="relative w-full overflow-hidden bg-white"
       data-reveal
+      data-reveal-once
     >
-      <img
-        src={images.heroBg}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover hero-bg-parallax"
-      />
-      <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/50 to-black/25" />
-      <div className="hero-accent-grid absolute inset-0 pointer-events-none" />
-
-      <div className="relative ui-container h-full flex flex-col justify-center items-center lg:items-end ui-section-hero">
-        <div className="hero-content-shell max-w-[640px] text-center lg:text-right">
-          {/* Subtitle badge */}
-          <div className="hero-anim-badge bg-gold/20 border border-gold/40 inline-flex items-center ui-gap-2-5 ui-px-md ui-pt-xs ui-mb-md backdrop-blur-sm">
-            <img
-              src={images.heroSubIcon}
-              alt=""
-              className="hero-sub-icon w-5 h-5 md:w-6 md:h-6 shrink-0"
-            />
-            <p className="font-body font-semibold text-xs md:text-sm text-gold tracking-wide uppercase">
-              Bixi Homes & Renovations
-            </p>
-          </div>
-
-          {/* Headline */}
-          <h1 className="hero-anim-h1 font-heading font-extrabold text-[28px] md:text-[40px] lg:text-[50px] leading-[1.12] text-white ui-mb-sm">
-            Crafted to Last, <span className="text-gold">Trusted to Deliver</span>
-          </h1>
-
-          {/* Subheading */}
-          <p className="hero-anim-sub font-body text-sm md:text-base lg:text-lg text-white/75 leading-relaxed ui-mb-lg max-w-auto lg:ml-auto lg:text-right">
-            Exceptional building and renovation with integrity and precision.
-            Enhancing homes and communities through innovative solutions and
-            craftsmanship.
-          </p>
-
-          {/* Dual CTAs */}
-          <div className="hero-anim-cta flex flex-col sm:flex-row items-center lg:justify-end ui-gap-4">
-            <a
-              href="#contact"
-              className="ui-btn ui-btn-primary hero-primary-cta"
-            >
-              Contact Us
-            </a>
-            <a href="#gallery" className="ui-btn ui-btn-outline-dark">
-              View Our Work
-            </a>
-          </div>
-
-          <div className="hero-anim-trust ui-mt-lg flex flex-wrap items-center justify-center lg:justify-end ui-gap-2-5">
-            <span className="hero-trust-pill">WSIB Insured</span>
-            <span className="hero-trust-pill">Licensed Builders</span>
-            <span className="hero-trust-pill">On-Time Delivery</span>
-          </div>
+      <div className="ui-container hero-intro">
+        {/* Large centered logo — bold entrance */}
+        <div className="hero-logo-center">
+          <BixiLogoMark className="hero-logo-main" animated={false} />
         </div>
 
-        {/* Trust metrics strip */}
-        <div className="hero-anim-metrics w-full ui-mt-xl ui-pt-lg border-t border-white/15">
-          <div className="flex flex-wrap justify-center lg:justify-end ui-gap-8 md:ui-gap-14 lg:ui-gap-20">
-            {metrics.map((m, i) => (
-              <div key={m.label} className={`hero-anim-metric-${i + 1}`}>
-                <p className="font-heading font-extrabold text-2xl md:text-3xl lg:text-4xl text-gold leading-none ui-mb-xxs">
-                  <CountUpValue
-                    target={m.target}
-                    suffix={m.suffix}
-                    shouldStart={shouldStartCount}
-                  />
-                </p>
-                <p className="font-body text-xs md:text-sm text-white/60 tracking-wide">
-                  {m.label}
-                </p>
-              </div>
-            ))}
-          </div>
+        {/* Tagline beneath the logo */}
+        <div className="hero-tagline-shell" aria-live="polite">
+          <TextEffect
+            per="word"
+            as="p"
+            variants={heroTextEffectVariants}
+            trigger={showPhrase}
+            className="hero-tagline font-body"
+            segmentWrapperClassName="inline-block"
+          >
+            {heroPhrases[activePhraseIndex]}
+          </TextEffect>
+        </div>
+
+        {/* Subtle trust line */}
+        <div className="hero-trust-row">
+          <span className="hero-trust-pill">20+ Years</span>
+          <span className="hero-trust-divider" aria-hidden="true" />
+          <span className="hero-trust-pill">Licensed &amp; Insured</span>
+          <span className="hero-trust-divider" aria-hidden="true" />
+          <span className="hero-trust-pill">Calgary &amp; Area</span>
         </div>
       </div>
     </section>

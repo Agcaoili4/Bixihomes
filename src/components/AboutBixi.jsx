@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { images } from "../assets/images";
 import { BuildingIcon, HomeIcon } from "./ui/InlineIcons";
 
@@ -10,72 +10,202 @@ const tabs = [
 const tabContent = {
   commercial: {
     title: "Two Decades of Exterior Restoration",
-    copy: "Bixi Homes & Renovations has focused for 20+ years on exterior home restoration with dependable workmanship built for Alberta weather.",
+    copy: "Dependable exterior workmanship built for Alberta weather — roofing, siding, fascia, gutters, fencing, and decking that protect your property long-term.",
     points: [
-      "Roofing and siding restoration for long-term protection",
-      "Fascia and gutter systems that improve drainage performance",
-      "Fence and decking work that strengthens curb appeal and function",
+      "Roofing and siding restoration for lasting protection",
+      "Fascia and gutter systems for reliable drainage",
+      "Fencing and decking that strengthen curb appeal",
     ],
     metric: "20+ Years Exterior Focus",
-    promise: "Exterior systems built to protect your property season after season.",
   },
   residential: {
     title: "Interior Renovation With a Proven Team",
-    copy: "We have expanded into interior renovation with a strong team that builds homes, renovates living spaces, and develops basements with quality-first execution.",
+    copy: "Quality-first interior renovation — from full home builds and basement development to structured living spaces delivered with clear communication.",
     points: [
       "Home builds and structured renovation planning",
       "Basement development designed for comfort and value",
-      "Clear communication, quality control, and clean turnover",
+      "Consistent quality control and clean turnover",
     ],
     metric: "100+ Projects Delivered",
-    promise: "Interior spaces shaped for daily life, comfort, and long-term value.",
   },
 };
 
-const trustHighlights = [
-  { value: "20+", label: "Years of Exterior Experience" },
-  { value: "100+", label: "Projects Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
+const metrics = [
+  { target: 20, suffix: "+", label: "Years Experience" },
+  { target: 100, suffix: "+", label: "Projects Completed" },
+  { target: 98, suffix: "%", label: "Client Satisfaction" },
 ];
 
+function CountUpValue({ target, suffix, shouldStart }) {
+  const [value, setValue] = useState(0);
+  const randomTimerRef = useRef(null);
+  const settleFrameRef = useRef(null);
+
+  useEffect(() => {
+    if (!shouldStart) {
+      setValue(0);
+      return undefined;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReducedMotion) {
+      setValue(target);
+      return undefined;
+    }
+
+    const randomPhaseMs = 2200;
+    const settlePhaseMs = 1100;
+    const settleStartValue = Math.max(0, Math.round(target * 0.2));
+    const randomMax = Math.max(target, 9);
+
+    const randomStartTime = performance.now();
+    randomTimerRef.current = window.setInterval(() => {
+      const elapsed = performance.now() - randomStartTime;
+      if (elapsed >= randomPhaseMs) {
+        if (randomTimerRef.current) {
+          window.clearInterval(randomTimerRef.current);
+          randomTimerRef.current = null;
+        }
+        setValue(settleStartValue);
+
+        const settleStartTime = performance.now();
+        const settleTick = (currentTime) => {
+          const settleElapsed = currentTime - settleStartTime;
+          const progress = Math.min(settleElapsed / settlePhaseMs, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const nextValue = Math.round(
+            settleStartValue + (target - settleStartValue) * eased,
+          );
+          setValue(nextValue);
+
+          if (progress < 1) {
+            settleFrameRef.current = window.requestAnimationFrame(settleTick);
+          } else {
+            setValue(target);
+            settleFrameRef.current = null;
+          }
+        };
+
+        settleFrameRef.current = window.requestAnimationFrame(settleTick);
+        return;
+      }
+
+      const min =
+        elapsed > randomPhaseMs * 0.65 ? Math.round(target * 0.35) : 0;
+      const nextRandom =
+        Math.floor(Math.random() * (randomMax - min + 1)) + min;
+      setValue(nextRandom);
+    }, 45);
+
+    return () => {
+      if (randomTimerRef.current) {
+        window.clearInterval(randomTimerRef.current);
+        randomTimerRef.current = null;
+      }
+      if (settleFrameRef.current) {
+        window.cancelAnimationFrame(settleFrameRef.current);
+        settleFrameRef.current = null;
+      }
+    };
+  }, [shouldStart, target]);
+
+  return `${value}${suffix}`;
+}
+
 export default function AboutBixi() {
+  const sectionRef = useRef(null);
   const [activeTab, setActiveTab] = useState("commercial");
+  const [shouldStartCount, setShouldStartCount] = useState(false);
   const currentContent = tabContent[activeTab];
 
-  return (
-    <section className="about-bixi-section ui-section">
-      <div className="ui-container">
-        <div className="text-center ui-mb-xl about-bixi-heading">
-          <p className="ui-kicker-pill about-bixi-kicker">Who We Are</p>
-          <h2 className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black ui-mb-sm leading-tight">
-            About Bixi Homes
-          </h2>
-          <p className="ui-copy-centered font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-center">
-            Bixi Homes & Renovations is a client-first team with deep exterior restoration
-            roots and a growing interior division, committed to quality, accountability,
-            and long-lasting results.
-          </p>
-        </div>
+  useEffect(() => {
+    const sectionEl = sectionRef.current;
+    if (!sectionEl) return undefined;
 
-        <div className="about-bixi-trust-strip ui-mb-lg">
-          {trustHighlights.map((item) => (
-            <div key={item.label} className="about-bixi-trust-card">
-              <p className="about-bixi-trust-value">{item.value}</p>
-              <p className="about-bixi-trust-label">{item.label}</p>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setShouldStartCount(entry.isIntersecting);
+        });
+      },
+      { threshold: 0.32 },
+    );
+
+    observer.observe(sectionEl);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="about"
+      className="about-bixi-section ui-section"
+    >
+      <div className="ui-container">
+        <div className="about-bixi-intro-shell" data-reveal>
+          <div className="about-bixi-intro-topline">
+            <p className="ui-kicker-pill about-bixi-kicker">Who We Are</p>
+            <p className="about-bixi-intro-label font-body">
+              Exterior-led restoration with trusted interior capability
+            </p>
+          </div>
+
+          <div className="about-bixi-heading-layout">
+            <div className="about-bixi-heading-main">
+              <h1 className="hero-anim-h1 font-heading font-extrabold text-[30px] md:text-[44px] lg:text-[56px] leading-[1.08] text-black ui-mb-sm">
+                Crafted to Last,{" "}
+                <span className="text-[#90826E]">Trusted to Deliver</span>
+              </h1>
             </div>
-          ))}
+
+            <div className="about-bixi-heading-side">
+              <p className="hero-anim-sub about-bixi-intro-copy font-body text-sm md:text-base lg:text-lg text-black/60 leading-relaxed">
+                We help homeowners reimagine spaces with practical, quality work
+                built to last — delivered with clear communication and respect
+                for every home we touch.
+              </p>
+
+              <div className="hero-anim-metrics about-bixi-metrics-strip w-full ui-pt-lg border-t border-black/10">
+                <div className="about-bixi-metrics-grid">
+                  {metrics.map((m, i) => (
+                    <div
+                      key={m.label}
+                      className={`about-bixi-metric-card hero-anim-metric-${i + 1}`}
+                    >
+                      <p className="about-bixi-metric-value font-heading font-extrabold text-2xl md:text-3xl lg:text-4xl leading-none ui-mb-xxs">
+                        <CountUpValue
+                          target={m.target}
+                          suffix={m.suffix}
+                          shouldStart={shouldStartCount}
+                        />
+                      </p>
+                      <p className="about-bixi-metric-label font-body text-xs md:text-sm tracking-wide">
+                        {m.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div
           id={`about-bixi-panel-${activeTab}`}
           className={`about-bixi-panel about-bixi-panel-${activeTab}`}
           role="tabpanel"
+          data-reveal
         >
           <div className="about-bixi-panel-head">
-            <div className="about-bixi-head-copy">
-              <p className="about-bixi-head-kicker">Choose Your Segment</p>
-              <p className="about-bixi-head-sub">
-                Tailored renovation strategy aligned to your exact project type.
+            <div className="about-bixi-panel-lead">
+              <p className="about-bixi-panel-kicker font-body">
+                Explore our focus
+              </p>
+              <p className="about-bixi-panel-caption font-body">
+                Switch between our exterior restoration roots and our interior
+                renovation capabilities.
               </p>
             </div>
 
@@ -96,7 +226,7 @@ export default function AboutBixi() {
                     activeTab === tab.id ? "is-active" : ""
                   }`}
                 >
-                  <tab.Icon className="w-4 h-4 md:w-5 md:h-5 text-[#90826E]" />
+                  <tab.Icon className="w-4 h-4 md:w-5 md:h-5" />
                   <span>{tab.label}</span>
                 </button>
               ))}
@@ -111,20 +241,17 @@ export default function AboutBixi() {
                 className="w-full h-full object-cover about-bixi-media-img"
               />
               <div className="about-bixi-media-overlay" />
-              <div className="about-bixi-media-badge">{currentContent.metric}</div>
+              <div className="about-bixi-media-badge">
+                {currentContent.metric}
+              </div>
             </div>
             <div className="about-bixi-content">
-              <p className="about-bixi-metric-chip">{currentContent.metric}</p>
-              <h3 className="font-heading font-extrabold text-2xl md:text-[32px] text-black ui-mb-sm leading-tight">
+              <h3 className="font-heading font-extrabold text-2xl md:text-[28px] lg:text-[32px] text-black leading-tight ui-mb-xs">
                 {currentContent.title}
               </h3>
-              <p className="font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed ui-mb-lg">
+              <p className="font-body text-sm md:text-base text-black/60 leading-relaxed ui-mb-md">
                 {currentContent.copy}
               </p>
-
-              <div className="about-bixi-promise ui-mb-md">
-                <p className="about-bixi-promise-text">{currentContent.promise}</p>
-              </div>
 
               <ul className="about-bixi-points ui-mb-lg">
                 {currentContent.points.map((point) => (
@@ -135,33 +262,9 @@ export default function AboutBixi() {
                 ))}
               </ul>
 
-              <div className="about-bixi-feature-grid ui-mb-lg">
-                <article className="about-bixi-feature-card">
-                  <p className="about-bixi-feature-title">Clear Planning</p>
-                  <p className="about-bixi-feature-copy">
-                    Scope, schedule, and deliverables aligned before work begins.
-                  </p>
-                </article>
-                <article className="about-bixi-feature-card">
-                  <p className="about-bixi-feature-title">Quality Control</p>
-                  <p className="about-bixi-feature-copy">
-                    Consistent inspections and finish checks through every phase.
-                  </p>
-                </article>
-                <article className="about-bixi-feature-card">
-                  <p className="about-bixi-feature-title">Reliable Turnover</p>
-                  <p className="about-bixi-feature-copy">
-                    Handover that is clean, documented, and ready for occupancy.
-                  </p>
-                </article>
-              </div>
-
               <div className="about-bixi-cta-row">
-                <a href="#contact" className="ui-btn ui-btn-primary">
-                  Start Your Project
-                </a>
                 <a href="#gallery" className="ui-btn ui-btn-outline-dark">
-                  See Portfolio
+                  See Our Work
                 </a>
               </div>
             </div>

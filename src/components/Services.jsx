@@ -87,53 +87,76 @@ export default function Services() {
   return (
     <section id="services" className="services-section-themed ui-section">
       <div className="ui-container">
-        {/* Split Heading — title left, copy right */}
-        <div className="services-header" data-reveal>
-          <div className="services-header-left">
+        <div className="services-intro-shell" data-reveal>
+          <div className="services-intro-topline">
             <p className="ui-kicker-pill services-kicker">Our Services</p>
-            <h2 className="services-heading-title font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] leading-tight">
-              What We Do
-            </h2>
-          </div>
-          <div className="services-header-right">
-            <p className="services-heading-copy font-body text-sm md:text-base lg:text-lg leading-relaxed">
-              We provide exterior restoration and renovation services built on practical workmanship,
-              dependable timelines, and finishes that protect long-term property value.
+            <p className="services-intro-label font-body">
+              Exterior restoration and renovation services
             </p>
-            <a href="#contact" className="services-header-link">
-              Get a free estimate
-              <span aria-hidden="true">&rarr;</span>
-            </a>
+          </div>
+
+          <div className="services-header">
+            <div className="services-header-left">
+              <h2 className="services-heading-title font-heading font-extrabold text-[30px] md:text-[42px] lg:text-[54px] leading-[1.08]">
+                Practical work.
+                <br />
+                <span className = "text-[#90826E]">Professional finish.</span>
+              </h2>
+            </div>
+
+            <div className="services-header-right">
+              <p className="services-heading-copy font-body text-sm md:text-base lg:text-lg leading-relaxed">
+                We provide exterior restoration and renovation services built on practical workmanship,
+                dependable timelines, and finishes that protect long-term property value.
+              </p>
+
+              <div className="services-summary-row" aria-label="Service overview">
+                <div className="services-summary-item">
+                  <span className="services-summary-value">{services.length}</span>
+                  <span className="services-summary-label">Core service lines</span>
+                </div>
+
+                <div className="services-summary-divider" aria-hidden="true" />
+
+                <div className="services-summary-item">
+                  <span className="services-summary-value">Exterior-led</span>
+                  <span className="services-summary-label">Built for long-term protection</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Service Grid */}
-        <div className="services-grid" data-reveal-group>
-          {services.map((service) => (
-            <a
-              key={service.title}
-              href="#contact"
-              className="service-card"
-              data-reveal-item
-            >
-              <div className="service-card-accent" aria-hidden="true" />
+        <div className="services-grid-shell" data-reveal>
+          <div className="services-grid-intro">
+            <p className="services-grid-kicker font-body">
+              Selected scopes
+            </p>
+            <p className="services-grid-copy font-body">
+              Each service is delivered with a clear scope, durable materials, and detail-focused workmanship.
+            </p>
+          </div>
 
-              <div className="service-card-icon" aria-hidden="true">
-                {service.icon}
+          {/* Service Grid */}
+          <div className="services-grid" data-reveal-group>
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="service-card"
+                data-reveal-item
+              >
+                <div className="service-card-accent" aria-hidden="true" />
+
+                <div className="service-card-icon" aria-hidden="true">
+                  {service.icon}
+                </div>
+
+                <h3 className="service-card-title">{service.title}</h3>
+
+                <p className="service-card-copy">{service.summary}</p>
               </div>
-
-              <h3 className="service-card-title">{service.title}</h3>
-
-              <p className="service-card-copy">{service.summary}</p>
-
-              <span className="service-card-link">
-                Learn more
-                <span className="service-card-arrow" aria-hidden="true">
-                  &rarr;
-                </span>
-              </span>
-            </a>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

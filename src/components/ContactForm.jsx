@@ -99,7 +99,7 @@ export default function ContactForm() {
   };
 
   return (
-    <section id="contact" className="ui-section bg-[#f5f5f4]">
+    <section id="contact" className="ui-section bg-white">
       <div className="ui-container">
         <div className="flex flex-col lg:flex-row ui-gap-10 lg:ui-gap-14 items-stretch">
           {/* Left — persuasion + direct contact */}
@@ -158,15 +158,19 @@ export default function ContactForm() {
               </a>
             </div>
 
-            {/* Photo — hidden on mobile */}
+            {/* Video showcase — hidden on mobile */}
             <div
-              className="hidden md:block w-full max-w-[520px] h-[280px] lg:h-[320px] overflow-hidden rounded-xl border border-black/10 shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              className="hidden md:block contact-video-wrap"
               data-reveal
             >
-              <img
-                src={images.contactPhoto}
-                alt="Bixi Homes construction project"
-                className="w-full h-full object-cover"
+              <video
+                src={images.aboutPhoto}
+                autoPlay
+                loop
+                muted
+                playsInline
+                aria-label="Bixi Homes construction showcase"
+                className="contact-video"
               />
             </div>
           </div>
@@ -177,7 +181,7 @@ export default function ContactForm() {
             data-reveal
           >
             <div className="contact-form-card">
-              <h3 className="font-heading font-bold text-[26px] md:text-[32px] text-black ui-mb-xxs leading-tight">
+              <h3 className="font-heading font-bold text-[26px] md:text-[32px] ui-mb-xxs leading-tight ">
                Request an Estimate
               </h3>
               <p className="font-body text-sm md:text-[15px] text-black/55 ui-mb-lg">
