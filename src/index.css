@@ -668,7 +668,7 @@ svg {
   gap: var(--space-8);
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .about-bixi-body {
     flex-direction: row;
     align-items: center;
@@ -901,6 +901,24 @@ svg {
 }
 
 @media (max-width: 767px) {
+  .hero-intro {
+    padding-top: clamp(5.5rem, 12vh, 7rem);
+    padding-bottom: var(--space-10);
+    min-height: 72vh;
+  }
+
+  .hero-logo-center {
+    margin-bottom: var(--space-8);
+  }
+
+  .hero-logo-main {
+    width: min(92vw, 760px);
+  }
+
+  .hero-tagline-shell {
+    margin-top: var(--space-2);
+  }
+
   .hero-trust-row {
     width: 100%;
     justify-content: center;
