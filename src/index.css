@@ -908,6 +908,7 @@ svg {
     column-gap: 0.55rem;
     text-align: center;
     margin-inline: auto;
+    opacity: 1;
   }
 
   .hero-trust-pill {
@@ -1649,6 +1650,20 @@ svg {
   background: #ffffff;
 }
 
+.mobile-hours-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.5rem var(--space-4) 0.2rem;
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.52);
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
 .navbar-mobile-links {
   flex-direction: row;
   flex-wrap: wrap;
@@ -1703,10 +1718,6 @@ svg {
   transform: scaleX(1);
 }
 
-.mobile-hours-row {
-  display: none;
-}
-
 @media (max-width: 767px) {
   .navbar-desktop-shell {
     display: none !important;
@@ -1728,9 +1739,20 @@ svg {
     min-width: 0;
   }
 
+  .mobile-hours-bar {
+    padding-inline: var(--space-3);
+    font-size: 0.72rem;
+  }
+
   .navbar-hours-label {
     max-width: 100%;
     font-size: 0.72rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-hours-bar {
+    display: none;
   }
 }
 
