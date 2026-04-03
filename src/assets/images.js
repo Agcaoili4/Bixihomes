@@ -10,7 +10,7 @@ import roofDetail052 from "./downloaded_assets/roof_detail/roof_detail_052.jpeg"
 import roofDetail054 from "./downloaded_assets/roof_detail/roof_detail_054.jpeg";
 import roofDetail071 from "./downloaded_assets/roof_detail/roof_detail_071.jpeg";
 import roofDetail072 from "./downloaded_assets/roof_detail/roof_detail_072.jpeg";
-import logo from "./downloaded_assets/logo.svg";
+import logo from "./downloaded_assets/Logo.svg";
 // Figma design asset URLs
 export const images = {
   // Hero
