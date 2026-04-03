@@ -68,9 +68,9 @@ export default function Navbar() {
     };
   }, [now]);
 
-  return (
+    return (
     <nav className="bg-white w-full sticky top-0 z-50 border-b border-black/8">
-      <div className="ui-navbar-main navbar-main-centered">
+      <div className="navbar-desktop-shell ui-navbar-main navbar-main-centered">
         <div
           className="hidden lg:block navbar-side-spacer"
           aria-hidden="true"
@@ -98,7 +98,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="lg:hidden navbar-mobile-links-wrap">
+      <div className="navbar-mobile-shell navbar-mobile-links-wrap">
         <ul className="ui-mobile-menu-list navbar-mobile-links">
           {navLinks.map((link) => (
             <li key={link.href}>

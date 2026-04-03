@@ -901,6 +901,25 @@ svg {
 }
 
 @media (max-width: 767px) {
+  .hero-trust-row {
+    width: 100%;
+    justify-content: center;
+    row-gap: 0.35rem;
+    column-gap: 0.55rem;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .hero-trust-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-trust-divider {
+    display: none;
+  }
+
   .about-bixi-intro-shell {
     gap: var(--space-5);
     margin-bottom: var(--space-8);
@@ -1509,6 +1528,14 @@ svg {
   padding-block: 0.35rem;
 }
 
+.navbar-desktop-shell {
+  display: none;
+}
+
+.navbar-mobile-shell {
+  display: block;
+}
+
 @media (min-width: 640px) {
   .navbar-main-centered {
     padding-inline: var(--space-6);
@@ -1516,6 +1543,14 @@ svg {
 }
 
 @media (min-width: 1024px) {
+  .navbar-desktop-shell {
+    display: grid;
+  }
+
+  .navbar-mobile-shell {
+    display: none;
+  }
+
   .navbar-main-centered {
     padding-inline: var(--space-8);
   }
