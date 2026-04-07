@@ -7,6 +7,7 @@ import Gallery from "./components/Gallery";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 
+// Component handles the global UI behaviors  
 function App() {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
