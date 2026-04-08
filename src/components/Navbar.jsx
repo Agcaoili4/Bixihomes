@@ -77,7 +77,7 @@ export default function Navbar() {
         />
 
         {/* Desktop centered nav */}
-        <ul className="hidden lg:flex flex-row items-center navbar-links-center font-body font-bold text-[#90826E]">
+        <ul className="hidden lg:flex flex-row items-center navbar-links-center font-body font-bold text-[#B9975B]">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a

@@ -156,7 +156,7 @@ export default function AboutBixi() {
             <div className="about-bixi-heading-main">
               <h1 className="hero-anim-h1 font-heading font-extrabold text-[30px] md:text-[44px] lg:text-[56px] leading-[1.08] text-black ui-mb-sm">
                 Crafted to Last,{" "}
-                <span className="text-[#90826E]">Trusted to Deliver</span>
+                <span className="text-[#B9975B]">Trusted to Deliver</span>
               </h1>
             </div>
 

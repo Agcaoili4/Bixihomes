@@ -2,12 +2,12 @@
 @import "tailwindcss";
 
 :root {
-  --color-gold: #b6b8b9;
+  --color-gold: #B9975B;
   --color-gold-dark: #111111;
   --color-navy: #111111;
   --color-gray-text: #111111;
-  --color-warm: #90826e;
-  --color-mist: #b6b8b9;
+  --color-warm: #B9975B;
+  --color-mist: #F2E7D1;
   --font-heading: "Libre Baskerville", serif;
   --font-body: "Manrope", sans-serif;
   --space-0: 0;
@@ -109,10 +109,10 @@ body {
   background-color: var(--color-gold) !important;
 }
 .bg-gold\/20 {
-  background-color: rgba(182, 184, 185, 0.2) !important;
+  background-color: rgba(185, 151, 91, 0.2) !important;
 }
 .bg-gold\/90 {
-  background-color: rgba(182, 184, 185, 0.9) !important;
+  background-color: rgba(185, 151, 91, 0.9) !important;
 }
 .bg-gold-dark {
   background-color: var(--color-gold-dark) !important;
@@ -261,7 +261,7 @@ section:not(#home) .text-white\/50 {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #90826e;
+  color: #B9975B;
   margin-bottom: 0;
   opacity: 1;
 }
@@ -298,7 +298,7 @@ section:not(#home) .text-white\/50 {
   width: 4px;
   height: 4px;
   border-radius: 999px;
-  background: rgba(144, 130, 110, 0.35);
+  background: rgba(185, 151, 91, 0.35);
 }
 
 /* (CTA row removed — contact is handled via navbar only) */
@@ -356,7 +356,7 @@ section:not(#home) .text-white\/50 {
 }
 
 section#about .about-bixi-metric-value {
-  color: #90826e !important;
+  color: #B9975B !important;
 }
 
 .about-bixi-metrics-grid {
@@ -457,7 +457,7 @@ section#about .about-bixi-metric-value {
 
 /* Global icon tone */
 svg {
-  color: #90826e;
+  color: #B9975B;
 }
 
 .ui-container {
@@ -491,9 +491,9 @@ svg {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid rgba(144, 130, 110, 0.34);
+  border: 1px solid rgba(185, 151, 91, 0.34);
   background: rgba(182, 184, 185, 0.16);
-  color: #90826e;
+  color: #B9975B;
 }
 
 .about-bixi-section {
@@ -520,7 +520,7 @@ svg {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(144, 130, 110, 0.8);
+  color: rgba(185, 151, 91, 0.8);
 }
 
 .about-bixi-heading-layout {
@@ -560,7 +560,7 @@ svg {
 .about-bixi-kicker {
   border-radius: 999px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(144, 130, 110, 0.08);
+  background: rgba(185, 151, 91, 0.08);
   color: rgba(0, 0, 0, 0.72);
 }
 
@@ -603,7 +603,7 @@ svg {
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #90826e;
+  color: #B9975B;
 }
 
 .about-bixi-panel-caption {
@@ -652,7 +652,7 @@ svg {
 }
 
 .about-bixi-choice-btn:focus-visible {
-  outline: 2px solid #90826e;
+  outline: 2px solid #B9975B;
   outline-offset: 2px;
 }
 
@@ -770,7 +770,7 @@ svg {
   height: 6px;
   margin-top: 0.55rem;
   border-radius: 999px;
-  background: #90826e;
+  background: #B9975B;
   flex-shrink: 0;
 }
 
@@ -1382,10 +1382,10 @@ svg {
 }
 
 .ui-btn-primary {
-  background: #90826e;
+  background: #B9975B;
   color: #ffffff;
-  border-color: #90826e;
-  box-shadow: 0 10px 24px rgba(144, 130, 110, 0.22);
+  border-color: #B9975B;
+  box-shadow: 0 10px 24px rgba(185, 151, 91, 0.22);
 }
 
 .ui-btn-primary:hover {
@@ -1403,49 +1403,49 @@ svg {
 }
 
 .ui-btn-secondary:hover {
-  background: #90826e;
-  border-color: #90826e;
-  box-shadow: 0 12px 26px rgba(144, 130, 110, 0.24);
+  background: #B9975B;
+  border-color: #B9975B;
+  box-shadow: 0 12px 26px rgba(185, 151, 91, 0.24);
 }
 
 .ui-btn-outline-light {
   background: #ffffff;
   color: #000000;
-  border-color: rgba(144, 130, 110, 0.42);
+  border-color: rgba(185, 151, 91, 0.42);
   box-shadow: 0 8px 18px rgba(17, 17, 17, 0.08);
 }
 
 .ui-btn-outline-light:hover {
-  background: rgba(144, 130, 110, 0.08);
-  color: #90826e;
-  border-color: #90826e;
-  box-shadow: 0 10px 22px rgba(144, 130, 110, 0.12);
+  background: rgba(185, 151, 91, 0.08);
+  color: #B9975B;
+  border-color: #B9975B;
+  box-shadow: 0 10px 22px rgba(185, 151, 91, 0.12);
 }
 
 .navbar-cta-btn {
   color: #000000;
-  border-color: rgba(144, 130, 110, 0.42);
+  border-color: rgba(185, 151, 91, 0.42);
   background: #ffffff;
   box-shadow: 0 8px 18px rgba(17, 17, 17, 0.08);
 }
 
 .navbar-cta-btn:hover {
-  color: #90826e;
-  border-color: #90826e;
-  background: rgba(144, 130, 110, 0.08);
+  color: #B9975B;
+  border-color: #B9975B;
+  background: rgba(185, 151, 91, 0.08);
 }
 
 .ui-btn-outline-dark {
   background: #ffffff;
   color: #111111;
-  border-color: rgba(144, 130, 110, 0.42);
+  border-color: rgba(185, 151, 91, 0.42);
   box-shadow: 0 8px 18px rgba(17, 17, 17, 0.08);
 }
 
 .ui-btn-outline-dark:hover {
-  border-color: #90826e;
-  color: #90826e;
-  background: rgba(144, 130, 110, 0.08);
+  border-color: #B9975B;
+  color: #B9975B;
+  background: rgba(185, 151, 91, 0.08);
 }
 
 .ui-btn-tab {
@@ -1453,10 +1453,10 @@ svg {
 }
 
 .ui-btn-tab-active {
-  background: #90826e;
+  background: #B9975B;
   color: #ffffff;
-  border-color: #90826e;
-  box-shadow: 0 12px 24px rgba(144, 130, 110, 0.24);
+  border-color: #B9975B;
+  box-shadow: 0 12px 24px rgba(185, 151, 91, 0.24);
 }
 
 .ui-btn-tab-active img {
@@ -1576,7 +1576,7 @@ svg {
   padding-inline: clamp(0.8rem, 1.9vw, 1.35rem);
   font-size: 1.05rem;
   letter-spacing: 0.012em;
-  color: #90826e;
+  color: #B9975B;
 }
 
 .navbar-links-center .ui-nav-link:hover,
@@ -1629,7 +1629,7 @@ svg {
   left: 0.45rem;
   width: calc(100% - 0.9rem);
   height: 0.125rem;
-  background: #90826e;
+  background: #B9975B;
   transform-origin: left center;
   transform: scaleX(0);
   transition: transform 300ms ease;
@@ -1705,7 +1705,7 @@ svg {
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.012em;
-  color: #90826e;
+  color: #B9975B;
   transition:
     color 180ms ease,
     background-color 180ms ease;
@@ -1718,7 +1718,7 @@ svg {
   left: 0.25rem;
   width: calc(100% - 0.5rem);
   height: 0.125rem;
-  background: #90826e;
+  background: #B9975B;
   transform-origin: left center;
   transform: scaleX(0);
   transition: transform 300ms ease;
@@ -1823,7 +1823,7 @@ svg {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(144, 130, 110, 0.8);
+  color: rgba(185, 151, 91, 0.8);
 }
 
 .services-header {
@@ -1859,9 +1859,9 @@ svg {
 }
 
 .services-kicker {
-  border: 1px solid rgba(144, 130, 110, 0.3);
-  background: rgba(144, 130, 110, 0.08);
-  color: #90826e;
+  border: 1px solid rgba(185, 151, 91, 0.3);
+  background: rgba(185, 151, 91, 0.08);
+  color: #B9975B;
 }
 
 .services-heading-title {
@@ -1894,7 +1894,7 @@ svg {
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   font-weight: 800;
   line-height: 1.1;
-  color: #90826e;
+  color: #B9975B;
 }
 
 .services-summary-label {
@@ -1928,7 +1928,7 @@ svg {
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #90826e;
+  color: #B9975B;
 }
 
 .services-grid-copy {
@@ -1985,7 +1985,7 @@ svg {
 }
 
 .service-card:hover {
-  border-color: rgba(144, 130, 110, 0.3);
+  border-color: rgba(185, 151, 91, 0.3);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
@@ -1996,7 +1996,7 @@ svg {
   left: 0;
   right: 0;
   height: 3px;
-  background: #90826e;
+  background: #B9975B;
 }
 
 .service-card-icon {
@@ -2006,7 +2006,7 @@ svg {
   width: 44px;
   height: 44px;
   margin-bottom: var(--space-4);
-  color: #90826e;
+  color: #B9975B;
   background: transparent;
   border-radius: 0;
 }
@@ -2094,7 +2094,7 @@ svg {
   border-radius: 999px;
   background: linear-gradient(
     90deg,
-    rgba(144, 130, 110, 0.92) 0%,
+    rgba(185, 151, 91, 0.92) 0%,
     rgba(0, 0, 0, 0.65) 55%,
     rgba(0, 0, 0, 0) 100%
   );
@@ -2102,7 +2102,7 @@ svg {
 
 .news-header-copy-wrap {
   border-radius: 14px;
-  border: 1px solid rgba(144, 130, 110, 0.3);
+  border: 1px solid rgba(185, 151, 91, 0.3);
   background: rgba(255, 255, 255, 0.58);
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
   padding: 0.9rem 0.95rem;
@@ -2123,7 +2123,7 @@ svg {
   align-items: center;
   padding-inline: 0.65rem;
   border-radius: 999px;
-  border: 1px solid rgba(144, 130, 110, 0.34);
+  border: 1px solid rgba(185, 151, 91, 0.34);
   background: rgba(255, 255, 255, 0.84);
   font-family: var(--font-body);
   font-size: 0.72rem;
@@ -2201,7 +2201,7 @@ svg {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(144, 130, 110, 0.9);
+  color: rgba(185, 151, 91, 0.9);
 }
 
 .news-card-hint {
@@ -2416,7 +2416,7 @@ svg {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: rgba(144, 130, 110, 0.78);
+  color: rgba(185, 151, 91, 0.78);
 }
 
 @media (max-width: 640px) {
@@ -2528,11 +2528,11 @@ svg {
 }
 
 footer .border-black\/15 {
-  border-color: rgba(144, 130, 110, 0.34) !important;
+  border-color: rgba(185, 151, 91, 0.34) !important;
 }
 
 footer .bg-black\/20 {
-  background-color: rgba(144, 130, 110, 0.4) !important;
+  background-color: rgba(185, 151, 91, 0.4) !important;
 }
 
 @keyframes news-pulse {
@@ -3266,14 +3266,14 @@ textarea:focus-visible {
       145deg,
       rgba(20, 34, 24, 0.7) 0%,
       rgba(0, 0, 0, 0.5) 46%,
-      rgba(144, 130, 110, 0.42) 100%
+      rgba(185, 151, 91, 0.42) 100%
     );
 }
 
 .notfound-card {
   width: min(760px, 100%);
   border-radius: 18px;
-  border: 1px solid rgba(144, 130, 110, 0.34);
+  border: 1px solid rgba(185, 151, 91, 0.34);
   background:
     radial-gradient(
       140% 180% at 20% 0%,

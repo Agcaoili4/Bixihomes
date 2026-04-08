@@ -100,7 +100,7 @@ export default function Services() {
               <h2 className="services-heading-title font-heading font-extrabold text-[30px] md:text-[42px] lg:text-[54px] leading-[1.08]">
                 Practical work.
                 <br />
-                <span className = "text-[#90826E]">Professional finish.</span>
+                <span className = "text-[#B9975B]">Professional finish.</span>
               </h2>
             </div>
 

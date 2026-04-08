@@ -42,7 +42,7 @@ export default function Footer() {
 
           <div className="footer-contact-items flex flex-col sm:flex-row items-center ui-gap-5 sm:ui-gap-6 md:ui-gap-10 md:ml-auto">
             <div className="flex items-center ui-gap-2-5">
-              <MailIcon className="w-10 h-10 md:w-12 md:h-12 text-[#90826E]" />
+              <MailIcon className="w-10 h-10 md:w-12 md:h-12 text-[#B9975B]" />
               <div>
                 <p className="font-heading font-bold text-xs md:text-sm text-black leading-tight">
                   Mail Us
@@ -54,7 +54,7 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center ui-gap-2-5">
-              <PhoneIcon className="w-10 h-10 md:w-12 md:h-12 text-[#90826E]" />
+              <PhoneIcon className="w-10 h-10 md:w-12 md:h-12 text-[#B9975B]" />
               <div>
                 <p className="font-heading font-bold text-xs md:text-sm text-black leading-tight">
                   Call Us
@@ -66,7 +66,7 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center ui-gap-2-5">
-              <LocationIcon className="w-10 h-10 md:w-12 md:h-12 text-[#90826E]" />
+              <LocationIcon className="w-10 h-10 md:w-12 md:h-12 text-[#B9975B]" />
               <div>
                 <p className="font-heading font-bold text-xs md:text-sm text-black leading-tight">
                   Location
@@ -94,7 +94,7 @@ export default function Footer() {
                   aria-label={icon.label}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 text-[#90826E] hover:text-[#256464] hover:scale-110 transition-all"
+                  className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 text-[#B9975B] hover:text-[#256464] hover:scale-110 transition-all"
                 >
                   <icon.Icon className="w-6 h-6 md:w-6 md:h-6" />
                 </a>
