@@ -17,7 +17,7 @@ export const TRADES = [
   "Sloped Roofing",
   "Flat Roofing",
   "Siding",
-  "Gutters",
+  "Fascia & Gutters",
   "Full Build",
 ];
 

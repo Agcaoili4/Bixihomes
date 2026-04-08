@@ -3,6 +3,8 @@
 **Date:** 2026-03-30
 **Status:** Implemented & Security Audited (2026-03-31)
 
+> Historical note: this document reflects the original backend design plan. The live implementation has since migrated from Nodemailer/SMTP to Resend, and the accepted contact service list now matches the current frontend quote flow. See [backend/BACKEND.md](/Users/test/Documents/GitHub/Bixihomes/backend/BACKEND.md) for the current architecture.
+
 ## Overview
 
 Production-ready Node.js/Express backend for the Bixihomes website. Two features: a contact form endpoint that emails submissions to the business owner, and JWT-based authentication for future admin functionality.

@@ -1,13 +1,38 @@
 import { describe, it, expect } from 'vitest';
 import { contactSchema } from '../../src/validators/contact.validator.js';
 
+const currentServiceOptions = [
+  'Roofing',
+  'Siding',
+  'Fascia & Gutters',
+  'Window Replacement',
+  'Fencing & Decking',
+  'Repair & Renovation',
+  'New Build',
+  'Basement Development',
+  'Bathroom Remodeling',
+  'Garage Building',
+  'Interior Finishing',
+];
+
+const legacyServiceOptions = [
+  'Fascia',
+  'Gutters',
+  'Home Renovation',
+  'Flat Roofing',
+  'Sloped Roofing',
+  'Fencing',
+  'Decking',
+  'Outdoor Builds',
+];
+
 describe('contactSchema', () => {
   const validInput = {
     firstName: 'John',
     lastName: 'Smith',
     email: 'john@example.com',
     phone: '(403) 991-2631',
-    service: 'Home Renovation',
+    service: 'Repair & Renovation',
     message: 'I need a quote for my kitchen.',
   };
 
@@ -57,21 +82,15 @@ describe('contactSchema', () => {
     expect(result.success).toBe(false);
   });
 
-  it('accepts all valid service options', () => {
-    const services = [
-      'Flat Roofing',
-      'Sloped Roofing',
-      'Siding',
-      'Fascia',
-      'Gutters',
-      'Window Replacement',
-      'Fencing',
-      'Decking',
-      'Home Renovation',
-      'New Build',
-      'Basement Development',
-    ];
-    for (const service of services) {
+  it('accepts all current service options used by the frontend', () => {
+    for (const service of currentServiceOptions) {
+      const result = contactSchema.safeParse({ ...validInput, service });
+      expect(result.success).toBe(true);
+    }
+  });
+
+  it('accepts legacy service options for backwards compatibility', () => {
+    for (const service of legacyServiceOptions) {
       const result = contactSchema.safeParse({ ...validInput, service });
       expect(result.success).toBe(true);
     }

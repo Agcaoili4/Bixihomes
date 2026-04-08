@@ -55,19 +55,37 @@ Client gets: { success: true, message: "Your message has been sent..." }
 
 On email failure, the client gets a safe 503 error. Provider/internal details are logged server-side only.
 
+The frontend now supports service-aware quote links. When a visitor clicks a quote action from the Services section, the frontend can prefill the Contact form with:
+
+- a `service` value
+- a suggested `message`
+
+The backend still treats this as the same `POST /api/contact` flow. It validates the submitted `service` option and sanitizes the message before sending the email through Resend.
+
 Current accepted `service` values are:
 
-- `Flat Roofing`
-- `Sloped Roofing`
+- `Roofing`
 - `Siding`
-- `Fascia`
-- `Gutters`
+- `Fascia & Gutters`
 - `Window Replacement`
-- `Fencing`
-- `Decking`
-- `Home Renovation`
+- `Fencing & Decking`
+- `Repair & Renovation`
 - `New Build`
 - `Basement Development`
+- `Bathroom Remodeling`
+- `Garage Building`
+- `Interior Finishing`
+
+Legacy accepted `service` values are still supported for compatibility:
+
+- `Fascia`
+- `Gutters`
+- `Home Renovation`
+- `Flat Roofing`
+- `Sloped Roofing`
+- `Fencing`
+- `Decking`
+- `Outdoor Builds`
 
 ### Authentication Flow
 
@@ -136,7 +154,7 @@ backend/
 │   │   └── email.service.js  # Resend email sending with HTML escaping
 │   ├── validators/
 │   │   ├── auth.validator.js
-│   │   └── contact.validator.js
+│   │   └── contact.validator.js # Contact schema + current/legacy accepted service list
 │   └── utils/
 │       └── logger.js         # Structured logger (info, warn, error, debug)
 └── __tests__/                # 27 unit tests across 4 files
@@ -181,6 +199,14 @@ All configuration comes from `.env`. See `.env.example` for the full list. Never
 | `RESEND_API_KEY` | Resend API key (must start with `re_`) | `re_xxxxx` |
 | `RESEND_FROM_EMAIL` | Verified sender address in Resend | `onboarding@resend.dev` |
 | `CONTACT_EMAIL_TO` | Where contact emails are delivered | `info@bixihomes.com` |
+
+## Frontend Integration Notes
+
+- The frontend is deployed on Vercel and the backend is deployed on Render.
+- Frontend quote actions can send visitors to `/#contact` with query params for `service` and `message`.
+- The Contact form reads those values client-side, prefills the form, and submits the final payload to `POST /api/contact`.
+- The frontend Services section now uses a more compact responsive intro, but this did not change the backend API contract.
+- No backend route change was needed for this. The existing contact endpoint remains the single entry point for estimate requests.
 
 ## Running the Server
 

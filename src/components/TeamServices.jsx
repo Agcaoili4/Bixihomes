@@ -6,11 +6,11 @@ const teamServices = [
     photo: images.interiorPhoto,
     description:
       "For two decades, our core focus has been exterior home restoration delivered with durable materials and clean finishing standards.",
-    tags: ["Roofing & Siding", "Fascia & Gutters", "Fence & Decking"],
+    tags: ["Roofing & Siding", "Fascia & Gutters", "Fencing & Decking"],
     highlights: [
       "Roofing and siding restoration for residential and commercial properties",
       "Fascia and gutter work for proper drainage and long-term protection",
-      "Fence and decking upgrades for safety, function, and curb appeal",
+      "Fencing and decking upgrades for safety, function, and curb appeal",
     ],
   },
   {
@@ -30,9 +30,9 @@ const teamServices = [
     photo: images.carpenterPhoto,
     description:
       "We now bring the same disciplined execution to interior projects including home builds, renovations, and basement development.",
-    tags: ["Home Builds", "Renovation", "Basement Development"],
+    tags: ["Home Builds", "Repair & Renovation", "Basement Development"],
     highlights: [
-      "Complete interior renovation planning and execution",
+      "Complete interior repair and renovation planning and execution",
       "Basement development aligned to family use and property value",
       "Clear communication with accountable schedule milestones",
     ],

@@ -10,19 +10,19 @@ const tabs = [
 const tabContent = {
   commercial: {
     title: "Two Decades of Exterior Restoration",
-    copy: "Dependable exterior workmanship built for Alberta weather — roofing, siding, fascia, gutters, fencing, and decking that protect your property long-term.",
+    copy: "Dependable exterior workmanship built for Alberta weather — roofing, siding, fascia & gutters, and fencing & decking that protect your property long-term.",
     points: [
       "Roofing and siding restoration for lasting protection",
-      "Fascia and gutter systems for reliable drainage",
-      "Fencing and decking that strengthen curb appeal",
+      "Fascia & gutter systems for reliable drainage",
+      "Fencing & decking that strengthen curb appeal",
     ],
     metric: "20+ Years Exterior Focus",
   },
   residential: {
     title: "Interior Renovation With a Proven Team",
-    copy: "Quality-first interior renovation — from full home builds and basement development to structured living spaces delivered with clear communication.",
+    copy: "Quality-first repair and renovation work — from full home builds and basement development to structured living spaces delivered with clear communication.",
     points: [
-      "Home builds and structured renovation planning",
+      "Home builds and structured repair & renovation planning",
       "Basement development designed for comfort and value",
       "Consistent quality control and clean turnover",
     ],

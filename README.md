@@ -38,6 +38,13 @@ The current design direction focuses on:
 - The About Bixi section now switches content more cleanly between `Exterior` and `Interior`.
 - The About Bixi content card now stays visible when tabs are clicked, instead of disappearing.
 - The Services section was refreshed with a clearer header and stronger layout structure.
+- The Services section now uses a compact toggle-driven layout for `Exterior` and `Interior` scopes.
+- The Services intro was further refined so the header, paragraph, and toggle align more cleanly across desktop and mobile.
+- The service naming was consolidated to match the client-approved combined scopes:
+  - `Fascia & Gutters`
+  - `Fencing & Decking`
+  - `Repair & Renovation`
+- Service cards now expand in place and move directly into the quote flow without a separate Learn More page.
 - The Gallery header was redesigned to better match the style of the other sections.
 - The Gallery now uses curated project photos and supports expanded viewing.
 - The Contact section was refined so the form feels cleaner and more professional.
@@ -50,7 +57,7 @@ The current design direction focuses on:
 - Hero spacing was adjusted multiple times to improve the opening screen composition.
 - About Bixi metric numbers now use the gold brand accent.
 - Shared button styles and hover states were unified.
-- Global CSS was cleaned to remove duplicated and unused rules.
+- Global CSS was cleaned multiple times to remove duplicated, obsolete, and unused rules.
 - Reveal animations were refined so Hero animations do not clash with page scrolling.
 - The logo component was updated to use the current `Logo.png` asset in the live interface.
 - The Contact section keeps the video visible in the current layout.
@@ -60,6 +67,8 @@ The current design direction focuses on:
   - Services layout
   - mobile navbar and business hours row
   - general button and content spacing
+- The Services layout was further tightened so the section reads more compactly and the header elements align on a shared grid.
+- The Services heading and paragraph were loosened again for better phone readability and more comfortable desktop reading.
 - A fallback page remains available for unfinished or invalid routes.
 
 ## Contact Form and Backend
@@ -72,6 +81,11 @@ The backend is responsible for:
 - validating form data
 - handling admin authentication
 - sending email through Resend
+- accepting the current service list used by the frontend quote flow
+
+Current backend note:
+
+- The Contact form can now be prefilled from the Services section with a selected service and a suggested quote message, but the backend still uses the same single `POST /api/contact` endpoint.
 
 Backend reference:
 
@@ -89,6 +103,10 @@ npm run dev
 The frontend usually runs at:
 
 - `http://localhost:5173`
+
+Frontend deployment note:
+
+- The Vercel deployment uses [vercel.json](/Users/test/Documents/GitHub/Bixihomes/vercel.json) to rewrite frontend routes like `/gallery` to `index.html`, so React can handle page-level routing correctly.
 
 ### Build the Frontend
 

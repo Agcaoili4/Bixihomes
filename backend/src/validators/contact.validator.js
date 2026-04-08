@@ -1,18 +1,26 @@
 import { z } from 'zod';
 
-// Matches the serviceOptions array in src/components/ContactForm.jsx exactly
+// Matches the current frontend options and keeps legacy service names valid.
 const SERVICE_OPTIONS = [
-  'Flat Roofing',
-  'Sloped Roofing',
+  'Roofing',
   'Siding',
-  'Fascia',
-  'Gutters',
+  'Fascia & Gutters',
   'Window Replacement',
-  'Fencing',
-  'Decking',
-  'Home Renovation',
+  'Fencing & Decking',
+  'Repair & Renovation',
   'New Build',
   'Basement Development',
+  'Bathroom Remodeling',
+  'Garage Building',
+  'Interior Finishing',
+  'Fascia',
+  'Gutters',
+  'Home Renovation',
+  'Flat Roofing',
+  'Sloped Roofing',
+  'Fencing',
+  'Decking',
+  'Outdoor Builds',
 ];
 
 // Strip HTML tags to prevent stored XSS

@@ -1,161 +1,155 @@
-const services = [
-  {
-    title: "Flat Roofing",
-    summary:
-      "Durable flat roofing systems for residential and commercial properties with leak-resistant, weather-ready installation.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 19h18M5 19l2-9h10l2 9M8 10V6h8v4" />
-      </svg>
-    ),
-  },
-  {
-    title: "Sloped Roofing",
-    summary:
-      "Complete sloped roof installation and restoration for asphalt shingles, shake, metal, rubber, and tile systems.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 12 12 4l9 8M6 11.5V20h12v-8.5" />
-      </svg>
-    ),
-  },
-  {
-    title: "Siding",
-    summary:
-      "Professional siding installation and replacement with finishes that improve curb appeal and exterior protection.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 6h18M3 10h18M3 14h18M3 18h18" />
-      </svg>
-    ),
-  },
-  {
-    title: "Fascia",
-    summary:
-      "Fascia installation and replacement that supports roof edges and improves structural finish quality.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 7h18M5 7v10M19 7v10M5 17h14" />
-      </svg>
-    ),
-  },
-  {
-    title: "Gutters",
-    summary:
-      "Gutter systems built for proper water flow, drainage protection, and long-term exterior performance.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 7h16v4a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7z" />
-        <path d="M8 15v2M12 15v2M16 15v2" />
-      </svg>
-    ),
-  },
-  {
-    title: "Window Replacement",
-    summary:
-      "Energy-efficient window replacement with clean installation for better comfort and improved exterior look.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="4" y="4" width="16" height="16" rx="1.5" />
-        <path d="M12 4v16M4 12h16" />
-      </svg>
-    ),
-  },
-  {
-    title: "Fencing",
-    summary:
-      "Custom fencing built for privacy, safety, and curb appeal with durable materials and precise alignment.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M4 20V8M9 20V8M15 20V8M20 20V8M3 11h18M3 16h18" />
-      </svg>
-    ),
-  },
-  {
-    title: "Decking",
-    summary:
-      "Deck build and restoration services that create durable, functional outdoor living spaces for your home.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 15h18M5 15v5M9 15v5M15 15v5M19 15v5M3 12h18" />
-      </svg>
-    ),
-  },
-];
+import { useMemo, useState } from "react";
+import {
+  buildServiceQuoteHref,
+  serviceToggleOptions,
+  servicesByCategory,
+} from "../data/servicesData";
 
 export default function Services() {
+  const [activeCategory, setActiveCategory] = useState("exterior");
+  const [openServiceSlug, setOpenServiceSlug] = useState(
+    servicesByCategory.exterior[0].slug,
+  );
+
+  const activeToggle = useMemo(
+    () =>
+      serviceToggleOptions.find((option) => option.id === activeCategory) ||
+      serviceToggleOptions[0],
+    [activeCategory],
+  );
+
+  const visibleServices = servicesByCategory[activeCategory];
+
+  const handleToggle = (categoryId) => {
+    setActiveCategory(categoryId);
+    setOpenServiceSlug(servicesByCategory[categoryId][0].slug);
+  };
+
   return (
     <section id="services" className="services-section-themed ui-section">
       <div className="ui-container">
         <div className="services-intro-shell" data-reveal>
-          <div className="services-intro-topline">
-            <p className="ui-kicker-pill services-kicker">Our Services</p>
-            <p className="services-intro-label font-body">
-              Exterior restoration and renovation services
-            </p>
+          <div className="services-topbar">
+            <div className="services-intro-topline">
+              <p className="ui-kicker-pill services-kicker">Our Services</p>
+            </div>
           </div>
 
-          <div className="services-header">
+          <div className="services-header services-header-compact">
             <div className="services-header-left">
-              <h2 className="services-heading-title font-heading font-extrabold text-[30px] md:text-[42px] lg:text-[54px] leading-[1.08]">
-                Practical work.
+              <h2 className="services-heading-title font-heading font-extrabold text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04]">
+                Our services,
                 <br />
-                <span className = "text-[#B9975B]">Professional finish.</span>
+                <span className="text-[#B9975B]">clearly structured.</span>
               </h2>
             </div>
 
-            <div className="services-header-right">
-              <p className="services-heading-copy font-body text-sm md:text-base lg:text-lg leading-relaxed">
-                We provide exterior restoration and renovation services built on practical workmanship,
-                dependable timelines, and finishes that protect long-term property value.
+            <div className="services-header-right services-header-right-compact">
+              <p className="services-switch-eyebrow font-body">
+                {activeToggle.eyebrow}
               </p>
-
-              <div className="services-summary-row" aria-label="Service overview">
-                <div className="services-summary-item">
-                  <span className="services-summary-value">{services.length}</span>
-                  <span className="services-summary-label">Core service lines</span>
-                </div>
-
-                <div className="services-summary-divider" aria-hidden="true" />
-
-                <div className="services-summary-item">
-                  <span className="services-summary-value">Exterior-led</span>
-                  <span className="services-summary-label">Built for long-term protection</span>
-                </div>
-              </div>
+              <h3 className="services-switch-headline font-heading">
+                {activeToggle.headline}
+              </h3>
+              <p className="services-heading-copy font-body text-sm md:text-base leading-relaxed">
+                Switch between our exterior and interior scopes to view the
+                current service scopes in each category. Every item opens a
+                quick overview and moves straight into the quote flow when
+                needed.
+              </p>
+              <p className="services-switch-description font-body">
+                {activeToggle.copy}
+              </p>
+            </div>
+            <div
+              className="services-toggle"
+              role="tablist"
+              aria-label="Services category"
+            >
+              {serviceToggleOptions.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeCategory === option.id}
+                  className={`services-toggle-btn ${
+                    activeCategory === option.id ? "is-active" : ""
+                  }`}
+                  onClick={() => handleToggle(option.id)}
+                >
+                  {option.label}
+                </button>
+              ))}
             </div>
           </div>
         </div>
 
         <div className="services-grid-shell" data-reveal>
           <div className="services-grid-intro">
-            <p className="services-grid-kicker font-body">
-              Selected scopes
-            </p>
             <p className="services-grid-copy font-body">
-              Each service is delivered with a clear scope, durable materials, and detail-focused workmanship.
+              Open each card for a quick description, then move straight into
+              the quote flow for the service you need.
             </p>
           </div>
 
-          {/* Service Grid */}
           <div className="services-grid" data-reveal-group>
-            {services.map((service) => (
-              <div
-                key={service.title}
-                className="service-card"
-                data-reveal-item
-              >
-                <div className="service-card-accent" aria-hidden="true" />
+            {visibleServices.map((service) => {
+              const isOpen = openServiceSlug === service.slug;
 
-                <div className="service-card-icon" aria-hidden="true">
-                  {service.icon}
-                </div>
+              return (
+                <article
+                  key={service.slug}
+                  className="service-card"
+                  data-reveal-item
+                >
+                  <div className="service-card-accent" aria-hidden="true" />
 
-                <h3 className="service-card-title">{service.title}</h3>
+                  <div
+                    className="service-card-icon service-card-icon-lg"
+                    aria-hidden="true"
+                  >
+                    {service.icon}
+                  </div>
 
-                <p className="service-card-copy">{service.summary}</p>
-              </div>
-            ))}
+                  <h3 className="service-card-title">{service.title}</h3>
+
+                  <button
+                    type="button"
+                    className={`service-card-toggle ${isOpen ? "is-open" : ""}`}
+                    aria-expanded={isOpen}
+                    onClick={() =>
+                      setOpenServiceSlug((current) =>
+                        current === service.slug ? "" : service.slug,
+                      )
+                    }
+                  >
+                    <span>{isOpen ? "Hide details" : "View details"}</span>
+                    <span
+                      className="service-card-toggle-icon"
+                      aria-hidden="true"
+                    >
+                      {isOpen ? "−" : "+"}
+                    </span>
+                  </button>
+
+                  <div
+                    className={`service-card-dropdown ${isOpen ? "is-open" : ""}`}
+                  >
+                    <p className="service-card-copy">{service.brief}</p>
+                    <p className="service-card-detail">{service.summary}</p>
+
+                    <div className="service-card-actions">
+                      <a
+                        href={buildServiceQuoteHref(service)}
+                        className="ui-btn ui-btn-primary service-card-quote-btn"
+                      >
+                        Get a quote
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>

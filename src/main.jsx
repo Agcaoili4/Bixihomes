@@ -5,7 +5,7 @@ import GalleryPage from './components/GalleryPage.jsx';
 import NotFoundPage from './components/NotFoundPage.jsx';
 import './index.css';
 
-const path = window.location.pathname;
+const path = window.location.pathname.replace(/\/+$/, '') || '/';
 
 function Route() {
   if (path === '/' || path === '/index.html') return <App />;
