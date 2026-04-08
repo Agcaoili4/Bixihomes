@@ -1,5 +1,7 @@
 # Bixihomes Backend API — Implementation Plan
 
+> Historical note: this plan captures the original backend implementation path. The live backend now uses Resend instead of Nodemailer/SMTP, and the current frontend quote flow/service list is documented in [backend/BACKEND.md](/Users/test/Documents/GitHub/Bixihomes/backend/BACKEND.md).
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build a production-ready Express 5 backend with a secure contact form endpoint and JWT-based admin authentication.
