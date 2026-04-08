@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { images } from "../assets/images";
 import BixiLogoMark from "./ui/BixiLogoMark";
 import { TextEffect } from "./ui/text-effect";
 
@@ -93,6 +94,11 @@ export default function Hero() {
       data-reveal
       data-reveal-once
     >
+      <div className="hero-bg" aria-hidden="true">
+        <img src={images.heroBg} alt="" className="hero-bg-image" />
+      </div>
+      <div className="hero-bg-overlay" aria-hidden="true" />
+
       <div className="ui-container hero-intro">
         {/* Large centered logo — bold entrance */}
         <div className="hero-logo-center">

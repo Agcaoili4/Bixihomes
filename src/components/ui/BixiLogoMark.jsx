@@ -1,4 +1,4 @@
-import bixiLogoRaw from "../../assets/downloaded_assets/Logo.svg?raw";
+import bixiLogoPng from "../../assets/downloaded_assets/Logo.png";
 
 export default function BixiLogoMark({ className = "", animated = true }) {
   return (
@@ -6,7 +6,8 @@ export default function BixiLogoMark({ className = "", animated = true }) {
       role="img"
       aria-label="Bixi Homes"
       className={`bixi-logo-mark ${animated ? "is-animated" : "is-static"} ${className}`.trim()}
-      dangerouslySetInnerHTML={{ __html: bixiLogoRaw }}
-    />
+    >
+      <img src={bixiLogoPng} alt="" className="bixi-logo-image" />
+    </span>
   );
 }

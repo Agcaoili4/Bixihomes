@@ -69,7 +69,7 @@ export default function Navbar() {
   }, [now]);
 
     return (
-    <nav className="bg-white w-full sticky top-0 z-50 border-b border-black/8">
+    <nav className="site-navbar bg-white w-full sticky top-0 z-50 border-b border-black/8">
       <div className="navbar-desktop-shell ui-navbar-main navbar-main-centered">
         <div
           className="hidden lg:block navbar-side-spacer"

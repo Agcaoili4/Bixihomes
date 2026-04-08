@@ -146,9 +146,9 @@ function App() {
     <div className="w-full overflow-x-clip">
       <Hero />
       <Navbar />
-      <AboutBixi />
       <Services />
       <Gallery />
+      <AboutBixi />
       <ContactForm />
       <Footer />
     </div>

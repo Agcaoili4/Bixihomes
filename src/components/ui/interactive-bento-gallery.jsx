@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const MediaItem = ({ item, className, onClick }) => {
   const videoRef = useRef(null);
@@ -219,12 +219,94 @@ const InteractiveBentoGallery = ({
   mediaItems,
   title,
   description,
-  featuredCount = 6,
 }) => {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const autoplayRef = useRef(null);
+  const wrapRef = useRef(null);
+  const touchStartX = useRef(null);
   const items = mediaItems;
-  const visibleItems = items.slice(0, Math.max(1, featuredCount));
 
+  const goTo = useCallback(
+    (index) => {
+      const clamped = ((index % items.length) + items.length) % items.length;
+      setActiveIndex(clamped);
+    },
+    [items.length]
+  );
+
+  const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
+  const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
+
+  // Auto-advance every 5s, pause on hover/touch
+  useEffect(() => {
+    const start = () => {
+      autoplayRef.current = setInterval(() => {
+        setActiveIndex((prev) => (prev + 1) % items.length);
+      }, 5000);
+    };
+    start();
+
+    const wrap = wrapRef.current;
+    const pause = () => clearInterval(autoplayRef.current);
+    const resume = () => { pause(); start(); };
+
+    if (wrap) {
+      wrap.addEventListener("mouseenter", pause);
+      wrap.addEventListener("mouseleave", resume);
+      wrap.addEventListener("touchstart", pause, { passive: true });
+      wrap.addEventListener("touchend", resume);
+    }
+
+    return () => {
+      pause();
+      if (wrap) {
+        wrap.removeEventListener("mouseenter", pause);
+        wrap.removeEventListener("mouseleave", resume);
+        wrap.removeEventListener("touchstart", pause);
+        wrap.removeEventListener("touchend", resume);
+      }
+    };
+  }, [items.length]);
+
+  // Touch swipe
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+
+    const onTouchStart = (e) => {
+      touchStartX.current = e.touches[0].clientX;
+    };
+    const onTouchEnd = (e) => {
+      if (touchStartX.current === null) return;
+      const diff = touchStartX.current - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) goNext();
+        else goPrev();
+      }
+      touchStartX.current = null;
+    };
+
+    wrap.addEventListener("touchstart", onTouchStart, { passive: true });
+    wrap.addEventListener("touchend", onTouchEnd);
+    return () => {
+      wrap.removeEventListener("touchstart", onTouchStart);
+      wrap.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [goNext, goPrev]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (selectedItem) return;
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [goNext, goPrev, selectedItem]);
+
+  // Lock scroll when modal open
   useEffect(() => {
     if (!selectedItem) return undefined;
 
@@ -249,13 +331,46 @@ const InteractiveBentoGallery = ({
     };
   }, [selectedItem]);
 
+  // Compute card style based on distance from active
+  const getCardStyle = (index) => {
+    const distance = index - activeIndex;
+    const absDistance = Math.abs(distance);
+
+    if (absDistance === 0) {
+      return { zIndex: 10, opacity: 1, transform: "translateX(0) scale(1)", pointerEvents: "auto" };
+    }
+
+    // Neighbors tuck behind the active card with overlap
+    const direction = distance > 0 ? 1 : -1;
+    const shiftPx = direction * absDistance * 58;
+    const scale = Math.max(0.72, 1 - absDistance * 0.1);
+    const opacity = Math.max(0, 0.55 - (absDistance - 1) * 0.2);
+    const z = 10 - absDistance;
+
+    return {
+      zIndex: z,
+      opacity,
+      transform: `translateX(${shiftPx}px) scale(${scale})`,
+      pointerEvents: absDistance <= 2 ? "auto" : "none",
+    };
+  };
+
+  // Only render cards within range of active
+  const visibleRange = 3;
+
   return (
     <div className="ui-gallery-shell">
-      <div className="mb-8 gallery-heading" data-reveal>
-        <p className="ui-kicker-pill gallery-kicker">Portfolio</p>
+      <div className="gallery-header" data-reveal>
+        <div className="gallery-intro-topline">
+          <p className="ui-kicker-pill gallery-kicker">Portfolio</p>
+          <p className="gallery-intro-label font-body">
+            Selected residential restoration and renovation work
+          </p>
+        </div>
+
         <div className="gallery-intro-layout">
           <motion.h2
-            className="font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight text-left"
+            className="gallery-heading-title font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
@@ -263,7 +378,7 @@ const InteractiveBentoGallery = ({
             {title}
           </motion.h2>
           <motion.p
-            className="font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-left"
+            className="gallery-heading-copy font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}
@@ -273,49 +388,75 @@ const InteractiveBentoGallery = ({
         </div>
       </div>
 
-      <motion.div
-        className="gallery-grid grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        data-reveal-group
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
-        }}
-      >
-        {visibleItems.map((item) => (
-          <motion.div
+      {/* Carousel wrapper */}
+      <div className="gallery-carousel-wrap" ref={wrapRef}>
+        {/* Prev arrow */}
+        <button
+          className="gallery-arrow gallery-arrow-prev"
+          onClick={goPrev}
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        {/* Stacked track */}
+        <div className="gallery-carousel-stage">
+          {items.map((item, index) => {
+            const distance = Math.abs(index - activeIndex);
+            if (distance > visibleRange) return null;
+
+            const style = getCardStyle(index);
+
+            return (
+              <div
+                key={item.id}
+                className={`gallery-carousel-card ${index === activeIndex ? "is-active" : ""}`}
+                style={style}
+                onClick={() =>
+                  index === activeIndex
+                    ? setSelectedItem(item)
+                    : goTo(index)
+                }
+              >
+                <MediaItem item={item} className="h-full w-full gallery-card-image" />
+                <div className="gallery-carousel-card-overlay" />
+                <div className="absolute top-3 left-3">
+                  <span className="gallery-card-chip">Featured Project</span>
+                </div>
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <h3 className="text-xs font-bold sm:text-sm leading-snug font-heading text-white/75">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-[10px] text-white/75 sm:text-xs leading-relaxed font-body">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Next arrow */}
+        <button
+          className="gallery-arrow gallery-arrow-next"
+          onClick={goNext}
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Dot indicators */}
+      <div className="gallery-dots">
+        {items.map((item, index) => (
+          <button
             key={item.id}
-            data-reveal-item
-            className="gallery-card group relative overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_10px_24px_rgba(0,0,0,0.08)] aspect-[4/3]"
-            onClick={() => setSelectedItem(item)}
-            variants={{
-              hidden: { opacity: 0, y: 40, scale: 0.95 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                transition: { type: "spring", stiffness: 300, damping: 24 },
-              },
-            }}
-            whileHover={{ scale: 1.02 }}
-          >
-            <MediaItem item={item} className="h-full w-full gallery-card-image" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="absolute top-3 left-3">
-              <span className="gallery-card-chip">Featured Project</span>
-            </div>
-            <div className="absolute bottom-3 left-3 right-3 text-white">
-              <h3 className="text-xs font-bold sm:text-sm leading-snug font-heading text-white/75">
-                {item.title}
-              </h3>
-              <p className="mt-1 text-[10px] text-white/75 sm:text-xs leading-relaxed font-body">
-                {item.desc}
-              </p>
-            </div>
-          </motion.div>
+            className={`gallery-dot ${index === activeIndex ? "is-active" : ""}`}
+            onClick={() => goTo(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
         ))}
-      </motion.div>
+      </div>
 
       <AnimatePresence mode="wait">
         {selectedItem && (

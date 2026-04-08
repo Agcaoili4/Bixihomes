@@ -1,18 +1,10 @@
 # Bixi Homes Website
 
-This is the current website for **Bixi Homes**.
+This is the current website build for **Bixi Homes**.
 
-It was built to present the company in a cleaner, more professional way while keeping the experience simple for visitors:
+The site is designed to feel clean, professional, and easy to navigate while keeping the company brand front and center.
 
-- clear navigation
-- stronger branding
-- better service presentation
-- cleaner gallery browsing
-- working contact form flow
-
-This guide is written to be easier for non-technical readers while still giving the team enough information to manage the site.
-
-## Website Sections
+## Website Flow
 
 The website currently follows this order:
 
@@ -22,62 +14,64 @@ The website currently follows this order:
 4. `Gallery`
 5. `Contact`
 
-## What Changed
+## Current Website Direction
 
-### Major Changes
-
-- The homepage was reorganized into a more minimal and professional layout.
-- The Hero section now focuses more on the Bixi brand, with the logo as the main visual feature.
-- The Hero message now uses a looping text animation that alternates between:
-  - `Exterior Restoration & Renovation`
-  - `Connect With Us Today`
-- The About Bixi section was redesigned to feel more polished and easier to read.
-- The About Bixi content is now split more clearly into:
-  - `Exterior`
-  - `Interior`
-- The About Bixi card now stays visible when visitors switch tabs, so only the content changes instead of the whole panel disappearing.
-- The Services section was refreshed with a stronger header and a cleaner overall structure.
-- The Gallery uses curated project photos and opens more items in a modal view when selected.
-- The Contact form layout was improved so it feels cleaner and more professional.
-- The Navbar was refined so it feels more centered, readable, and business-focused.
-- The buttons across the website were updated so their colors and hover states match the current Hero palette.
-- Mobile and tablet layouts were reviewed and adjusted so spacing, section flow, and readability stay consistent across smaller screens.
-
-### Minor Changes
-
-- Hero spacing was adjusted so more important content is visible when a visitor first lands on the page.
-- About Bixi metric numbers now use the brown brand color.
-- Shared button styles were unified across the site, including brand-matched hover behavior.
-- The stylesheet was cleaned up again to remove old, duplicated, and unused styling rules.
-- Scroll reveal behavior was refined so Hero animations do not clash with scrolling.
-- A fallback page is still available for unfinished or invalid routes.
-- Typography and spacing were tuned further for desktop, tablet, and mobile readability.
-- Responsive refinements were added for phone and tablet breakpoints, especially around:
-  - the Hero spacing
-  - About Bixi layout
-  - Services section structure
-  - buttons and general content spacing
-
-## Current Design Direction
-
-The site currently leans toward:
+The current design direction focuses on:
 
 - white backgrounds
 - black text for readability
-- brown accents for brand warmth
+- gold accents for warmth and brand presence
 - simpler layouts
-- less visual clutter
+- reduced visual clutter
+- better spacing across desktop, tablet, and phone
+
+## Major Updates
+
+- The homepage was reorganized into a cleaner and more minimal structure.
+- The Hero section now puts the **Bixi Homes** logo at the center of the first impression.
+- The Hero background image was restored behind the logo for a stronger opening look.
+- The Hero message now loops between:
+  - `Exterior Restoration & Renovation`
+  - `Connect With Us Today`
+- The Hero spacing and logo placement were retuned so the opening section feels more intentional across screen sizes.
+- The About Bixi section was redesigned to be easier to read and more visually polished.
+- The About Bixi section now switches content more cleanly between `Exterior` and `Interior`.
+- The About Bixi content card now stays visible when tabs are clicked, instead of disappearing.
+- The Services section was refreshed with a clearer header and stronger layout structure.
+- The Gallery header was redesigned to better match the style of the other sections.
+- The Gallery now uses curated project photos and supports expanded viewing.
+- The Contact section was refined so the form feels cleaner and more professional.
+- The Navbar was refined to feel more balanced, more readable, and stay sticky during scrolling.
+- The mobile navigation now uses a visible mobile link row and hours bar instead of a hamburger menu.
+- Buttons across the website were updated so the main actions feel more consistent with the Hero palette.
+
+## Minor Updates
+
+- Hero spacing was adjusted multiple times to improve the opening screen composition.
+- About Bixi metric numbers now use the gold brand accent.
+- Shared button styles and hover states were unified.
+- Global CSS was cleaned to remove duplicated and unused rules.
+- Reveal animations were refined so Hero animations do not clash with page scrolling.
+- The logo component was updated to use the current `Logo.png` asset in the live interface.
+- The Contact section keeps the video visible in the current layout.
+- Tablet and mobile spacing were refined for:
+  - Hero layout
+  - About Bixi layout
+  - Services layout
+  - mobile navbar and business hours row
+  - general button and content spacing
+- A fallback page remains available for unfinished or invalid routes.
 
 ## Contact Form and Backend
 
-The website includes a working contact form that is designed to connect to the backend service.
+The website includes a working contact form connected to the backend.
 
-Current backend responsibilities:
+The backend is responsible for:
 
-- receive contact form submissions
-- validate form data
-- handle admin authentication
-- send emails through Resend
+- receiving contact form submissions
+- validating form data
+- handling admin authentication
+- sending email through Resend
 
 Backend reference:
 
@@ -92,7 +86,7 @@ npm install
 npm run dev
 ```
 
-This usually opens locally at:
+The frontend usually runs at:
 
 - `http://localhost:5173`
 
@@ -102,7 +96,7 @@ This usually opens locally at:
 npm run build
 ```
 
-### Preview the Built Version
+### Preview the Frontend Build
 
 ```bash
 npm run preview
@@ -116,7 +110,7 @@ npm install
 npm run dev
 ```
 
-This usually runs at:
+The backend usually runs at:
 
 - `http://localhost:5050`
 
@@ -124,22 +118,22 @@ If needed, the frontend can point to a different backend using:
 
 - `VITE_API_BASE_URL`
 
-## Where To Edit Website Content
+## Main Files To Edit
 
-If you want to update content quickly, these are the main files:
+If you want to update the website content quickly, these are the main files:
 
-- Hero section:
+- Hero:
   - [Hero.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Hero.jsx)
 - Navbar and business hours:
   - [Navbar.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Navbar.jsx)
-- About Bixi section:
+- About Bixi:
   - [AboutBixi.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/AboutBixi.jsx)
-- Services section:
+- Services:
   - [Services.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Services.jsx)
 - Gallery:
   - [Gallery.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Gallery.jsx)
   - [interactive-bento-gallery.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/ui/interactive-bento-gallery.jsx)
-- Contact form:
+- Contact:
   - [ContactForm.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/ContactForm.jsx)
 - Footer:
   - [Footer.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Footer.jsx)
@@ -169,9 +163,9 @@ If you want to update content quickly, these are the main files:
 - If the frontend does not start:
   - run `npm install`
   - then run `npm run dev`
-- If the site builds with an error:
+- If the site build fails:
   - run `npm run build`
-  - check the first error shown in terminal
+  - check the first error shown in the terminal
 - If the contact form does not work:
   - make sure the backend is running
   - make sure the frontend is pointing to the correct backend URL
