@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { images } from "../assets/images";
 import { BuildingIcon, HomeIcon } from "./ui/InlineIcons";
+import AboutBixiTeam from "./ui/AboutBixiTeam";
 
 const tabs = [
   { id: "commercial", label: "Exterior", Icon: BuildingIcon },
@@ -154,20 +155,23 @@ export default function AboutBixi() {
 
           <div className="about-bixi-heading-layout">
             <div className="about-bixi-heading-main">
-              <h1 className="hero-anim-h1 font-heading font-extrabold text-[30px] md:text-[44px] lg:text-[56px] leading-[1.08] text-black ui-mb-sm">
+              <h1 className="hero-anim-h1 font-heading font-extrabold text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04] text-black">
                 Crafted to Last,{" "}
                 <span className="text-[#B9975B]">Trusted to Deliver</span>
               </h1>
             </div>
 
             <div className="about-bixi-heading-side">
+              <p className="about-bixi-heading-eyebrow font-body">
+                Built for trust, clarity, and long-term value
+              </p>
               <p className="hero-anim-sub about-bixi-intro-copy font-body text-sm md:text-base lg:text-lg text-black/60 leading-relaxed">
                 We help homeowners reimagine spaces with practical, quality work
                 built to last — delivered with clear communication and respect
                 for every home we touch.
               </p>
 
-              <div className="hero-anim-metrics about-bixi-metrics-strip w-full ui-pt-lg border-t border-black/10">
+              <div className="hero-anim-metrics about-bixi-metrics-strip w-full pt-4 md:pt-5 border-t border-black/10">
                 <div className="about-bixi-metrics-grid">
                   {metrics.map((m, i) => (
                     <div
@@ -269,6 +273,18 @@ export default function AboutBixi() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="about-bixi-team-shell" data-reveal>
+          <div className="about-bixi-team-divider" aria-hidden="true">
+            <span className="about-bixi-team-divider-line" />
+            <span className="about-bixi-team-divider-label font-body">
+              The Bixi Team
+            </span>
+            <span className="about-bixi-team-divider-line" />
+          </div>
+
+          <AboutBixiTeam className="about-bixi-team-section" />
         </div>
       </div>
     </section>

@@ -132,18 +132,18 @@ export default function ContactForm() {
           {/* Right — heading + cards (top) and compact form (bottom) */}
           <div className="w-full lg:flex-1 min-w-0 flex flex-col">
             {/* Heading + direct contact cards */}
-            <div data-reveal>
+            <div className="contact-intro" data-reveal>
               <div className="contact-intro-topline">
                 <p className="ui-kicker-pill contact-kicker">Get In Touch</p>
                 <p className="contact-intro-label font-body">
                   Estimates, questions, and project planning
                 </p>
               </div>
-              <h2 className="font-heading font-extrabold text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04] text-black ui-mb-sm">
+              <h2 className="contact-heading font-heading font-extrabold max-w-[100ch] text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04] text-black ui-mb-sm">
                 Let&apos;s Talk About{" "}
                 <span className="text-[#B9975B]">Your Project</span>
               </h2>
-              <p className="font-body text-sm md:text-base text-black/60 leading-relaxed ui-mb-lg max-w-[520px]">
+              <p className="contact-copy font-body text-sm md:text-base text-black/60 leading-relaxed ui-mb-lg max-w-[520px]">
                 Whether it&apos;s a quick question or a full renovation plan, our
                 team is ready to help. Fill out the form or reach us directly.
               </p>

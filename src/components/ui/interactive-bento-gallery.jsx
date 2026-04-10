@@ -217,7 +217,6 @@ const GalleryModal = ({
 
 const InteractiveBentoGallery = ({
   mediaItems,
-  title,
   description,
 }) => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -370,15 +369,16 @@ const InteractiveBentoGallery = ({
 
         <div className="gallery-intro-layout">
           <motion.h2
-            className="gallery-heading-title font-heading font-extrabold text-[28px] md:text-[38px] lg:text-[44px] text-black leading-tight text-left"
+            className="gallery-heading-title font-heading font-extrabold text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04] text-black text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {title}
+            Take a Look at{" "}
+            <span className="text-[#B9975B]">Our Work</span>
           </motion.h2>
           <motion.p
-            className="gallery-heading-copy font-body text-sm md:text-base lg:text-lg text-black/70 leading-relaxed text-left"
+            className="gallery-heading-copy font-body text-sm md:text-base lg:text-lg text-black/60 leading-relaxed text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.1 }}

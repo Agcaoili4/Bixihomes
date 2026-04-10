@@ -529,16 +529,16 @@ svg {
   align-items: center;
   justify-content: center;
   min-height: 30px;
-  padding-inline: 0.8rem;
-  margin-bottom: var(--space-3);
+  padding-inline: 0.85rem;
+  margin-bottom: 0;
   border-radius: 999px;
   font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   border: 1px solid rgba(185, 151, 91, 0.34);
-  background: rgba(182, 184, 185, 0.16);
+  background: rgba(185, 151, 91, 0.08);
   color: #b9975b;
 }
 
@@ -548,9 +548,9 @@ svg {
 
 .about-bixi-intro-shell {
   display: grid;
-  gap: var(--space-6);
-  margin-bottom: var(--space-12);
-  padding-bottom: var(--space-8);
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-6);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
@@ -558,10 +558,21 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
-.about-bixi-intro-label {
+.about-bixi-kicker,
+.about-bixi-team-topline > .ui-kicker-pill {
+  width: fit-content;
+  max-width: 100%;
+  justify-self: start;
+  align-self: flex-start;
+}
+
+.about-bixi-intro-label,
+.gallery-intro-label,
+.contact-intro-label,
+.about-bixi-team-intro-label {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -572,53 +583,88 @@ svg {
 .about-bixi-heading-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 @media (min-width: 768px) {
   .about-bixi-intro-topline {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     align-items: center;
-    justify-content: space-between;
+    gap: var(--space-9);
+  }
+
+  .about-bixi-intro-label {
+    margin-left: 0;
+    width: min(100%, 100%);
+    justify-self: start;
+    text-align: left;
+  }
+
+  .contact-intro-label {
+    margin-left: auto;
+    width: min(100%, 32rem);
+    text-align: left;
   }
 
   .about-bixi-heading-layout {
     grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     align-items: start;
-    gap: var(--space-10);
+    gap: var(--space-9);
   }
 }
 
 .about-bixi-heading-main h1 {
-  max-width: 11ch;
+  max-width: 12ch;
   margin-bottom: 0;
 }
 
 .about-bixi-heading-side {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.about-bixi-heading-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b9975b;
 }
 
 .about-bixi-intro-copy {
-  max-width: 46ch;
+  max-width: 48ch;
+  line-height: 1.72;
 }
 
-.about-bixi-kicker {
-  border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(185, 151, 91, 0.08);
-  color: rgba(0, 0, 0, 0.72);
-}
+/* about-bixi-kicker inherits from .ui-kicker-pill (canonical) */
 
 .about-bixi-panel {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  padding: clamp(1rem, 2.5vw, 1.75rem);
-  border-radius: 16px;
+  gap: var(--space-6);
+  padding: clamp(1.4rem, 2.8vw, 2.25rem);
+  border-radius: 24px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  background: #fafafa;
+  background: #ffffff;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.045);
+}
+
+.about-bixi-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1.4rem;
+  right: 1.4rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(185, 151, 91, 0) 0%,
+    rgba(185, 151, 91, 0.55) 50%,
+    rgba(185, 151, 91, 0) 100%
+  );
 }
 
 .about-bixi-panel-head {
@@ -626,22 +672,22 @@ svg {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: var(--space-4);
+  gap: var(--space-5);
 }
 
 @media (min-width: 900px) {
   .about-bixi-panel-head {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: var(--space-6);
+    gap: var(--space-8);
   }
 }
 
 .about-bixi-panel-lead {
   display: grid;
-  gap: 0.35rem;
-  max-width: 32rem;
+  gap: 0.55rem;
+  max-width: 36rem;
 }
 
 .about-bixi-panel-kicker {
@@ -653,8 +699,8 @@ svg {
 }
 
 .about-bixi-panel-caption {
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 0.98rem;
+  line-height: 1.72;
   color: rgba(0, 0, 0, 0.58);
 }
 
@@ -711,14 +757,14 @@ svg {
 .about-bixi-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-7);
 }
 
 @media (min-width: 768px) {
   .about-bixi-body {
     flex-direction: row;
-    align-items: center;
-    gap: var(--space-12);
+    align-items: stretch;
+    gap: var(--space-10);
   }
 }
 
@@ -735,14 +781,14 @@ svg {
 @media (min-width: 768px) {
   .about-bixi-media {
     width: 44%;
-    min-height: 360px;
+    min-height: 400px;
   }
 }
 
 @media (min-width: 1024px) {
   .about-bixi-media {
     width: 46%;
-    min-height: 400px;
+    min-height: 440px;
   }
 }
 
@@ -755,7 +801,7 @@ svg {
   object-position: 50% 44%;
   display: block;
   transform: scale(1);
-  transition: transform 550ms ease;
+  transition: transform 420ms ease;
 }
 
 @media (max-width: 767px) {
@@ -765,7 +811,7 @@ svg {
 }
 
 .about-bixi-panel:hover .about-bixi-media-img {
-  transform: scale(1.035);
+  transform: scale(1.04);
 }
 
 .about-bixi-media-overlay {
@@ -793,21 +839,24 @@ svg {
 
 .about-bixi-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .about-bixi-points {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.9rem;
 }
 
 .about-bixi-point-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
+  gap: 0.8rem;
   font-family: var(--font-body);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.72;
   color: rgba(0, 0, 0, 0.7);
 }
 
@@ -825,6 +874,34 @@ svg {
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.about-bixi-team-shell {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.about-bixi-team-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.about-bixi-team-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.about-bixi-team-divider-label {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #b9975b;
 }
 
 .ui-hide-scrollbar {
@@ -846,11 +923,7 @@ svg {
   background: #ffffff;
 }
 
-.gallery-kicker {
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: rgba(182, 184, 185, 0.12);
-  color: #111111;
-}
+/* gallery-kicker inherits from .ui-kicker-pill (canonical) */
 
 .gallery-header {
   display: grid;
@@ -864,12 +937,10 @@ svg {
   gap: var(--space-3);
 }
 
-.gallery-intro-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(185, 151, 91, 0.8);
+.gallery-kicker {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .gallery-intro-layout {
@@ -881,9 +952,17 @@ svg {
 
 @media (min-width: 960px) {
   .gallery-intro-topline {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     align-items: center;
-    justify-content: space-between;
+    gap: var(--space-10);
+  }
+
+  .gallery-intro-label {
+    margin-left: 0;
+    width: min(100%, 46ch);
+    justify-self: start;
+    text-align: left;
   }
 
   .gallery-intro-layout {
@@ -905,6 +984,32 @@ svg {
 
 .gallery-heading-copy {
   max-width: 46ch;
+}
+
+.about-bixi-team-topline {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .about-bixi-team-topline {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  .about-bixi-kicker,
+  .about-bixi-team-topline > .ui-kicker-pill {
+    width: fit-content;
+    max-width: max-content;
+  }
+
+  .about-bixi-team-intro-label {
+    margin-left: 0;
+    width: min(100%, 36rem);
+    justify-self: start;
+    text-align: left;
+  }
 }
 
 /* ── Carousel ── */
@@ -968,11 +1073,11 @@ svg {
 
 .gallery-card-image {
   transform: scale(1);
-  transition: transform 300ms ease;
+  transition: transform 420ms ease;
 }
 
 .gallery-carousel-card.is-active:hover .gallery-card-image {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .gallery-card-chip {
@@ -1074,6 +1179,11 @@ svg {
 }
 
 @media (max-width: 767px) {
+  .ui-kicker-pill {
+    align-self: center;
+    margin-inline: auto;
+  }
+
   .hero-intro {
     padding-top: clamp(4rem, 8.8vh, 5.2rem);
     padding-bottom: var(--space-10);
@@ -1121,36 +1231,52 @@ svg {
   }
 
   .about-bixi-intro-shell {
-    gap: var(--space-4);
-    margin-bottom: var(--space-7);
-    padding-bottom: var(--space-5);
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+    padding-bottom: var(--space-4);
   }
 
   .about-bixi-intro-topline {
     gap: var(--space-2);
+    align-items: center;
+    text-align: center;
   }
 
   .about-bixi-heading-main h1 {
     max-width: 13ch;
     line-height: 1.1;
+    margin-inline: auto;
+    text-align: center;
   }
 
   .about-bixi-heading-side {
-    gap: var(--space-4);
+    gap: var(--space-3);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .about-bixi-heading-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-align: center;
   }
 
   .about-bixi-intro-copy {
     max-width: none;
     line-height: 1.7;
+    text-align: center;
   }
 
   .about-bixi-panel-lead {
     max-width: none;
+    justify-items: center;
+    text-align: center;
   }
 
   .about-bixi-panel-caption {
     font-size: 0.88rem;
     line-height: 1.55;
+    text-align: center;
   }
 
   .services-header-right {
@@ -1172,11 +1298,15 @@ svg {
 
   .services-header-compact {
     align-items: start;
+    justify-items: center;
+    text-align: center;
   }
 
   .services-heading-title {
     max-width: none;
     line-height: 1.14;
+    margin-inline: auto;
+    text-align: center;
   }
 
   .services-header-right,
@@ -1184,9 +1314,22 @@ svg {
     max-width: none;
   }
 
+  .services-header-right,
+  .services-topbar,
+  .services-grid-intro {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .services-intro-topline {
+    align-items: center;
+    text-align: center;
+  }
+
   .services-switch-description,
   .services-grid-copy {
     line-height: 1.72;
+    text-align: center;
   }
 
   .services-grid-shell {
@@ -1195,6 +1338,8 @@ svg {
 
   .services-toggle {
     margin-top: var(--space-1);
+    justify-self: center;
+    margin-inline: auto;
   }
 
   .ui-section {
@@ -1271,9 +1416,14 @@ svg {
   }
 
   .about-bixi-panel {
-    gap: var(--space-4);
-    padding: 0.85rem;
-    border-radius: 12px;
+    gap: var(--space-5);
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .about-bixi-panel::before {
+    left: 1rem;
+    right: 1rem;
   }
 
   .about-bixi-media {
@@ -1308,6 +1458,21 @@ svg {
     min-width: 0;
   }
 
+  .about-bixi-team-shell {
+    margin-top: var(--space-10);
+    padding-top: var(--space-8);
+  }
+
+  .about-bixi-team-divider {
+    gap: 0.7rem;
+    margin-bottom: var(--space-5);
+  }
+
+  .about-bixi-team-divider-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+  }
+
   .gallery-carousel-stage {
     height: clamp(260px, 55vw, 340px);
   }
@@ -1324,25 +1489,67 @@ svg {
     min-height: 28px;
     font-size: 0.66rem;
     padding-inline: 0.65rem;
+    align-self: center;
   }
 
   .gallery-header {
     gap: var(--space-4);
     margin-bottom: var(--space-6);
+    justify-items: center;
+    text-align: center;
   }
 
   .gallery-intro-topline {
     gap: var(--space-2);
+    align-items: center;
+    text-align: center;
   }
 
   .gallery-heading-title {
     max-width: 13ch;
     line-height: 1.1;
+    margin-inline: auto;
+    text-align: center;
   }
 
   .gallery-heading-copy {
     max-width: none;
     line-height: 1.68;
+    text-align: center;
+  }
+
+  .gallery-intro-layout {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .contact-intro {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .contact-intro-topline {
+    align-items: center;
+    text-align: center;
+  }
+
+  .contact-heading,
+  .contact-copy {
+    text-align: center;
+  }
+
+  .about-bixi-team-topline {
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-bixi-team-intro-label {
+    text-align: center;
+  }
+
+  .about-bixi-team-topline + .grid {
+    justify-items: center;
+    text-align: center;
   }
 
   .contact-layout {
@@ -1354,13 +1561,8 @@ svg {
     gap: var(--space-3);
   }
 
-  .contact-heading,
   .contact-copy {
     margin-bottom: 0;
-  }
-
-  .contact-heading {
-    max-width: 12ch;
   }
 
   .contact-copy {
@@ -2124,11 +2326,7 @@ svg {
   gap: var(--space-2);
 }
 
-.services-kicker {
-  border: 1px solid rgba(185, 151, 91, 0.3);
-  background: rgba(185, 151, 91, 0.08);
-  color: #b9975b;
-}
+/* services-kicker inherits from .ui-kicker-pill (canonical) */
 
 .services-heading-title {
   color: #111111;
@@ -2389,13 +2587,13 @@ svg {
   background: rgba(255, 255, 255, 0.88);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
   transition:
-    transform 220ms ease,
-    box-shadow 220ms ease,
-    border-color 220ms ease;
+    transform 280ms ease,
+    box-shadow 280ms ease,
+    border-color 280ms ease;
 }
 
 .news-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: rgba(182, 184, 185, 0.5);
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.12);
 }
@@ -2939,11 +3137,7 @@ footer .bg-black\/20 {
   z-index: 1;
 }
 
-.team-services-kicker {
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: rgba(182, 184, 185, 0.14);
-  color: #111111;
-}
+/* team-services-kicker inherits from .ui-kicker-pill (canonical) */
 
 .team-services-intro {
   display: flex;
@@ -3006,13 +3200,13 @@ footer .bg-black\/20 {
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   transition:
-    transform 220ms ease,
-    box-shadow 220ms ease,
-    border-color 220ms ease;
+    transform 280ms ease,
+    box-shadow 280ms ease,
+    border-color 280ms ease;
 }
 
 .team-service-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: rgba(182, 184, 185, 0.58);
   box-shadow: 0 22px 40px rgba(0, 0, 0, 0.14);
 }
@@ -3027,11 +3221,11 @@ footer .bg-black\/20 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 500ms ease;
+  transition: transform 420ms ease;
 }
 
 .team-service-card:hover .team-service-image {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .team-service-overlay {
@@ -3212,9 +3406,35 @@ footer .bg-black\/20 {
   gap: var(--space-4);
 }
 
+.contact-intro-topline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .contact-intro-topline {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+}
+
+/* contact-kicker inherits from .ui-kicker-pill (canonical) */
+
+.contact-kicker {
+  flex-shrink: 0;
+  width: fit-content;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
 .contact-heading {
   margin-bottom: 0;
-  max-width: 11ch;
+  max-width: 100ch;
 }
 
 .contact-copy {
@@ -3313,6 +3533,55 @@ footer .bg-black\/20 {
   }
 }
 
+/* Tall video variant — fills the full column height on desktop */
+.contact-video-tall {
+  aspect-ratio: 4 / 5;
+  max-width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .contact-video-tall {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 620px;
+  }
+}
+
+/* Compact form card variant — tighter padding & smaller fields */
+.contact-form-card-compact {
+  padding: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .contact-form-card-compact {
+    padding: var(--space-6);
+  }
+}
+
+.contact-form-card-compact .contact-label {
+  font-size: 0.78rem;
+  margin-bottom: 4px;
+}
+
+.contact-form-card-compact .contact-input {
+  height: 40px;
+  padding-inline: 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 9px;
+}
+
+.contact-form-card-compact .contact-textarea {
+  min-height: 88px;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.85rem;
+  border-radius: 9px;
+}
+
+.contact-form-card-compact .ui-btn {
+  min-height: 46px;
+  font-size: 0.92rem;
+}
+
 .contact-direct-card {
   display: flex;
   align-items: center;
@@ -3325,15 +3594,15 @@ footer .bg-black\/20 {
   text-decoration: none;
   cursor: pointer;
   transition:
-    border-color 200ms ease,
-    box-shadow 200ms ease,
-    transform 200ms ease;
+    border-color 280ms ease,
+    box-shadow 280ms ease,
+    transform 280ms ease;
 }
 
 .contact-direct-card:hover {
   border-color: rgba(0, 0, 0, 0.14);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .contact-direct-icon {
@@ -3347,8 +3616,8 @@ footer .bg-black\/20 {
   border-radius: 10px;
   flex-shrink: 0;
   transition:
-    color 200ms ease,
-    background 200ms ease;
+    color 280ms ease,
+    background 280ms ease;
 }
 
 .contact-direct-icon svg {
@@ -3404,7 +3673,7 @@ footer .bg-black\/20 {
 }
 
 .aboutus-image {
-  transition: transform 700ms ease;
+  transition: transform 420ms ease;
 }
 
 .aboutus-shell:hover .aboutus-image {
@@ -3463,9 +3732,6 @@ footer .bg-black\/20 {
 
 .aboutus-eyebrow {
   width: fit-content;
-  border: 1px solid rgba(0, 0, 0, 0.18);
-  background: rgba(182, 184, 185, 0.16);
-  color: #111111;
 }
 
 .aboutus-checks li {
@@ -3793,11 +4059,11 @@ textarea:focus-visible {
   height: 100%;
   object-fit: cover;
   will-change: transform;
-  transition: transform 500ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition: transform 420ms cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .gp-card:hover .gp-card-img {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .gp-card-overlay {

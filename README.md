@@ -31,6 +31,10 @@ The current design direction focuses on:
 - The homepage has now a dedicated background while logo still sits as the main brand.
 - The Hero spacing and logo placement were retuned so the opening section feels more intentional across screen sizes.
 - The About Bixi section was redesigned to be easier to read and more visually polished.
+- The About Bixi section was further refined with more open spacing, stronger hierarchy, and a less compact authority-focused layout.
+- The About Bixi section now uses a more minimal, updated presentation with a cleaner panel treatment and a dedicated visual separation before `The Bixi Team`.
+- The Services section now uses a compact toggle-driven layout for `Exterior` and `Interior` scopes.
+- The Services `Get a quote` flow is connected back to Contact, including service and message prefills from the selected card.
 - The Gallery now has a carousel UI adopted theme.
 - The Gallery now uses curated project photos and supports expanded viewing.
 - The GalleryPage component has been added for additional UX enhancer.
@@ -48,12 +52,15 @@ The current design direction focuses on:
 - Reveal animations were refined so Hero animations do not clash with page scrolling.
 - The logo component was updated to use the current `Logo.png` asset in the live interface.
 - The Contact section keeps the video visible in the current layout.
+- The Contact form service dropdown is synced to the current accepted frontend service list.
+- The About Bixi and team transition now uses a clearer divider treatment for stronger section separation.
 - Tablet and mobile spacing were refined for:
   - Hero layout
   - About Bixi layout
   - Services layout
   - mobile navbar and business hours row
   - general button and content spacing
+- Mobile section pills and the Services toggle are now centered for a cleaner and more balanced phone layout.
 - A fallback page remains available for unfinished or invalid routes.
 
 ## Contact Form and Backend
@@ -66,6 +73,11 @@ The backend is responsible for:
 - validating form data
 - handling admin authentication
 - sending email through Resend
+- accepting the current service list used by the frontend quote flow
+
+Current frontend/backend note:
+
+- Service quote actions now send visitors to `#contact` with matching `service` and `message` values, and the Contact form reads those values before submission.
 
 Backend reference:
 
