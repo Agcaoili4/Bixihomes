@@ -1174,18 +1174,12 @@ svg {
     align-items: start;
   }
 
-  .services-heading-copy {
-    margin-bottom: var(--space-3);
-    line-height: 1.72;
-  }
-
   .services-heading-title {
     max-width: none;
     line-height: 1.14;
   }
 
   .services-header-right,
-  .services-heading-copy,
   .services-switch-description {
     max-width: none;
   }
@@ -2140,11 +2134,6 @@ svg {
   color: #111111;
   letter-spacing: -0.03em;
   max-width: 11ch;
-}
-
-.services-heading-copy {
-  color: rgba(0, 0, 0, 0.62);
-  line-height: 1.7;
 }
 
 .services-grid-shell {

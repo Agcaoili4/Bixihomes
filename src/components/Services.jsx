@@ -51,12 +51,6 @@ export default function Services() {
               <h3 className="services-switch-headline font-heading">
                 {activeToggle.headline}
               </h3>
-              <p className="services-heading-copy font-body text-sm md:text-base leading-relaxed">
-                Switch between our exterior and interior scopes to view the
-                current service scopes in each category. Every item opens a
-                quick overview and moves straight into the quote flow when
-                needed.
-              </p>
               <p className="services-switch-description font-body">
                 {activeToggle.copy}
               </p>
