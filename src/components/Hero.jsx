@@ -106,7 +106,7 @@ export default function Hero() {
         </div>
 
         {/* Tagline beneath the logo */}
-        <div className="f" aria-live="polite">
+        <div className="hero-tagline-shell" aria-live="polite">
           <TextEffect
             per="word"
             as="p"
