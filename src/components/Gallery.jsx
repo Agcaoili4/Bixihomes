@@ -7,7 +7,6 @@ export default function Gallery() {
       <div className="ui-container">
         <InteractiveBentoGallery
           mediaItems={galleryItems}
-          title="Take a Look at Our Work"
           description="Explore our real project portfolio across roofing, exterior restoration, and full-home build progress. Each photo reflects active site execution and finished workmanship from our team."
         />
         <div className="gallery-see-more-row">
