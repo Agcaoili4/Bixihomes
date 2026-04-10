@@ -37,7 +37,7 @@ export default function Services() {
 
           <div className="services-header services-header-compact">
             <div className="services-header-left">
-              <h2 className="services-heading-title font-heading font-extrabold text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04]">
+              <h2 className="services-heading-title font-heading font-extrabold text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04] text-black">
                 Our services,
                 <br />
                 <span className="text-[#B9975B]">clearly structured.</span>
