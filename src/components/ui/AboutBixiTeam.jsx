@@ -43,10 +43,7 @@ export default function AboutBixiTeam({
 }) {
   return (
     <section
-      className={cn(
-        "w-full max-w-7xl mx-auto pt-8 md:pt-10",
-        className,
-      )}
+      className={cn("w-full max-w-7xl mx-auto", className)}
       aria-labelledby="about-bixi-team-heading"
     >
       <motion.div
@@ -54,7 +51,7 @@ export default function AboutBixiTeam({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="mb-6 border-b border-black/8 pb-5 md:mb-8 md:pb-6"
+        className="mb-28 border-b border-black/10 pb-12 md:mb-40 md:pb-16"
       >
         <div className="grid gap-4">
           <div className="about-bixi-team-topline flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-3">
@@ -64,7 +61,7 @@ export default function AboutBixiTeam({
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] md:items-start md:gap-7">
+          <div className="mb-16 grid grid-cols-1 gap-4 md:mb-24 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] md:items-start md:gap-7">
             <div>
               <h2
                 id="about-bixi-team-heading"
@@ -90,7 +87,7 @@ export default function AboutBixiTeam({
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 md:mt-24 md:gap-7 xl:grid-cols-4">
         {teams.map((team, index) => (
           <motion.article
             key={team.id}
@@ -102,30 +99,41 @@ export default function AboutBixiTeam({
               delay: index * 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
-            whileHover={{ y: -3 }}
-            className="group relative flex flex-col items-center overflow-hidden rounded-[28px] border border-black/8 bg-white px-6 py-8 text-center shadow-[0_18px_42px_rgba(0,0,0,0.06)] transition-shadow duration-300 hover:shadow-[0_26px_52px_rgba(0,0,0,0.1)]"
+            className="group relative flex flex-col items-center overflow-hidden rounded-[22px] bg-white px-7 pb-10 pt-12 text-center ring-1 ring-black/[0.06] shadow-[0_2px_14px_rgba(0,0,0,0.04)] transition-[transform,box-shadow,--tw-ring-color] duration-500 ease-out hover:-translate-y-1 hover:shadow-[0_28px_56px_rgba(0,0,0,0.10)] hover:ring-black/[0.12] md:px-8 md:pb-12 md:pt-14"
           >
-            <div className="absolute inset-x-0 top-0 h-1 bg-[#B9975B] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <span
+              className="pointer-events-none absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-[#B9975B] transition-transform duration-500 ease-out group-hover:scale-x-100"
+              aria-hidden="true"
+            />
 
-            <div className="relative mb-6 h-32 w-32 overflow-hidden rounded-full border-[3px] border-[#B9975B]/25 bg-[#f7f3ec] shadow-[0_12px_30px_rgba(0,0,0,0.12)] md:h-36 md:w-36">
-              <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-transparent to-black/25" />
-              <img
-                src={team.imageUrl}
-                alt={team.imageAlt}
-                className="h-full w-full object-cover transition-transform duration-[420ms] ease-out group-hover:scale-[1.04]"
-                loading="lazy"
-                decoding="async"
+            <div className="relative mb-6">
+              <div
+                className="pointer-events-none absolute -inset-2 rounded-full bg-[radial-gradient(circle_at_center,rgba(185,151,91,0.22),rgba(185,151,91,0)_70%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                aria-hidden="true"
               />
+              <div className="relative h-24 w-24 overflow-hidden rounded-full bg-[#f7f3ec] ring-[3px] ring-white shadow-[0_14px_32px_rgba(0,0,0,0.14)] md:h-28 md:w-28">
+                <img
+                  src={team.imageUrl}
+                  alt={team.imageAlt}
+                  className="h-full w-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.06]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
 
-            <div className="space-y-2.5">
-              <h3 className="font-heading text-[1.08rem] font-bold leading-snug text-black md:text-xl">
+            <div className="flex w-full flex-col items-center">
+              <h3 className="font-heading text-[1.12rem] font-bold leading-[1.2] text-black md:text-[1.22rem]">
                 {team.name}
               </h3>
-              <p className="font-body text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#B9975B]">
+              <p className="mt-1.5 font-body text-[0.62rem] font-bold uppercase tracking-[0.18em] text-[#B9975B]">
                 {team.role}
               </p>
-              <p className="mx-auto max-w-[17rem] pt-1 font-body text-[0.82rem] leading-6 text-black/60 md:text-[0.84rem]">
+              <div
+                className="mt-3 h-px w-10 bg-[#B9975B]/35"
+                aria-hidden="true"
+              />
+              <p className="mt-5 max-w-[20rem] font-body text-[0.88rem] leading-[1.72] text-black/60">
                 {team.bio}
               </p>
             </div>

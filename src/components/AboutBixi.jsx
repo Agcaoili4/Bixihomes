@@ -125,13 +125,22 @@ export default function AboutBixi() {
     const sectionEl = sectionRef.current;
     if (!sectionEl) return undefined;
 
+    const isMobileViewport = window.matchMedia("(max-width: 767px)").matches;
+    const observerThreshold = isMobileViewport ? 0.14 : 0.28;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          setShouldStartCount(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            setShouldStartCount(true);
+            observer.unobserve(entry.target);
+          }
         });
       },
-      { threshold: 0.32 },
+      {
+        threshold: observerThreshold,
+        rootMargin: isMobileViewport ? "0px 0px -8% 0px" : "0px 0px -12% 0px",
+      },
     );
 
     observer.observe(sectionEl);

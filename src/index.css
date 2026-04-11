@@ -886,7 +886,7 @@ svg {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: clamp(1.6rem, 3vw, 2.4rem);
+  margin-bottom: clamp(1.4rem, 2.6vw, 2rem);
 }
 
 .about-bixi-team-divider-line {
@@ -1465,7 +1465,7 @@ svg {
 
   .about-bixi-team-divider {
     gap: 0.7rem;
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-4);
   }
 
   .about-bixi-team-divider-label {
