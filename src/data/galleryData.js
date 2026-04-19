@@ -1,6 +1,8 @@
 import fullHouse001 from "../assets/downloaded_assets/full_house/full_house_001.jpeg";
 import fullHouse002 from "../assets/downloaded_assets/full_house/full_house_002.jpeg";
 import fullHouse003 from "../assets/downloaded_assets/full_house/full_house_003.jpeg";
+import aspenHillTerrace from "../assets/downloaded_assets/roof_detail/Aspen_Hill_Terrace_SW.mp4";
+import ramadaDrumheller from "../assets/downloaded_assets/roof_detail/Ramada_Drumheller.mp4";
 import roofDetail019 from "../assets/downloaded_assets/roof_detail/roof_detail_019.jpeg";
 import roofDetail024 from "../assets/downloaded_assets/roof_detail/roof_detail_024.jpeg";
 import roofDetail033 from "../assets/downloaded_assets/roof_detail/roof_detail_033.jpeg";
@@ -24,6 +26,22 @@ export const TRADES = [
 const galleryItems = [
   {
     id: 1,
+    type: "video",
+    trade: "Sloped Roofing",
+    title: "Aspen Hill Terrace Project Walkthrough",
+    desc: "Featured site video highlighting roof progress, surrounding elevation, and active workmanship at Aspen Hill Terrace.",
+    url: aspenHillTerrace,
+  },
+  {
+    id: 2,
+    type: "video",
+    trade: "Sloped Roofing",
+    title: "Ramada Drumheller Roofing Progress",
+    desc: "Featured project video from Ramada Drumheller showcasing staging, roof activity, and on-site execution.",
+    url: ramadaDrumheller,
+  },
+  {
+    id: 3,
     type: "image",
     trade: "Full Build",
     title: "Full Home Roof Completion",
@@ -31,7 +49,7 @@ const galleryItems = [
     url: fullHouse001,
   },
   {
-    id: 2,
+    id: 4,
     type: "image",
     trade: "Full Build",
     title: "Roofline and Facade Integration",
@@ -39,7 +57,7 @@ const galleryItems = [
     url: fullHouse002,
   },
   {
-    id: 3,
+    id: 5,
     type: "image",
     trade: "Sloped Roofing",
     title: "Large-Scale Roof Progress",
@@ -47,7 +65,7 @@ const galleryItems = [
     url: roofDetail071,
   },
   {
-    id: 4,
+    id: 6,
     type: "image",
     trade: "Sloped Roofing",
     title: "Underlayment Preparation Phase",
@@ -55,7 +73,7 @@ const galleryItems = [
     url: roofDetail072,
   },
   {
-    id: 5,
+    id: 7,
     type: "image",
     trade: "Sloped Roofing",
     title: "Shingle Installation Around Skylight",
@@ -63,7 +81,7 @@ const galleryItems = [
     url: roofDetail033,
   },
   {
-    id: 6,
+    id: 8,
     type: "image",
     trade: "Sloped Roofing",
     title: "Finished Vent and Ridge Work",
@@ -71,7 +89,7 @@ const galleryItems = [
     url: roofDetail041,
   },
   {
-    id: 7,
+    id: 9,
     type: "image",
     trade: "Sloped Roofing",
     title: "Mountain Site Roof Completion",
@@ -79,7 +97,7 @@ const galleryItems = [
     url: roofDetail052,
   },
   {
-    id: 8,
+    id: 10,
     type: "image",
     trade: "Sloped Roofing",
     title: "Cedar Shingle Installation",
@@ -87,7 +105,7 @@ const galleryItems = [
     url: roofDetail054,
   },
   {
-    id: 9,
+    id: 11,
     type: "image",
     trade: "Flat Roofing",
     title: "Rural Roof Underlayment",
@@ -95,7 +113,7 @@ const galleryItems = [
     url: roofDetail061,
   },
   {
-    id: 10,
+    id: 12,
     type: "image",
     trade: "Sloped Roofing",
     title: "Steep Slope Roofing System",
@@ -103,7 +121,7 @@ const galleryItems = [
     url: roofDetail075,
   },
   {
-    id: 11,
+    id: 13,
     type: "image",
     trade: "Sloped Roofing",
     title: "Roof With Architectural Context",
@@ -111,7 +129,7 @@ const galleryItems = [
     url: roofDetail019,
   },
   {
-    id: 12,
+    id: 14,
     type: "image",
     trade: "Siding",
     title: "Exterior Shell Development",
@@ -119,7 +137,7 @@ const galleryItems = [
     url: roofDetail024,
   },
   {
-    id: 13,
+    id: 15,
     type: "image",
     trade: "Full Build",
     title: "Full House Renovation Snapshot",

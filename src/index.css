@@ -150,10 +150,10 @@ body {
 }
 
 .about-bixi-team-marquee-bio {
-  max-height: 0;
-  opacity: 0;
+  max-height: 7rem;
+  opacity: 1;
   overflow: hidden;
-  transform: translateY(8px);
+  transform: translateY(0);
   transition:
     max-height 300ms ease,
     opacity 220ms ease,
@@ -165,6 +165,12 @@ body {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .about-bixi-team-marquee-bio {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
   .about-bixi-team-marquee-card:hover {
     transform: translateY(-4px);
   }
@@ -180,6 +186,21 @@ body {
   .about-bixi-team-marquee-rail:hover .about-bixi-team-marquee-card:not(:hover) {
     filter: blur(2px);
     opacity: 0.72;
+  }
+}
+
+@media (max-width: 767px) {
+  .about-bixi-team-marquee {
+    padding-block: var(--space-2);
+  }
+
+  .about-bixi-team-marquee-rail {
+    /* allow cards to breathe without horizontal scroll spill */
+    contain: paint;
+  }
+
+  .about-bixi-team-marquee-card:focus-visible {
+    transform: translateY(-2px);
   }
 }
 
@@ -333,6 +354,13 @@ section:not(#home) .text-white\/50 {
   display: block;
   transform: scale(1.12);
   transform-origin: center;
+}
+
+@media (max-width: 767px) {
+  .hero-bg-image {
+    object-position: center 38%;
+    transform: scale(1.18);
+  }
 }
 
 .hero-bg-overlay {
@@ -721,7 +749,8 @@ svg {
   }
 }
 
-.about-bixi-heading-main h1 {
+.about-bixi-heading-main h1,
+.about-bixi-heading-main h2 {
   max-width: 12ch;
   margin-bottom: 0;
 }
@@ -1092,34 +1121,34 @@ svg {
 .gallery-intro-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-4);
+  gap: var(--space-6);
   width: 100%;
 }
 
-@media (min-width: 960px) {
+@media (min-width: 768px) {
   .gallery-intro-topline {
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     align-items: center;
-    gap: var(--space-10);
+    gap: var(--space-9);
   }
 
   .gallery-intro-label {
     margin-left: 0;
-    width: min(100%, 46ch);
+    width: min(100%, 100%);
     justify-self: start;
     text-align: left;
   }
 
   .gallery-intro-layout {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    gap: var(--space-10);
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+    gap: var(--space-9);
     align-items: start;
   }
 
   .gallery-heading-copy {
-    padding-left: 1rem;
-    border-left: 2px solid rgba(0, 0, 0, 0.2);
+    padding-left: 0;
+    border-left: none;
   }
 }
 
@@ -1305,36 +1334,54 @@ svg {
   }
 
   .hero-intro {
-    padding-top: clamp(4rem, 8.8vh, 5.2rem);
-    padding-bottom: var(--space-10);
-    min-height: 72vh;
+    padding-top: clamp(3rem, 7vh, 4.4rem);
+    padding-bottom: var(--space-8);
+    min-height: calc(100svh - 4rem);
+    min-height: 64vh;
+    gap: 0;
   }
 
   .hero-logo-center {
     margin-bottom: 0.35rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .hero-logo-main {
-    width: min(64vw, 320px);
+    width: min(72vw, 340px);
+    max-width: 100%;
   }
 
   .hero-tagline-shell {
+    width: 100%;
     justify-content: center;
+    align-items: flex-start;
     margin-top: 0;
-    margin-bottom: var(--space-1);
+    margin-bottom: var(--space-2);
+    padding-inline: var(--space-3);
+    min-height: 2.8rem;
     text-align: center;
   }
 
   .hero-tagline {
     justify-content: center;
     text-align: center;
+    font-size: clamp(0.74rem, 3.2vw, 0.92rem);
+    line-height: 1.45;
+    letter-spacing: 0.14em;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    max-width: 28ch;
   }
 
   .hero-trust-row {
     width: 100%;
+    flex-wrap: wrap;
     justify-content: center;
-    row-gap: 0.35rem;
-    column-gap: 0.55rem;
+    row-gap: 0.4rem;
+    column-gap: 0.6rem;
+    padding-inline: var(--space-4);
     text-align: center;
     margin-inline: auto;
     opacity: 1;
@@ -1363,7 +1410,8 @@ svg {
     text-align: center;
   }
 
-  .about-bixi-heading-main h1 {
+  .about-bixi-heading-main h1,
+  .about-bixi-heading-main h2 {
     max-width: 13ch;
     line-height: 1.1;
     margin-inline: auto;
@@ -1741,6 +1789,21 @@ svg {
     font-size: 0.65rem;
     letter-spacing: 0.03em;
     padding-inline: 0.6rem;
+  }
+
+  .hero-logo-main {
+    width: min(76vw, 300px);
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.7rem, 3.4vw, 0.86rem);
+    letter-spacing: 0.12em;
+    max-width: 24ch;
+  }
+
+  .hero-intro {
+    padding-top: clamp(2.4rem, 6vh, 3.6rem);
+    min-height: 60vh;
   }
 }
 

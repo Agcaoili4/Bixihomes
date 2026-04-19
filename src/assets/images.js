@@ -15,7 +15,7 @@ import heroLogo from "./downloaded_assets/Logo.png";
 // Figma design asset URLs
 export const images = {
   // Hero
-  heroBg: fullHouse002,
+  heroBg: fullHouse003,
   heroLogo: heroLogo,
   heroSubIcon: "https://www.figma.com/api/mcp/asset/d976da2d-dc7d-441d-917f-cdabbee39020",
 

@@ -367,7 +367,7 @@ const InteractiveBentoGallery = ({
           </p>
         </div>
 
-        <div className="gallery-intro-layout">
+        <div className="gallery-intro-layout grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] md:items-start md:gap-7 lg:gap-10">
           <motion.h2
             className="gallery-heading-title font-heading font-extrabold text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04] text-black text-left"
             initial={{ opacity: 0, y: 20 }}

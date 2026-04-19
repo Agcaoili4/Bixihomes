@@ -4,6 +4,32 @@ import { X, ArrowLeft } from "lucide-react";
 import { createPortal } from "react-dom";
 import galleryItems, { TRADES } from "../data/galleryData";
 
+function GalleryMedia({ item, className = "", autoPlay = false }) {
+  if (item.type === "video") {
+    return (
+      <video
+        src={item.url}
+        className={className}
+        playsInline
+        muted
+        loop
+        controls={false}
+        autoPlay={autoPlay}
+        preload="metadata"
+      />
+    );
+  }
+
+  return (
+    <img
+      src={item.url}
+      alt={item.title}
+      className={className}
+      draggable={false}
+    />
+  );
+}
+
 function LightboxModal({ item, onClose, items, setSelected }) {
   if (!item) return null;
 
@@ -66,11 +92,10 @@ function LightboxModal({ item, onClose, items, setSelected }) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <img
-                src={item.url}
-                alt={item.title}
+              <GalleryMedia
+                item={item}
                 className="w-full h-[58vh] min-h-[260px] sm:h-[70vh] sm:min-h-[360px] object-cover"
-                draggable={false}
+                autoPlay
               />
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/82 via-black/32 to-transparent backdrop-blur-md">
                 <span className="inline-block mb-1.5 px-2.5 py-0.5 rounded-full bg-white/15 border border-white/25 text-[0.65rem] font-bold uppercase tracking-wider text-white/90 font-body">
@@ -123,11 +148,9 @@ function LightboxModal({ item, onClose, items, setSelected }) {
                     setSelected(thumb);
                   }}
                 >
-                  <img
-                    src={thumb.url}
-                    alt={thumb.title}
+                  <GalleryMedia
+                    item={thumb}
                     className="h-full w-full object-cover"
-                    draggable={false}
                   />
                 </div>
               );
@@ -197,13 +220,9 @@ export default function GalleryPage() {
                 className="gp-card"
                 onClick={() => setSelectedItem(item)}
               >
-                <img
-                  src={item.url}
-                  alt={item.title}
+                <GalleryMedia
+                  item={item}
                   className="gp-card-img"
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
                 />
                 <div className="gp-card-overlay" />
                 <div className="gp-card-trade-chip">{item.trade}</div>

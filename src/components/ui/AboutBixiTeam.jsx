@@ -50,45 +50,40 @@ export default function AboutBixiTeam({
       aria-labelledby="about-bixi-team-heading"
     >
       {/* ── Top: Header / Intro ── */}
-      <div className="about-bixi-team-header">
-        <div className="grid gap-6 md:gap-8">
-          <div className="about-bixi-team-topline flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-3">
-            <p className="ui-kicker-pill">Meet The Team</p>
-            <p className="about-bixi-team-intro-label font-body">
-              The crew behind every Bixi project
-            </p>
+      <div className="about-bixi-intro-shell">
+        <div className="about-bixi-intro-topline">
+          <p className="ui-kicker-pill about-bixi-kicker">Meet The Team</p>
+          <p className="about-bixi-intro-label font-body">
+            The crew behind every Bixi project
+          </p>
+        </div>
+
+        <div className="about-bixi-heading-layout">
+          <div className="about-bixi-heading-main">
+            <h2
+              id="about-bixi-team-heading"
+              className="font-heading font-extrabold text-[30px] md:text-[40px] lg:text-[50px] leading-[1.04] text-black"
+            >
+              The Team Behind{" "}
+              <span className="text-[#B9975B]">Every Bixi Project</span>
+            </h2>
           </div>
 
-          <div className="about-bixi-team-layout grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] md:items-start md:gap-7 lg:gap-10">
-            <div className="about-bixi-team-title-wrap pr-0 md:pr-4 lg:pr-6">
-              <h2
-                id="about-bixi-team-heading"
-                className="about-bixi-team-title max-w-[100ch] font-heading text-[30px] font-extrabold leading-[1.1] text-black md:text-[40px] lg:text-[50px]"
-              >
-                The Team Behind
-                <br />
-                <span className="about-bixi-team-title-accent text-[#B9975B]">
-                  Every Bixi Project
-                </span>
-              </h2>
-            </div>
-
-            <div className="about-bixi-team-side grid max-w-none gap-3 md:max-w-[36rem]">
-              <p className="font-body text-[0.72rem] font-extrabold uppercase tracking-[0.12em] text-[#B9975B]">
-                Built Around Dependable Workmanship
-              </p>
-              <p className="font-body text-sm leading-[1.72] text-black/60 md:text-[0.95rem]">
-                Built around practical leadership, dependable communication,
-                and quality workmanship from exterior restoration through
-                interior renovation.
-              </p>
-            </div>
+          <div className="about-bixi-heading-side">
+            <p className="about-bixi-heading-eyebrow font-body">
+              Built around dependable workmanship
+            </p>
+            <p className="about-bixi-intro-copy font-body text-sm md:text-base lg:text-lg text-black/60 leading-relaxed">
+              Built around practical leadership, dependable communication, and
+              quality workmanship from exterior restoration through interior
+              renovation.
+            </p>
           </div>
         </div>
       </div>
 
       {/* ── Bottom: Team Portraits ── */}
-      <div className="about-bixi-team-grid-shell border-t border-black/10 pt-10 md:pt-14 lg:pt-16">
+      <div className="about-bixi-team-grid-shell">
         <Team members={teams} />
       </div>
     </section>
