@@ -4,6 +4,7 @@ import BixiLogoMark from "./ui/BixiLogoMark";
 import { TextEffect } from "./ui/text-effect";
 
 const heroPhrases = [
+  "Where Reaching Out Makes Good Things Happen",
   "Exterior Restoration & Renovation",
   "Connect With Us Today",
 ];
@@ -90,7 +91,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden bg-white"
+      className="relative w-full overflow-hidden"
       data-reveal
       data-reveal-once
     >

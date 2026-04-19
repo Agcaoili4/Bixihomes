@@ -1,6 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Libre+Baskerville:wght@700&display=swap");
 @import "tailwindcss";
 
+@theme inline {
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-reverse: marquee-reverse var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - (var(--gap) / 2)));
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(calc(-50% - (var(--gap) / 2)));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
 :root {
   --color-gold: #b9975b;
   --color-gold-dark: #111111;
@@ -104,6 +137,77 @@ body {
   overflow-x: hidden;
 }
 
+.marquee-content {
+  will-change: transform;
+}
+
+.about-bixi-team-marquee-card {
+  transition:
+    transform 250ms ease,
+    filter 250ms ease,
+    opacity 250ms ease;
+  outline: none;
+}
+
+.about-bixi-team-marquee-bio {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(8px);
+  transition:
+    max-height 300ms ease,
+    opacity 220ms ease,
+    transform 300ms ease;
+}
+
+.about-bixi-team-role {
+  color: #e8cf9a !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-bixi-team-marquee-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .about-bixi-team-marquee-card:hover .about-bixi-team-marquee-bio,
+  .about-bixi-team-marquee-card:focus-within .about-bixi-team-marquee-bio,
+  .about-bixi-team-marquee-card:focus-visible .about-bixi-team-marquee-bio {
+    max-height: 6rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .about-bixi-team-marquee-rail:hover .about-bixi-team-marquee-card:not(:hover) {
+    filter: blur(2px);
+    opacity: 0.72;
+  }
+}
+
+.about-bixi-team-marquee-card:focus-visible {
+  transform: translateY(-4px);
+}
+
+.about-bixi-team-marquee-card:focus-visible .about-bixi-team-marquee-bio,
+.about-bixi-team-marquee-card:focus-within .about-bixi-team-marquee-bio {
+  max-height: 6rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-content {
+    transform: none !important;
+  }
+
+  .about-bixi-team-marquee-card {
+    transition: none !important;
+  }
+
+  .about-bixi-team-marquee-bio {
+    transition: none !important;
+  }
+}
+
 /* Custom color utilities for consistent gold/navy branding */
 .bg-gold {
   background-color: var(--color-gold) !important;
@@ -195,7 +299,7 @@ section:not(#home) h6:not([class*="text-white"]) {
   color: #000000 !important;
 }
 
-section:not(#home) p:not([class*="text-white"]):not(.about-bixi-metric-value) {
+section:not(#home) p:not([class*="text-white"]):not(.about-bixi-metric-value):not(.about-bixi-team-role) {
   color: black !important;
 }
 
@@ -235,9 +339,9 @@ section:not(#home) .text-white\/50 {
   z-index: 1;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.72) 0%,
-    rgba(255, 255, 255, 0.66) 38%,
-    rgba(255, 255, 255, 0.82) 100%
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.12) 40%,
+    rgba(255, 255, 255, 0.22) 100%
   );
 }
 
@@ -554,7 +658,8 @@ svg {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.about-bixi-intro-topline {
+.about-bixi-intro-topline,
+.about-bixi-team-topline {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -562,7 +667,7 @@ svg {
 }
 
 .about-bixi-kicker,
-.about-bixi-team-topline > .ui-kicker-pill {
+.ui-kicker-pill {
   width: fit-content;
   max-width: 100%;
   justify-self: start;
@@ -587,14 +692,16 @@ svg {
 }
 
 @media (min-width: 768px) {
-  .about-bixi-intro-topline {
+  .about-bixi-intro-topline,
+  .about-bixi-team-topline {
     display: grid;
     grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
     align-items: center;
     gap: var(--space-9);
   }
 
-  .about-bixi-intro-label {
+  .about-bixi-intro-label,
+  .about-bixi-team-intro-label {
     margin-left: 0;
     width: min(100%, 100%);
     justify-self: start;
@@ -878,8 +985,47 @@ svg {
 }
 
 .about-bixi-team-shell {
-  margin-top: clamp(3rem, 6vw, 5rem);
-  padding-top: clamp(2.5rem, 5vw, 4rem);
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding-top: 0;
+}
+
+.about-bixi-team-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-bixi-team-header {
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.about-bixi-team-layout {
+  align-items: start;
+}
+
+.about-bixi-team-title-wrap {
+  padding-right: clamp(0rem, 1.6vw, 1.5rem);
+}
+
+.about-bixi-team-title {
+  max-width: 12ch;
+  margin: 0;
+  padding-bottom: clamp(0.5rem, 1.1vw, 0.85rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+.about-bixi-team-title-accent {
+  display: inline-block;
+  margin-top: 0.08em;
+  white-space: nowrap;
+}
+
+.about-bixi-team-side {
+  align-content: start;
+}
+
+.about-bixi-team-grid-shell {
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .about-bixi-team-divider {
@@ -984,32 +1130,6 @@ svg {
 
 .gallery-heading-copy {
   max-width: 46ch;
-}
-
-.about-bixi-team-topline {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .about-bixi-team-topline {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-    align-items: center;
-    gap: var(--space-7);
-  }
-
-  .about-bixi-kicker,
-  .about-bixi-team-topline > .ui-kicker-pill {
-    width: fit-content;
-    max-width: max-content;
-  }
-
-  .about-bixi-team-intro-label {
-    margin-left: 0;
-    width: min(100%, 36rem);
-    justify-self: start;
-    text-align: left;
-  }
 }
 
 /* ── Carousel ── */
@@ -1236,7 +1356,8 @@ svg {
     padding-bottom: var(--space-4);
   }
 
-  .about-bixi-intro-topline {
+  .about-bixi-intro-topline,
+  .about-bixi-team-topline {
     gap: var(--space-2);
     align-items: center;
     text-align: center;
@@ -1459,18 +1580,42 @@ svg {
   }
 
   .about-bixi-team-shell {
-    margin-top: var(--space-10);
-    padding-top: var(--space-8);
+    margin-top: var(--space-12);
+    padding-top: 0;
   }
 
-  .about-bixi-team-divider {
-    gap: 0.7rem;
-    margin-bottom: var(--space-4);
+  .about-bixi-team-header {
+    padding-bottom: var(--space-6);
   }
 
-  .about-bixi-team-divider-label {
-    font-size: 0.66rem;
-    letter-spacing: 0.14em;
+  .about-bixi-team-layout {
+    justify-items: center;
+    text-align: center;
+    gap: var(--space-6);
+  }
+
+  .about-bixi-team-title-wrap,
+  .about-bixi-team-side {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .about-bixi-team-title {
+    max-width: 13ch;
+    padding-bottom: var(--space-3);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-align: center;
+  }
+
+  .about-bixi-team-title-accent {
+    display: block;
+    margin-top: 0.12em;
+    white-space: nowrap;
+  }
+
+  .about-bixi-team-grid-shell {
+    padding-top: var(--space-6);
   }
 
   .gallery-carousel-stage {
@@ -1535,20 +1680,6 @@ svg {
 
   .contact-heading,
   .contact-copy {
-    text-align: center;
-  }
-
-  .about-bixi-team-topline {
-    align-items: center;
-    text-align: center;
-  }
-
-  .about-bixi-team-intro-label {
-    text-align: center;
-  }
-
-  .about-bixi-team-topline + .grid {
-    justify-items: center;
     text-align: center;
   }
 

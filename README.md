@@ -18,7 +18,7 @@ The website currently follows this order:
 
 The current design direction focuses on:
 
-- white backgrounds
+- clean backgrounds with the hero image shown in full behind the logo
 - black text for readability
 - gold accents for warmth and brand presence
 - simpler layouts
@@ -33,6 +33,12 @@ The current design direction focuses on:
 - The About Bixi section was redesigned to be easier to read and more visually polished.
 - The About Bixi section was further refined with more open spacing, stronger hierarchy, and a less compact authority-focused layout.
 - The About Bixi section now uses a more minimal, updated presentation with a cleaner panel treatment and a dedicated visual separation before `The Bixi Team`.
+- The Hero background overlay was removed so the logo and content sit directly on the full hero image.
+- A static slogan ("Where Reaching Out Makes Good Things Happen") was added beneath the logo, above the rotating tagline.
+- The About Bixi Team section was updated with scoped header and grid spacing so the title block and team cards no longer visually collide.
+- The `The Team Behind Every Bixi Project` heading was loosened up with more open line spacing and improved alignment on the gold accent line.
+- The About Bixi Team marquee now loops more cleanly and eases to a smoother stop when users hover over the cards.
+- The gold `Every Bixi Project` line is now kept on one line and the spacing between the team header and carousel was tightened for a cleaner transition.
 - The Services section now uses a compact toggle-driven layout for `Exterior` and `Interior` scopes.
 - The Services `Get a quote` flow is connected back to Contact, including service and message prefills from the selected card.
 - The Gallery now has a carousel UI adopted theme.
@@ -49,6 +55,8 @@ The current design direction focuses on:
 - About Bixi metric numbers now use the gold brand accent.
 - Shared button styles and hover states were unified.
 - Global CSS was cleaned to remove duplicated and unused rules.
+- The About Bixi Team spacing now uses dedicated selectors in `index.css` instead of depending on a generic adjacent-grid mobile override.
+- The About Bixi Team carousel quote/testimonial block was removed to keep the section cleaner and more focused.
 - Reveal animations were refined so Hero animations do not clash with page scrolling.
 - The logo component was updated to use the current `Logo.png` asset in the live interface.
 - The Contact section keeps the video visible in the current layout.
@@ -134,6 +142,7 @@ If you want to update the website content quickly, these are the main files:
   - [Navbar.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Navbar.jsx)
 - About Bixi:
   - [AboutBixi.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/AboutBixi.jsx)
+  - [AboutBixiTeam.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/ui/AboutBixiTeam.jsx)
 - Services:
   - [Services.jsx](/Users/test/Documents/GitHub/Bixihomes/src/components/Services.jsx)
 - Gallery:

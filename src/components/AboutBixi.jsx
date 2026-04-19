@@ -285,14 +285,6 @@ export default function AboutBixi() {
         </div>
 
         <div className="about-bixi-team-shell" data-reveal>
-          <div className="about-bixi-team-divider" aria-hidden="true">
-            <span className="about-bixi-team-divider-line" />
-            <span className="about-bixi-team-divider-label font-body">
-              The Bixi Team
-            </span>
-            <span className="about-bixi-team-divider-line" />
-          </div>
-
           <AboutBixiTeam className="about-bixi-team-section" />
         </div>
       </div>
