@@ -1509,7 +1509,7 @@ svg {
   .hero-tagline {
     justify-content: center;
     text-align: center;
-    font-size: clamp(0.74rem, 3.2vw, 0.92rem);
+    font-size: clamp(0.82rem, 1.6vw, 1.05rem);
     line-height: 1.45;
     letter-spacing: 0.14em;
     word-break: keep-all;
@@ -1521,9 +1521,11 @@ svg {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
-    row-gap: 0.4rem;
-    column-gap: 0.6rem;
+    row-gap: 0.55rem;
+    column-gap: 0.95rem;
     padding-inline: var(--space-4);
+    margin-top: var(--space-2);
+    margin-bottom: var(--space-5);
     text-align: center;
     margin-inline: auto;
     opacity: 1;
