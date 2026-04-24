@@ -183,7 +183,8 @@ body {
     transform: translateY(0);
   }
 
-  .about-bixi-team-marquee-rail:hover .about-bixi-team-marquee-card:not(:hover) {
+  .about-bixi-team-marquee-rail:hover
+    .about-bixi-team-marquee-card:not(:hover) {
     filter: blur(2px);
     opacity: 0.72;
   }
@@ -320,7 +321,10 @@ section:not(#home) h6:not([class*="text-white"]) {
   color: #000000 !important;
 }
 
-section:not(#home) p:not([class*="text-white"]):not(.about-bixi-metric-value):not(.about-bixi-team-role) {
+section:not(#home)
+  p:not([class*="text-white"]):not(.about-bixi-metric-value):not(
+    .about-bixi-team-role
+  ) {
   color: black !important;
 }
 
@@ -335,42 +339,70 @@ section:not(#home) .text-white\/50 {
 
 /* ── Hero Intro ────────────────────────────────────────── */
 
-.hero-bg,
-.hero-bg-overlay {
+.hero-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 0;
 }
 
-.hero-bg {
-  z-index: 0;
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(10, 14, 20, 0) 0%,
+      rgba(10, 14, 20, 0.18) 55%,
+      rgba(10, 14, 20, 0.5) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(10, 14, 20, 0.32) 0%,
+      rgba(10, 14, 20, 0) 28%,
+      rgba(10, 14, 20, 0) 55%,
+      rgba(10, 14, 20, 0.62) 100%
+    );
 }
 
 .hero-bg-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 32%;
+  object-position: center 42%;
   display: block;
-  transform: scale(1.12);
-  transform-origin: center;
+  transform: scale(1.08);
+  transform-origin: center 60%;
+  filter: saturate(1.06) contrast(1.03);
+  will-change: transform;
+  animation: hero-bg-drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes hero-bg-drift {
+  from {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1%, -0.8%, 0);
+  }
 }
 
 @media (max-width: 767px) {
   .hero-bg-image {
-    object-position: center 38%;
-    transform: scale(1.18);
+    object-position: center 46%;
+    animation: hero-bg-drift-mobile 24s ease-in-out infinite alternate;
   }
 }
 
-.hero-bg-overlay {
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.18) 0%,
-    rgba(255, 255, 255, 0.12) 40%,
-    rgba(255, 255, 255, 0.22) 100%
-  );
+@keyframes hero-bg-drift-mobile {
+  from {
+    transform: scale(1.16) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.22) translate3d(-1%, -0.6%, 0);
+  }
 }
 
 .hero-intro {
@@ -396,7 +428,7 @@ section:not(#home) .text-white\/50 {
 
 /* Large centered logo */
 .hero-logo-center {
-  margin-bottom: var(--space-1);
+  margin-bottom: 0;
 }
 
 .hero-logo-main {
@@ -416,6 +448,22 @@ section:not(#home) .text-white\/50 {
   }
 }
 
+/* Standalone headline — primary brand statement */
+.hero-headline {
+  margin: 0 auto var(--space-3);
+  padding-inline: var(--space-2);
+  font-size: clamp(0.88rem, 2.5vw, 1.35rem);
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #d4b77a;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
 /* Tagline */
 .hero-tagline {
   display: flex;
@@ -423,12 +471,15 @@ section:not(#home) .text-white\/50 {
   justify-content: center;
   min-height: 1.6em;
   font-size: clamp(0.82rem, 1.6vw, 1.05rem);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #b9975b;
+  color: #e6c781;
   margin-bottom: 0;
   opacity: 1;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .hero-tagline-shell {
@@ -459,14 +510,69 @@ section:not(#home) .text-white\/50 {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 .hero-trust-divider {
   width: 4px;
   height: 4px;
   border-radius: 999px;
-  background: rgba(185, 151, 91, 0.35);
+  background: rgba(230, 199, 129, 0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Scroll cue */
+.hero-scroll-cue {
+  margin-top: var(--space-4);
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+}
+
+.hero-scroll-line {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(
+    to bottom,
+    rgba(212, 183, 122, 0) 0%,
+    rgba(212, 183, 122, 0.55) 50%,
+    rgba(212, 183, 122, 0) 100%
+  );
+  overflow: hidden;
+}
+
+.hero-scroll-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 14px;
+  background: rgba(240, 215, 150, 0.95);
+  transform: translateX(-50%);
+  animation: hero-scroll-travel 2s cubic-bezier(0.65, 0.02, 0.35, 1) infinite;
+}
+
+@keyframes hero-scroll-travel {
+  0% {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 320%);
+    opacity: 0;
+  }
 }
 
 /* (CTA row removed — contact is handled via navbar only) */
@@ -503,6 +609,34 @@ section:not(#home) .text-white\/50 {
 
 [data-reveal].is-visible .hero-trust-row {
   animation: hero-fade-in-up 500ms ease-out 900ms both;
+}
+
+[data-reveal].is-visible .hero-scroll-cue {
+  animation: hero-fade-in-up 600ms ease-out 1250ms both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal].is-visible .hero-logo-main,
+  [data-reveal].is-visible .hero-trust-row,
+  [data-reveal].is-visible .hero-scroll-cue {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .hero-scroll-line::after {
+    animation: none;
+    opacity: 0.6;
+  }
+  .hero-bg-image {
+    animation: none;
+    transform: scale(1.08);
+  }
+  @media (max-width: 767px) {
+    .hero-bg-image {
+      transform: scale(1.18);
+    }
+  }
 }
 
 .bixi-logo-mark {
@@ -1342,7 +1476,7 @@ svg {
   }
 
   .hero-logo-center {
-    margin-bottom: 0.35rem;
+    margin-bottom: 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -1351,6 +1485,14 @@ svg {
   .hero-logo-main {
     width: min(72vw, 340px);
     max-width: 100%;
+  }
+
+  .hero-headline {
+    font-size: clamp(0.72rem, 3.2vw, 1.05rem);
+    line-height: 1.25;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-3);
+    padding-inline: var(--space-2);
   }
 
   .hero-tagline-shell {
@@ -1391,10 +1533,6 @@ svg {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .hero-trust-divider {
-    display: none;
   }
 
   .about-bixi-intro-shell {
@@ -1785,10 +1923,10 @@ svg {
   }
 
   .hero-trust-pill {
-    min-height: 30px;
-    font-size: 0.65rem;
-    letter-spacing: 0.03em;
-    padding-inline: 0.6rem;
+    min-height: 32px;
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    padding: 0.4rem 0.8rem;
   }
 
   .hero-logo-main {

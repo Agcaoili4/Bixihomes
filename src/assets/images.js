@@ -10,12 +10,14 @@ import roofDetail052 from "./downloaded_assets/roof_detail/roof_detail_052.jpeg"
 import roofDetail054 from "./downloaded_assets/roof_detail/roof_detail_054.jpeg";
 import roofDetail071 from "./downloaded_assets/roof_detail/roof_detail_071.jpeg";
 import roofDetail072 from "./downloaded_assets/roof_detail/roof_detail_072.jpeg";
+import roofDetail058 from "./downloaded_assets/roof_detail/roof_detail_068.jpeg";
 import logo from "./downloaded_assets/Logo.svg";
 import heroLogo from "./downloaded_assets/Logo.png";
-// Figma design asset URLs
+
+// Central asset map used by section-level components.
 export const images = {
   // Hero
-  heroBg: fullHouse003,
+  heroBg: roofDetail058,
   heroLogo: heroLogo,
   heroSubIcon: "https://www.figma.com/api/mcp/asset/d976da2d-dc7d-441d-917f-cdabbee39020",
 

@@ -12,6 +12,7 @@ const MediaItem = ({ item, className, onClick }) => {
   useEffect(() => {
     if (item.type !== "video") return undefined;
 
+    // Only start video work when the media is near the viewport.
     const options = {
       root: null,
       rootMargin: "50px",
@@ -36,6 +37,7 @@ const MediaItem = ({ item, className, onClick }) => {
 
     let mounted = true;
 
+    // Wait until playback is possible before removing the loading state.
     const handleVideoPlay = async () => {
       if (!videoRef.current || !isInView || !mounted) return;
 
@@ -69,6 +71,7 @@ const MediaItem = ({ item, className, onClick }) => {
     return () => {
       mounted = false;
       if (videoRef.current) {
+        // Reset the element so hidden videos release decode/network work.
         videoRef.current.pause();
         videoRef.current.removeAttribute("src");
         videoRef.current.load();
@@ -237,7 +240,7 @@ const InteractiveBentoGallery = ({
   const goNext = useCallback(() => goTo(activeIndex + 1), [activeIndex, goTo]);
   const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
 
-  // Auto-advance every 5s, pause on hover/touch
+  // Keep the carousel moving until the user interacts with it.
   useEffect(() => {
     const start = () => {
       autoplayRef.current = setInterval(() => {
@@ -268,7 +271,7 @@ const InteractiveBentoGallery = ({
     };
   }, [items.length]);
 
-  // Touch swipe
+  // Treat horizontal swipes as next/previous navigation on touch devices.
   useEffect(() => {
     const wrap = wrapRef.current;
     if (!wrap) return;
@@ -294,7 +297,7 @@ const InteractiveBentoGallery = ({
     };
   }, [goNext, goPrev]);
 
-  // Keyboard navigation
+  // Allow arrow-key navigation while the modal is closed.
   useEffect(() => {
     const handleKey = (e) => {
       if (selectedItem) return;
@@ -305,7 +308,7 @@ const InteractiveBentoGallery = ({
     return () => window.removeEventListener("keydown", handleKey);
   }, [goNext, goPrev, selectedItem]);
 
-  // Lock scroll when modal open
+  // Preserve layout width while page scroll is locked behind the modal.
   useEffect(() => {
     if (!selectedItem) return undefined;
 
@@ -330,7 +333,7 @@ const InteractiveBentoGallery = ({
     };
   }, [selectedItem]);
 
-  // Compute card style based on distance from active
+  // Offset surrounding cards to create the stacked carousel layout.
   const getCardStyle = (index) => {
     const distance = index - activeIndex;
     const absDistance = Math.abs(distance);
@@ -354,7 +357,7 @@ const InteractiveBentoGallery = ({
     };
   };
 
-  // Only render cards within range of active
+  // Skip cards that sit too far from the active item.
   const visibleRange = 3;
 
   return (

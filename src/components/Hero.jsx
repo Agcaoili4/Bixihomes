@@ -3,8 +3,9 @@ import { images } from "../assets/images";
 import BixiLogoMark from "./ui/BixiLogoMark";
 import { TextEffect } from "./ui/text-effect";
 
+const heroHeadline = "Where Reaching Out Makes Good Things Happen";
+
 const heroPhrases = [
-  "Where Reaching Out Makes Good Things Happen",
   "Exterior Restoration & Renovation",
   "Connect With Us Today",
 ];
@@ -98,15 +99,17 @@ export default function Hero() {
       <div className="hero-bg" aria-hidden="true">
         <img src={images.heroBg} alt="" className="hero-bg-image" />
       </div>
-      <div className="hero-bg-overlay" aria-hidden="true" />
 
       <div className="ui-container hero-intro">
-        {/* Large centered logo — bold entrance */}
+        {/* Primary brand mark */}
         <div className="hero-logo-center">
           <BixiLogoMark className="hero-logo-main" animated={false} />
         </div>
 
-        {/* Tagline beneath the logo */}
+        {/* Main headline */}
+        <h1 className="hero-headline font-body">{heroHeadline}</h1>
+
+        {/* Timed phrase rotation */}
         <div className="hero-tagline-shell" aria-live="polite">
           <TextEffect
             per="word"
@@ -120,13 +123,18 @@ export default function Hero() {
           </TextEffect>
         </div>
 
-        {/* Subtle trust line */}
+        {/* Trust signals */}
         <div className="hero-trust-row">
           <span className="hero-trust-pill">20+ Years</span>
           <span className="hero-trust-divider" aria-hidden="true" />
           <span className="hero-trust-pill">Licensed &amp; Insured</span>
           <span className="hero-trust-divider" aria-hidden="true" />
           <span className="hero-trust-pill">Calgary &amp; Area</span>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="hero-scroll-cue" aria-hidden="true">
+          <span className="hero-scroll-line" />
         </div>
       </div>
     </section>

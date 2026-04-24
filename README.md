@@ -35,6 +35,7 @@ The current design direction focuses on:
 - The About Bixi section now uses a more minimal, updated presentation with a cleaner panel treatment and a dedicated visual separation before `The Bixi Team`.
 - The Hero background overlay was removed so the logo and content sit directly on the full hero image.
 - A static slogan ("Where Reaching Out Makes Good Things Happen") was added beneath the logo, above the rotating tagline.
+- The Hero now uses an updated background image treatment with a dedicated headline above the rotating tagline.
 - The About Bixi Team section was updated with scoped header and grid spacing so the title block and team cards no longer visually collide.
 - The `The Team Behind Every Bixi Project` heading was loosened up with more open line spacing and improved alignment on the gold accent line.
 - The About Bixi Team marquee now loops more cleanly and eases to a smoother stop when users hover over the cards.
@@ -52,6 +53,9 @@ The current design direction focuses on:
 ## Minor Updates
 
 - Hero spacing was adjusted multiple times to improve the opening screen composition.
+- The Hero background now uses a softer layered gradient, slow drift motion, and reduced-motion fallbacks.
+- A subtle scroll cue was added beneath the Hero trust row.
+- Hero headline, logo spacing, trust pills, and mobile spacing were refined for a more polished first screen.
 - About Bixi metric numbers now use the gold brand accent.
 - Shared button styles and hover states were unified.
 - Global CSS was cleaned to remove duplicated and unused rules.
@@ -69,6 +73,7 @@ The current design direction focuses on:
   - mobile navbar and business hours row
   - general button and content spacing
 - Mobile section pills and the Services toggle are now centered for a cleaner and more balanced phone layout.
+- Gallery interaction logic was code-sanitized with short product-grade comments for the non-obvious playback and carousel behavior.
 - A fallback page remains available for unfinished or invalid routes.
 
 ## Contact Form and Backend
