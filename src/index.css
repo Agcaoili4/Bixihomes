@@ -1926,9 +1926,9 @@ svg {
 
   .hero-trust-pill {
     min-height: 32px;
-    font-size: 0.66rem;
-    letter-spacing: 0.04em;
-    padding: 0.4rem 0.8rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    padding: 0.45rem 0.9rem;
   }
 
   .hero-logo-main {
@@ -1936,9 +1936,9 @@ svg {
   }
 
   .hero-tagline {
-    font-size: clamp(0.7rem, 3.4vw, 0.86rem);
-    letter-spacing: 0.12em;
-    max-width: 24ch;
+    font-size: clamp(0.82rem, 1.6vw, 1.05rem);
+    letter-spacing: 0.14em;
+    max-width: 28ch;
   }
 
   .hero-intro {
