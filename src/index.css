@@ -1468,10 +1468,9 @@ svg {
   }
 
   .hero-intro {
-    padding-top: clamp(3rem, 7vh, 4.4rem);
+    padding-top: clamp(2.4rem, 6vh, 3.6rem);
     padding-bottom: var(--space-8);
-    min-height: calc(100svh - 4rem);
-    min-height: 64vh;
+    min-height: 60vh;
     gap: 0;
   }
 
@@ -1483,12 +1482,12 @@ svg {
   }
 
   .hero-logo-main {
-    width: min(72vw, 340px);
+    width: min(76vw, 300px);
     max-width: 100%;
   }
 
   .hero-headline {
-    font-size: clamp(0.72rem, 3.2vw, 1.05rem);
+    font-size: clamp(0.82rem, 3.8vw, 1.12rem);
     line-height: 1.25;
     margin-top: var(--space-4);
     margin-bottom: var(--space-3);
@@ -1521,11 +1520,12 @@ svg {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+    align-self: center;
     row-gap: 0.55rem;
     column-gap: 0.95rem;
-    padding-inline: var(--space-4);
-    margin-top: var(--space-2);
-    margin-bottom: var(--space-5);
+    padding-inline: 0;
+    margin-top: 0;
+    margin-bottom: var(--space-4);
     text-align: center;
     margin-inline: auto;
     opacity: 1;
@@ -1535,6 +1535,12 @@ svg {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-height: 32px;
+    font-size: 0.62rem;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    padding-block: 0.45rem;
+    padding-inline: 0;
   }
 
   .about-bixi-intro-shell {
@@ -1924,27 +1930,6 @@ svg {
     font-size: 1.2rem;
   }
 
-  .hero-trust-pill {
-    min-height: 32px;
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    padding: 0.45rem 0.9rem;
-  }
-
-  .hero-logo-main {
-    width: min(76vw, 300px);
-  }
-
-  .hero-tagline {
-    font-size: clamp(0.82rem, 1.6vw, 1.05rem);
-    letter-spacing: 0.14em;
-    max-width: 28ch;
-  }
-
-  .hero-intro {
-    padding-top: clamp(2.4rem, 6vh, 3.6rem);
-    min-height: 60vh;
-  }
 }
 
 @media (max-width: 420px) {
