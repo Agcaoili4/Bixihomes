@@ -26,6 +26,8 @@ function GalleryMedia({ item, className = "", autoPlay = false }) {
       alt={item.title}
       className={className}
       draggable={false}
+      loading="lazy"
+      decoding="async"
     />
   );
 }
@@ -112,6 +114,8 @@ function LightboxModal({ item, onClose, items, setSelected }) {
       </motion.div>
 
       <motion.button
+        type="button"
+        aria-label="Close lightbox"
         className="fixed top-4 right-4 z-[80] rounded-full border border-white/45 bg-black/35 p-2 text-white shadow-[0_10px_24px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition-colors duration-200 hover:bg-black/55"
         onClick={onClose}
         initial={{ opacity: 0 }}
@@ -121,7 +125,7 @@ function LightboxModal({ item, onClose, items, setSelected }) {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <X className="h-4 w-4" />
+        <X className="h-4 w-4" aria-hidden="true" />
       </motion.button>
 
       <motion.div
@@ -136,8 +140,11 @@ function LightboxModal({ item, onClose, items, setSelected }) {
             {items.map((thumb) => {
               const isSelected = item.id === thumb.id;
               return (
-                <div
+                <button
                   key={thumb.id}
+                  type="button"
+                  aria-label={`Show ${thumb.title}`}
+                  aria-pressed={isSelected}
                   className={`relative h-10 w-10 rounded-lg overflow-hidden border shadow-sm cursor-pointer gp-lightbox-thumb ${
                     isSelected
                       ? "border-gold bg-white/30 shadow-[0_0_0_1px_rgba(37,100,100,0.55),0_10px_20px_rgba(37,100,100,0.26)] gp-lightbox-thumb-active"
@@ -152,7 +159,7 @@ function LightboxModal({ item, onClose, items, setSelected }) {
                     item={thumb}
                     className="h-full w-full object-cover"
                   />
-                </div>
+                </button>
               );
             })}
           </div>

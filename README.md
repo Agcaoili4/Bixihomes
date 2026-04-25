@@ -49,6 +49,7 @@ The current design direction focuses on:
 - The Navbar was refined to feel more balanced, more readable, and stay sticky during scrolling.
 - The mobile navigation now uses a visible mobile link row and hours bar instead of a hamburger menu.
 - Buttons across the website were updated so the main actions feel more consistent with the Hero palette.
+- Codebase cleanup pass: corrected font loading in `index.html`, added SEO/social/favicon metadata, dropped an unused `from` dependency, removed four orphaned components (`AboutUs`, `News`, `Newsletter`, `TeamServices`), gated production `console.warn` in the gallery video player, and hardened the Gallery lightbox accessibility (close button + thumbnail buttons).
 
 ## Minor Updates
 
@@ -202,6 +203,7 @@ Use this quick checklist:
 2. Check that no secrets or `.env` values were added into the codebase
 3. If backend changes were made, test the contact form flow
 4. Confirm the current design still works on desktop and mobile
+5. Confirm `index.html` meta tags (title, description, Open Graph image, canonical URL) still match the latest brand copy
 
 ## License
 

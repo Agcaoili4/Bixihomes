@@ -58,7 +58,9 @@ const MediaItem = ({ item, className, onClick }) => {
           }
         }
       } catch (error) {
-        console.warn("Video playback failed:", error);
+        if (import.meta.env.DEV) {
+          console.warn("Video playback failed:", error);
+        }
       }
     };
 

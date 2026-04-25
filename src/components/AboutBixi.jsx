@@ -252,6 +252,8 @@ export default function AboutBixi() {
                 src={images.storyPhoto}
                 alt="Construction work"
                 className="w-full h-full object-cover about-bixi-media-img"
+                loading="lazy"
+                decoding="async"
               />
               <div className="about-bixi-media-overlay" />
               <div className="about-bixi-media-badge">
