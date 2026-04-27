@@ -6,9 +6,13 @@ import galleryItems, { TRADES } from "../data/galleryData";
 
 function GalleryMedia({ item, className = "", autoPlay = false }) {
   if (item.type === "video") {
+    // Append #t=0.5 so the browser renders the frame at 0.5s as a static
+    // preview when autoplay is off. Without this, non-autoplaying <video>
+    // elements show a black box on most browsers.
+    const src = autoPlay ? item.url : `${item.url}#t=0.5`;
     return (
       <video
-        src={item.url}
+        src={src}
         className={className}
         playsInline
         muted

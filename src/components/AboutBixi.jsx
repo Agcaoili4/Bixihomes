@@ -18,6 +18,8 @@ const tabContent = {
       "Fencing & decking that strengthen curb appeal",
     ],
     metric: "20+ Years Exterior Focus",
+    imageKey: "storyPhoto",
+    imageAlt: "Exterior cedar roofing workmanship on a Bixi Homes project",
   },
   residential: {
     title: "Interior Renovation With a Proven Team",
@@ -28,6 +30,8 @@ const tabContent = {
       "Consistent quality control and clean turnover",
     ],
     metric: "100+ Projects Delivered",
+    imageKey: "residentialPhoto",
+    imageAlt: "Interior framing during a Bixi Homes residential build",
   },
 };
 
@@ -249,8 +253,9 @@ export default function AboutBixi() {
           <div className="about-bixi-body">
             <div className="about-bixi-media">
               <img
-                src={images.storyPhoto}
-                alt="Construction work"
+                key={currentContent.imageKey}
+                src={images[currentContent.imageKey]}
+                alt={currentContent.imageAlt}
                 className="w-full h-full object-cover about-bixi-media-img"
                 loading="lazy"
                 decoding="async"

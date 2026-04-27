@@ -1,9 +1,9 @@
 import fullHouse001 from "../assets/downloaded_assets/full_house/full_house_001.jpeg";
 import fullHouse002 from "../assets/downloaded_assets/full_house/full_house_002.jpeg";
-import fullHouse003 from "../assets/downloaded_assets/full_house/full_house_003.jpeg";
 import aspenHillTerrace from "../assets/downloaded_assets/roof_detail/Aspen_Hill_Terrace_SW.mp4";
 import ramadaDrumheller from "../assets/downloaded_assets/roof_detail/Ramada_Drumheller.mp4";
 import roofDetail019 from "../assets/downloaded_assets/roof_detail/roof_detail_019.jpeg";
+import roofDetail011 from "../assets/downloaded_assets/roof_detail/roof_detail_011.jpeg";
 import roofDetail024 from "../assets/downloaded_assets/roof_detail/roof_detail_024.jpeg";
 import roofDetail033 from "../assets/downloaded_assets/roof_detail/roof_detail_033.jpeg";
 import roofDetail041 from "../assets/downloaded_assets/roof_detail/roof_detail_041.jpeg";
@@ -139,10 +139,10 @@ const galleryItems = [
   {
     id: 15,
     type: "image",
-    trade: "Full Build",
-    title: "Full House Renovation Snapshot",
-    desc: "Wide framing shot highlighting completed exterior form and structural scale.",
-    url: fullHouse003,
+    trade: "Fascia & Gutters",
+    title: "Eave & Gutter Line Detailing",
+    desc: "Finished shingle edge meeting the gutter run with clean drip-edge alignment for reliable drainage.",
+    url: roofDetail011,
   },
 ];
 

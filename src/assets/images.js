@@ -2,19 +2,21 @@ import aboutPhotoVideo from "./downloaded_assets/about-photo.mp4";
 import fullHouse001 from "./downloaded_assets/full_house/full_house_001.jpeg";
 import fullHouse003 from "./downloaded_assets/full_house/full_house_003.jpeg";
 import roofDetail024 from "./downloaded_assets/roof_detail/roof_detail_024.jpeg";
+import roofDetail027 from "./downloaded_assets/roof_detail/roof_detail_027.jpeg";
 import roofDetail033 from "./downloaded_assets/roof_detail/roof_detail_033.jpeg";
 import roofDetail041 from "./downloaded_assets/roof_detail/roof_detail_041.jpeg";
 import roofDetail052 from "./downloaded_assets/roof_detail/roof_detail_052.jpeg";
 import roofDetail054 from "./downloaded_assets/roof_detail/roof_detail_054.jpeg";
 import roofDetail071 from "./downloaded_assets/roof_detail/roof_detail_071.jpeg";
-import roofDetail058 from "./downloaded_assets/roof_detail/roof_detail_068.jpeg";
+import interiorFinished from "./downloaded_assets/interior/interior_finished_001.jpeg";
+import interiorFraming from "./downloaded_assets/interior/interior_framing_001.jpeg";
 import logo from "./downloaded_assets/Logo.svg";
 import heroLogo from "./downloaded_assets/Logo.png";
 
 // Central asset map used by section-level components.
 export const images = {
   // Hero
-  heroBg: roofDetail058,
+  heroBg: fullHouse003,
   heroLogo: heroLogo,
   heroSubIcon: "https://www.figma.com/api/mcp/asset/d976da2d-dc7d-441d-917f-cdabbee39020",
 
@@ -28,10 +30,11 @@ export const images = {
   residentialIcon: "https://www.figma.com/api/mcp/asset/caccdfc2-786d-412d-b2fb-97d6bfccff42",
   industrialIcon: "https://www.figma.com/api/mcp/asset/232e0295-dc4d-4585-9009-260978dfc29b",
   storyPhoto: fullHouse001,
+  residentialPhoto: interiorFraming,
 
   // Team Services (consumed by AboutBixiTeam)
   teamBg: roofDetail052,
-  interiorPhoto: roofDetail024,
+  interiorPhoto: interiorFinished,
   carpenterPhoto: roofDetail054,
 
   // Contact
