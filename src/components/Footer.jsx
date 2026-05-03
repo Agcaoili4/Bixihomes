@@ -60,7 +60,7 @@ export default function Footer() {
                   Call Us
                 </p>
                 <p className="font-body text-xs md:text-sm text-black/70">
-                  +01 403 9912631
+                  +1 403 9912631
                 </p>
               </div>
             </div>
