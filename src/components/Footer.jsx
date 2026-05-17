@@ -80,13 +80,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom section: About, Explore, Quick Links */}
-        <div className="ui-py-lg flex flex-col md:flex-row ui-gap-xl items-start border-b border-black/15" data-reveal>
+        <div className="ui-py-lg flex flex-col md:flex-row ui-gap-xl items-center md:items-start border-b border-black/15" data-reveal>
           {/* About text + social */}
-          <div className="max-w-full md:max-w-[380px] shrink-0">
-            <p className="footer-about-text font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md md:ui-mb-lg">
+          <div className="max-w-full md:max-w-[380px] shrink-0 w-full md:w-auto">
+            <p className="footer-about-text font-body text-sm md:text-base text-black/70 leading-relaxed ui-mb-md md:ui-mb-lg text-center md:text-left">
               For more updates and news, follow us on our social media.
             </p>
-            <div className="footer-social-row flex ui-gap-3">
+            <div className="footer-social-row flex ui-gap-3 justify-center md:justify-start">
               {socialIcons.map((icon) => (
                 <a
                   key={icon.label}
@@ -106,7 +106,7 @@ export default function Footer() {
           <div className="hidden md:block w-px self-stretch bg-black/20" />
 
           {/* Links columns */}
-          <div className="footer-links-wrap flex ui-gap-12 md:ui-gap-14 lg:ui-gap-20">
+          <div className="footer-links-wrap flex ui-gap-12 md:ui-gap-14 lg:ui-gap-20 justify-center md:justify-start w-full md:w-auto text-center md:text-left">
             <div>
               <h4 className="font-heading font-bold text-sm md:text-base text-black ui-mb-sm">
                 Explore
