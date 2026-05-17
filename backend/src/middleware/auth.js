@@ -11,7 +11,7 @@ export const authenticate = (req, res, next) => {
   const token = header.split(' ')[1];
 
   try {
-    const decoded = jwt.verify(token, env.JWT_SECRET);
+    const decoded = jwt.verify(token, env.JWT_SECRET, { algorithms: ['HS256'] });
     req.user = decoded;
     next();
   } catch {
