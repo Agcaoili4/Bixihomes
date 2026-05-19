@@ -1,28 +1,16 @@
 import rateLimit from 'express-rate-limit';
 
-// Global: 100 requests per 15 minutes per IP
-export const globalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { success: false, message: 'Too many requests, please try again later' },
-});
+const FIFTEEN_MINUTES = 15 * 60 * 1000;
 
-// Contact form: 5 requests per 15 minutes per IP
-export const contactLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 5,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { success: false, message: 'Too many contact submissions, please try again later' },
-});
+const createLimiter = (max, message) =>
+  rateLimit({
+    windowMs: FIFTEEN_MINUTES,
+    max,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { success: false, message },
+  });
 
-// Auth: 10 login attempts per 15 minutes per IP
-export const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 10,
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: { success: false, message: 'Too many login attempts, please try again later' },
-});
+export const globalLimiter = createLimiter(100, 'Too many requests, please try again later');
+export const contactLimiter = createLimiter(5, 'Too many contact submissions, please try again later');
+export const authLimiter = createLimiter(10, 'Too many login attempts, please try again later');
