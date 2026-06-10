@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { images } from "../assets/images";
 import { contactServiceOptions } from "../data/contactServiceOptions";
+import { openPrivacyPolicy } from "./PrivacyPolicy";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isWaking, setIsWaking] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState(false);
+  const consentRef = useRef(null);
   const [submitStatus, setSubmitStatus] = useState({
     type: "",
     message: "",
@@ -40,6 +45,20 @@ export default function ContactForm() {
     event.preventDefault();
     if (isSubmitting) return;
 
+    // Data guard-rail: consent to the Privacy Policy is required before we
+    // transmit any personal information to the server.
+    if (!consent) {
+      setConsentError(true);
+      setSubmitStatus({
+        type: "error",
+        message:
+          "Please read and check our Privacy Policy first before sending your request.",
+      });
+      consentRef.current?.focus?.();
+      return;
+    }
+    setConsentError(false);
+
     const formElement = event.currentTarget;
     const formData = new FormData(formElement);
     const payload = {
@@ -56,7 +75,13 @@ export default function ContactForm() {
     }
 
     setIsSubmitting(true);
+    setIsWaking(false);
     setSubmitStatus({ type: "", message: "" });
+
+    // The backend runs on a free tier that may cold-start. If the request is
+    // still in flight after a few seconds, reassure the user it's working so
+    // they don't reload and double-submit.
+    const wakeTimer = setTimeout(() => setIsWaking(true), 5000);
 
     try {
       const controller = new AbortController();
@@ -86,6 +111,7 @@ export default function ContactForm() {
           "Your request was sent successfully. We will reply soon.",
       });
       setPrefill({ service: "", message: "" });
+      setConsent(false);
       setFormSeed((current) => current + 1);
       formElement?.reset();
     } catch (error) {
@@ -106,6 +132,8 @@ export default function ContactForm() {
       }
       setSubmitStatus({ type: "error", message });
     } finally {
+      clearTimeout(wakeTimer);
+      setIsWaking(false);
       setIsSubmitting(false);
     }
   };
@@ -310,14 +338,138 @@ export default function ContactForm() {
                   />
                 </div>
 
+                {/* Consent guard-rail — required before any data is sent */}
+                <div
+                  className={`rounded-lg transition-colors ${
+                    consentError
+                      ? "bg-[#b9975b]/[0.08] ring-1 ring-[#b9975b] px-3 py-2.5"
+                      : ""
+                  }`}
+                >
+                  <label
+                    htmlFor="cf-consent"
+                    className="flex items-start gap-2.5 cursor-pointer select-none"
+                  >
+                    <input
+                      ref={consentRef}
+                      id="cf-consent"
+                      name="consent"
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => {
+                        setConsent(e.target.checked);
+                        if (e.target.checked) setConsentError(false);
+                      }}
+                      aria-invalid={consentError}
+                      className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-[#b9975b]"
+                    />
+                    <span className="font-body text-xs text-black/60 leading-relaxed">
+                      I agree to the{" "}
+                      <button
+                        type="button"
+                        onClick={openPrivacyPolicy}
+                        className="text-[#b9975b] font-semibold underline underline-offset-2 hover:text-[#111111] transition-colors"
+                      >
+                        Privacy Policy
+                      </button>{" "}
+                      and consent to Bixi Homes contacting me about my request.
+                    </span>
+                  </label>
+
+                  {consentError ? (
+                    <p
+                      role="alert"
+                      className="mt-2 flex items-start gap-1.5 pl-[26px] font-body text-xs font-medium text-[#111111]"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="14"
+                        height="14"
+                        fill="none"
+                        stroke="#b9975b"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="mt-px shrink-0"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 9v4M12 17h.01" />
+                        <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" />
+                      </svg>
+                      <span>
+                        Please read and check the Privacy Policy first before
+                        sending your request.
+                      </span>
+                    </p>
+                  ) : null}
+                </div>
+
                 {/* Submit */}
                 <button
                   type="submit"
                   className="ui-btn ui-btn-primary ui-btn-full"
                   disabled={isSubmitting}
+                  aria-busy={isSubmitting}
                 >
-                  {isSubmitting ? "Sending..." : "Get My Free Estimate"}
+                  {isSubmitting ? (
+                    <span className="inline-flex items-center justify-center gap-2.5">
+                      <svg
+                        className="animate-spin h-[18px] w-[18px] shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                        />
+                        <path
+                          className="opacity-90"
+                          fill="currentColor"
+                          d="M12 2a10 10 0 0 1 10 10h-3a7 7 0 0 0-7-7V2Z"
+                        />
+                      </svg>
+                      {isWaking ? "Waking the server…" : "Sending…"}
+                    </span>
+                  ) : (
+                    "Get My Free Estimate"
+                  )}
                 </button>
+
+                {/* Cold-start notice — shown only while a request is in flight,
+                    so the user knows the wait is expected and doesn't resend */}
+                {isSubmitting ? (
+                  <p
+                    role="status"
+                    aria-live="polite"
+                    className="flex items-start gap-2 rounded-lg bg-[#B9975B]/[0.08] px-3 py-2.5 font-body text-xs text-black/60 leading-relaxed"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="14"
+                      height="14"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="mt-0.5 shrink-0 text-[#B9975B]"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
+                    </svg>
+                    <span>
+                      Heads up: the first request can take up to a minute while
+                      our server wakes up. Please don&apos;t refresh or resend
+                      &mdash; your message is on its way.
+                    </span>
+                  </p>
+                ) : null}
 
                 {/* Trust line */}
                 <p className="font-body text-xs text-black/45 text-center leading-relaxed">

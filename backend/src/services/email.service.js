@@ -8,6 +8,13 @@ const resend = new Resend(env.RESEND_API_KEY);
 const escapeHtml = (str) =>
   str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+// Defense in depth: strip CR/LF and other control characters from any value
+// that is placed into an email header (subject line). The validator already
+// removes these, but the email layer must never trust its caller — this
+// guarantees no header injection even if sendContactEmail is invoked directly.
+// eslint-disable-next-line no-control-regex
+const sanitizeHeader = (str) => String(str).replace(/[\x00-\x1F\x7F]/g, ' ').trim();
+
 export const sendContactEmail = async (data) => {
   const { firstName, lastName, email, phone, service, message } = data;
 
@@ -25,8 +32,8 @@ export const sendContactEmail = async (data) => {
   const result = await resend.emails.send({
     from: `Bixihomes Website <${env.RESEND_FROM_EMAIL}>`,
     to: [env.CONTACT_EMAIL_TO],
-    replyTo: email,
-    subject: `New Estimate Request from ${firstName} ${lastName}`,
+    replyTo: sanitizeHeader(email),
+    subject: sanitizeHeader(`New Estimate Request from ${firstName} ${lastName}`),
     html,
   });
 

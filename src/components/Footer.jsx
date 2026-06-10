@@ -1,4 +1,5 @@
 import { images } from "../assets/images";
+import { openPrivacyPolicy } from "./PrivacyPolicy";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -96,7 +97,7 @@ export default function Footer() {
                   rel="noreferrer"
                   className="flex items-center justify-center w-10 h-10 md:w-11 md:h-11 text-[#B9975B] hover:text-[#256464] hover:scale-110 transition-all"
                 >
-                  <icon.Icon className="w-6 h-6 md:w-6 md:h-6" />
+                  <icon.Icon className="w-6 h-6" />
                 </a>
               ))}
             </div>
@@ -145,16 +146,35 @@ export default function Footer() {
                     Service Request
                   </a>
                 </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={openPrivacyPolicy}
+                    className="hover:text-navy transition-colors"
+                  >
+                    Privacy Policy
+                  </button>
+                </li>
               </ul>
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="ui-py-md text-center">
+        <div className="ui-py-md flex flex-col sm:flex-row items-center justify-center ui-gap-2 sm:ui-gap-3 text-center">
           <p className="font-body text-xs md:text-sm text-black/60">
             Copyright &copy; Bixi Homes | 2026 All rights reserved.
           </p>
+          <span className="hidden sm:inline text-black/30" aria-hidden="true">
+            |
+          </span>
+          <button
+            type="button"
+            onClick={openPrivacyPolicy}
+            className="font-body text-xs md:text-sm text-black/60 hover:text-navy underline underline-offset-2 transition-colors"
+          >
+            Privacy Policy
+          </button>
         </div>
       </div>
     </footer>

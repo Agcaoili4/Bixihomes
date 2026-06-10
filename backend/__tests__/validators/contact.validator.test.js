@@ -127,4 +127,46 @@ describe('contactSchema', () => {
     expect(result.data.firstName).toBe('John');
     expect(result.data.lastName).toBe('Smith');
   });
+
+  it('strips CR/LF (header injection) from name fields', () => {
+    const result = contactSchema.safeParse({
+      ...validInput,
+      firstName: 'John\r\nBcc: attacker@evil.com',
+      lastName: 'Smith\nSubject: hijacked',
+    });
+    expect(result.success).toBe(true);
+    expect(result.data.firstName).not.toMatch(/[\r\n]/);
+    expect(result.data.lastName).not.toMatch(/[\r\n]/);
+    expect(result.data.firstName).toBe('JohnBcc: attacker@evil.com');
+  });
+
+  it('strips NUL and other control characters from name fields', () => {
+    const result = contactSchema.safeParse({
+      ...validInput,
+      firstName: 'Jo\x00hn\x07',
+    });
+    expect(result.success).toBe(true);
+    expect(result.data.firstName).toBe('John');
+  });
+
+  it('rejects an email containing whitespace or newlines', () => {
+    for (const email of ['john@example.com\nBcc: x@y.com', 'jo hn@example.com', 'john@ex\tample.com']) {
+      const result = contactSchema.safeParse({ ...validInput, email });
+      expect(result.success).toBe(false);
+    }
+  });
+
+  it('preserves newlines in the message body but strips other control chars', () => {
+    const result = contactSchema.safeParse({
+      ...validInput,
+      message: 'Line one\nLine two\x00\x07 still here',
+    });
+    expect(result.success).toBe(true);
+    expect(result.data.message).toBe('Line one\nLine two still here');
+  });
+
+  it('rejects a phone number containing letters', () => {
+    const result = contactSchema.safeParse({ ...validInput, phone: '403-CALL-NOW' });
+    expect(result.success).toBe(false);
+  });
 });

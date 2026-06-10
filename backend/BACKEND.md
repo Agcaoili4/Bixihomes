@@ -44,7 +44,7 @@ Rate limiter (5 req / 15 min per IP)
     ↓
 Zod validates: firstName, lastName, email, phone, service, message
     ↓
-HTML tags stripped, whitespace trimmed, types enforced
+HTML tags stripped, control chars (CR/LF/NUL) removed, whitespace trimmed, types enforced
     ↓
 Controller calls emailService.sendContactEmail()
     ↓
@@ -54,6 +54,15 @@ Client gets: { success: true, message: "Your message has been sent..." }
 ```
 
 On email failure, the client gets a safe 503 error. Provider/internal details are logged server-side only.
+
+**Email header-injection defense.** `firstName` and `lastName` flow into the email **subject** header, and `email` becomes the **Reply-To** header. CR/LF in a header value is the classic header-injection vector (smuggling `Bcc:`, extra subjects, etc.). Two independent layers neutralize this:
+
+1. **Validator** (`contact.validator.js`) — single-line fields (names) have all ASCII control characters, including CR/LF and NUL, stripped before length checks. The `email` field rejects any value containing whitespace/control characters outright. The `message` field keeps newlines (for readability) but strips every other control character. `phone` only accepts digits and `()+.- ` characters.
+2. **Email service** (`email.service.js`) — `sanitizeHeader()` strips control characters from the subject and Reply-To again at send time, so the email layer never trusts its caller even if invoked directly.
+
+**Privacy & consent.** The frontend contact form requires the visitor to actively consent to the Privacy Policy (a required checkbox) before any personal data is transmitted. The Privacy Policy is available site-wide via a modal linked from the footer and the form. The backend collects only the fields needed to reply, sends them through Resend to the business inbox, and never persists them in a database.
+
+**Cold-start UX.** The backend is deployed on Render's free tier, which sleeps after inactivity and can take up to ~60s to boot on the first request. The form sets a 60s client-side timeout, shows a standing notice that the first request may be slow, switches the button to "Waking the server…" and shows a live reassurance message after 5s — all to stop visitors from refreshing and double-submitting during a cold start.
 
 The frontend now supports service-aware quote links. When a visitor clicks a quote action from the Services section, the frontend can prefill the Contact form with:
 
@@ -154,10 +163,10 @@ backend/
 │   │   └── email.service.js  # Resend email sending with HTML escaping
 │   ├── validators/
 │   │   ├── auth.validator.js
-│   │   └── contact.validator.js # Contact schema + current/legacy accepted service list
+│   │   └── contact.validator.js # Contact schema + service list + control-char/header-injection sanitation
 │   └── utils/
 │       └── logger.js         # Structured logger (info, warn, error, debug)
-└── __tests__/                # 27 unit tests across 4 files
+└── __tests__/                # 33 unit tests across 4 files
     ├── middleware/
     │   └── errorHandler.test.js
     ├── services/
@@ -177,10 +186,12 @@ backend/
 | Rate limiting | Global 100/15m, contact 5/15m, auth 10/15m per IP |
 | Input validation | Zod schemas enforce strict types — rejects objects in string fields |
 | XSS | HTML tags stripped from all text inputs + HTML entity escaping in emails |
+| Email header injection | CR/LF + control chars stripped from header-bound fields in both the validator and the email service (defense in depth) |
 | NoSQL injection | Zod rejects non-string types in all fields |
 | Prototype pollution | Zod strips unrecognized keys from request body |
 | User enumeration | Same error message for wrong email vs wrong password |
 | Error leakage | Stack traces never sent to client in any environment |
+| Data minimization & consent | Only reply-necessary fields collected; explicit Privacy Policy consent required client-side before submission |
 | Secrets | All credentials in `.env` (gitignored), validated at startup |
 
 ## Environment Variables
@@ -216,7 +227,7 @@ npm install
 cp .env.example .env   # Then fill in your values
 npm run dev             # Development with auto-reload
 npm start               # Production
-npm test                # Run all 27 tests
+npm test                # Run all 33 tests
 npm run test:watch      # Run tests in watch mode
 ```
 

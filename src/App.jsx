@@ -6,6 +6,7 @@ import Services from "./components/Services";
 import Gallery from "./components/Gallery";
 import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 // Component handles the global UI behaviors 
 function App() {
@@ -151,6 +152,7 @@ function App() {
       <AboutBixi />
       <ContactForm />
       <Footer />
+      <PrivacyPolicy />
     </div>
   );
 }
