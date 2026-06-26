@@ -92,28 +92,19 @@ export default function PrivacyPolicy() {
               aria-hidden="true"
             />
 
-            <div className="shrink-0 flex items-center justify-between gap-6 px-7 sm:px-12 py-6 sm:py-7 border-b border-black/[0.06]">
-              <div className="flex items-center gap-4 min-w-0">
-                <span className="font-heading font-extrabold text-[17px] sm:text-[19px] leading-none tracking-tight text-[#111111]">
-                  Bixi Homes
-                </span>
-                <span aria-hidden="true" className="h-4 w-px bg-black/15" />
-                <span className="font-body text-[10.5px] font-semibold uppercase tracking-[0.24em] text-[#b9975b] whitespace-nowrap">
-                  Privacy
-                </span>
-              </div>
+            <div className="shrink-0 flex items-center justify-end px-7 sm:px-12 py-6 sm:py-7 border-b border-black/[0.06]">
               <button
                 type="button"
                 onClick={close}
                 aria-label="Close privacy policy"
-                className="shrink-0 cursor-pointer rounded-full p-2 text-[#111111]/40 transition-all duration-300 ease-out hover:rotate-90 hover:bg-black/[0.04] hover:text-[#111111] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b9975b]/60"
+                className="shrink-0 cursor-pointer rounded-full p-3 text-[#111111]/55 ring-1 ring-black/10 transition-all duration-300 ease-out hover:rotate-90 hover:bg-black/[0.04] hover:text-[#111111] hover:ring-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b9975b]/60"
               >
                 <svg
                   viewBox="0 0 24 24"
-                  className="h-[18px] w-[18px]"
+                  className="h-[22px] w-[22px]"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.8"
+                  strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   aria-hidden="true"
@@ -124,18 +115,18 @@ export default function PrivacyPolicy() {
             </div>
 
             <div
-              className="privacy-scroll overflow-y-auto px-7 sm:px-12 py-9"
+              className="privacy-scroll overflow-y-auto px-8 sm:px-14 py-9 sm:py-11"
               dangerouslySetInnerHTML={{ __html: privacyHtml }}
             />
 
-            <div className="shrink-0 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sm:gap-8 border-t border-black/[0.06] bg-[#fafafa] px-7 sm:px-12 py-5 sm:py-6">
-              <p className="hidden sm:block font-body text-[12.5px] leading-snug text-[#111111]/55 max-w-[44ch]">
+            <div className="shrink-0 flex flex-col items-center justify-center gap-4 border-t border-black/[0.06] bg-[#fafafa] px-7 sm:px-12 py-5 sm:py-6 text-center">
+              <p className="font-body text-[12.5px] leading-snug text-[#111111]/55 max-w-[44ch]">
                 By using our website, you agree to the terms outlined in this policy.
               </p>
               <button
                 type="button"
                 onClick={close}
-                className="ui-btn ui-btn-primary w-full sm:w-auto sm:px-11 cursor-pointer"
+                className="ui-btn ui-btn-primary sm:px-11 cursor-pointer"
               >
                 I Understand
               </button>

@@ -1265,6 +1265,34 @@ svg {
   background: transparent;
 }
 
+/* Constrain Termly content width so lines stay readable inside the wider
+   modal, and tame default list indentation that browsers apply to <ul>/<ol>. */
+.privacy-scroll [data-custom-class="body"] {
+  max-width: 64ch;
+  margin-inline: auto;
+}
+
+.privacy-scroll [data-custom-class="body"] ul,
+.privacy-scroll [data-custom-class="body"] ol {
+  padding-left: 1.5rem;
+  margin-block: 0.5rem;
+}
+
+.privacy-scroll [data-custom-class="body"] li {
+  padding-left: 0.25rem;
+  margin-block: 0.4rem;
+}
+
+.privacy-scroll [data-custom-class="body"] li::marker {
+  color: rgba(185, 151, 91, 0.85);
+}
+
+.privacy-scroll [data-custom-class="body"] h1,
+.privacy-scroll [data-custom-class="body"] h2,
+.privacy-scroll [data-custom-class="body"] h3 {
+  margin-block: 1.25rem 0.5rem;
+}
+
 .ui-gallery-shell {
   width: 100%;
   margin-inline: auto;
